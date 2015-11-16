@@ -1,0 +1,63 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Nov 13 14:51:39 2015
+;; Desktop file format version 206
+;; Emacs version 24.5.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (22086 16203 843044 414000) (desktop . "206") "crosbyr@CentOS-RWC" nil nil ((((font-backend xft x) (font . "-unknown-DejaVu Sans Mono-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1") (font-parameter . "Monospace 10") (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (foreground-color . "black") (background-color . "#faf1c2") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground) (scroll-bar-background . "grey75") (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (wait-for-wm . t) (fullscreen) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (alpha) (horizontal-scroll-bars . t) (display-type . color) (background-mode . light) (cursor-color . "black") (sticky) (environment) (frameset--id . "4696-2EF7-5F55-9BA6") (frameset--mini t . t) (height . 50) (width . 189) (modeline . t) (minibuffer . t) (unsplittable) (left . 0) (top . 25) (icon-name) (visibility . t) (display . ":0.0") (explicit-name)) ((min-height . 4) (min-width . 20) (min-height-ignore . 4) (min-width-ignore . 12) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 68) (min-pixel-width . 160) (min-pixel-height-ignore . 68) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 17) (min-pixel-width-safe . 32)) hc (pixel-width . 1545) (pixel-height . 836) (total-width . 193) (total-height . 49) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 777) (pixel-height . 836) (total-width . 97) (total-height . 49) (normal-height . 1.0) (normal-width . 0.5) (buffer "*Messages*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins 4) (scroll-bars 16 2 t nil) (vscroll . 0) (dedicated) (point . 63170) (start . 61712))) (leaf (last . t) (pixel-width . 768) (pixel-height . 836) (total-width . 96) (total-height . 49) (normal-height . 1.0) (normal-width . 0.5) (buffer "init-packages.el" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins 3) (scroll-bars 16 2 t nil) (vscroll . 0) (dedicated) (point . 1) (start . 1)))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/win_d/SharedEnvironment/emacs/" "/home/crosbyr/win_d/SharedEnvironment/emacs/generic-dl.el" "/home/crosbyr/win_d/SharedEnvironment/emacs/Packages.lst" "~/win_d/SharedEnvironment/emacs/init-global.el" "~/.emacs.d/elpa/bookmark+-20151107.847/bookmark+-autoloads.el" "~/.emacs.d/elpa/dired+-20151110.921/dired+-autoloads.el" "~/.emacs.d/elpa/icicles-20151015.1551/icicles-autoloads.el" "~/.emacs.d/elpa/magit-20151111.1855/magit-autoloads.el" "~/.emacs.d/elpa/git-commit-20151111.418/git-commit-autoloads.el" "~/.emacs.d/elpa/with-editor-20151111.418/with-editor-autoloads.el" "~/.emacs.d/elpa/magit-popup-20151111.1022/magit-popup-autoloads.el" "~/.emacs.d/elpa/async-20151104.2113/async-autoloads.el" "~/.emacs.d/elpa/dash-20151021.113/dash-autoloads.el" "~/.emacs.d/elpa/yaml-mode-20150816.2235/yaml-mode-autoloads.el" "~/.emacs.d/elpa/yasnippet-20151108.1505/yasnippet-autoloads.el" "~/win_d/SharedEnvironment/emacs/Packages.lst"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/crosbyr/win_d/SharedEnvironment/emacs/init-packages.el"
+  "init-packages.el"
+  'emacs-lisp-mode
+  '(linum-mode yas-minor-mode TeX-PDF-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . prefer-utf-8-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "emacs"
+  'dired-mode
+  '(linum-mode yas-minor-mode TeX-PDF-mode)
+  575
+  '(nil nil)
+  t
+  '("/home/crosbyr/win_d/SharedEnvironment/emacs/")
+  nil)
+
+(desktop-create-buffer 206
+  "/home/crosbyr/win_d/SharedEnvironment/emacs/Packages.lst"
+  "Packages.lst"
+  'conf-space-mode
+  '(linum-mode yas-minor-mode TeX-PDF-mode)
+  403
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/crosbyr/.emacs.d/elpa/org-20151109/org-loaddefs.el"
+  "org-loaddefs.el"
+  'emacs-lisp-mode
+  '(linum-mode yas-minor-mode TeX-PDF-mode)
+  87863
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . utf-8-unix)))
+

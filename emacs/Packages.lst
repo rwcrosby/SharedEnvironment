@@ -1,0 +1,16 @@
+  async              20151104.2113 installed             Asynchronous processing in Emacs
+  auctex             11.88.9       installed             Integrated environment for *TeX*
+  bookmark+          20151107.847  installed             Bookmark+: extensions to standard library `bookmark.el'.
+  csv-mode           1.5           installed             Major mode for editing comma/char separated values
+  dash               20151021.113  installed             A modern list library for Emacs
+  dired+             20151110.921  installed             Extensions to Dired.
+  dired-sort-menu    20130824.507  installed             provide menu/dialogue for dired sort options
+  dired-sort-menu+   20150104.1351 installed             Extensions to `dired-sort-menu.el'
+  git-commit         20151111.418  installed             Edit Git commit messages
+  icicles            20151015.1551 installed             Minibuffer input completion and cycling.
+  magit              20151111.1855 installed             A Git porcelain inside Emacs
+  magit-popup        20151111.1022 installed             Define prefix-infix-suffix command combos
+  org                20151005      installed             Outline-based notes management and organizer
+  with-editor        20151111.418  installed             Use the Emacsclient as $EDITOR
+  yaml-mode          20150816.2235 installed             Major mode for editing YAML files
+  yasnippet          20151108.1505 installed             Yet another snippet extension for Emacs.

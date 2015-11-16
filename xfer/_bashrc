@@ -1,0 +1,82 @@
+if [ -x /usr/libexec/path_helper ]; then
+  eval `/usr/libexec/path_helper -s`
+fi
+
+# Save the original path prior to my modifications
+echo $PATH > ~/.savepath
+
+# Personal
+personal=/Users/rcrosby/Development/local
+
+export PATH=$personal/bin:$PATH
+export PATH=$personal/gnubin-coreutils:$PATH
+export PATH=$personal/gnubin-sed:$PATH
+export PATH=$personal/gnubin-tar:$PATH
+
+export PATH=$personal/gcc:$PATH
+
+export MANPATH=$personal/gnuman-coreutils:$MANPATH
+export MANPATH=$personal/gnuman-sed:$MANPATH
+export MANPATH=~/.local/share/man:$MANPATH
+
+# Homebrew sbin
+#export PATH=/usr/local/sbin:$PATH
+
+# latex support
+#export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$PATH
+
+# Add Java
+export JAVA_HOME=/usr
+
+# Amazon EC2
+export EC2_HOME=~/Development/Amazon/ec2-api-tools-1.3-34128
+
+export EC2_PRIVATE_KEY=~/.ec2/pk-M34TXXB7FABOPDLUT6VGQ736LXZDURIX.pem
+export EC2_CERT=~/.ec2/cert-M34TXXB7FABOPDLUT6VGQ736LXZDURIX.pem
+
+export AWS_ACCESS_KEY=144A128H41YGA55S0WR2
+export AWS_SECRET_KEY=DjoQ9zr3bATttS0QOcrzW0Jd0bYV0ZaK6DQSrIWT
+export AWS_ACCOUNT_NUMBER=857511715311
+
+# Prompts...
+case "$TERM" in
+    xterm*)
+	export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\] \$ '
+	;;
+    *)
+	export PS1='\[\e[00;31m\]\u@\h: \[\e[00;34m\]\w\[\e[0m\] $ '
+	;;
+esac
+
+# Pick up my common stuff
+if [ -f ~/Dropbox/Development/bashrc_common ]; then
+    . ~/Dropbox/Development/bashrc_common
+fi
+
+# Aliases
+alias go='open'
+
+alias mc='mc --colors menu=black,cyan:menuhot=gray,cyan'
+
+#alias frodo='ssh -Y frodo.local'
+#alias gandalf='ssh -Y gandalf.local'
+#alias sam="ssh -fY sam.local dbus-launch --exit-with-session gnome-terminal"
+
+alias bowser='ssh -Y bowser.local'
+alias tbowser='ssh -Y bowser.local -t "tmux attach || tmux new"'
+
+alias manfred='ssh -Y manfred.local'
+alias tmanfred='ssh -Y manfred.local -t "tmux attach || tmux new"'
+
+# Man pages output to skim
+manp()
+{
+  man -t "${1}" | open -f -a Skim
+}
+
+# Homebrew access token
+export HOMEBREW_GITHUB_API_TOKEN=20c22568b9e9f4a605663057f578df0ceff77bdc
+
+# Syntax highlighting in the less pager
+export LESSOPEN="| src-hilite-lesspipe.sh %s"
+export LESS=' -R '
