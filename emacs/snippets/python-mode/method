@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: method
+# name: Python Class Method
+# --
+    # **********************************************
+    
+    def ${1:MethodName}(self, $2):
+    	"""
+	$0
+	"""
+

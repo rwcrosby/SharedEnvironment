@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# key: class
+# name: Python Class Template (w/init)
+# --
+# **************************************************
+
+class ${1:ClassName}(object):
+    """
+    $0
+    """
+
+    # **********************************************
+    
+    def __init__(self, ):
+

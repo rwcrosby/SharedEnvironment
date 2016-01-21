@@ -1,0 +1,48 @@
+# -*- mode: snippet -*-
+# name: Python Program
+# key: program
+# --
+#!/usr/bin/env python3
+"""
+$0
+"""
+
+__author__ = """
+Ralph W. Crosby
+ralph.crosby@navy.mil
+SSCLANT Charleston, SC
+"""
+__all__ = []
+
+# **************************************************
+
+import argparse
+import sys
+import yaml
+
+# **************************************************
+
+def parse_command_line(cmd):
+
+    p = argparse.ArgumentParser(description = __doc__)
+
+    p.add_argument('infile',
+                   help="""Input file""")
+
+    return p.parse_args(cmd) if cmd else p.parse_args()
+
+# **************************************************
+
+def run(cmd=None):
+    """
+    Actually run the program.
+    If cmd isn't specified sys.argv (the command line) will be used.
+    To pass parameters to the function, use run(["--parm=val", "filename"]).
+    """
+
+    opts = parse_command_line(cmd)
+
+# **************************************************
+
+if __name__ == '__main__':
+    run()

@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: For Statement
+# key: for
+# binding: direct-keybinding
+# --
+for ( $0 ) {
+}

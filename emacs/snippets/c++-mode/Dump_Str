@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Dump::str
+# key: du
+# binding: direct-keybinding
+# --
+Dump::str( $1 ,"$2" )$0

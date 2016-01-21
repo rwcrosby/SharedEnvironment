@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Python Function Definition
+# key: def
+# --
+# **************************************************
+
+def ${1:MethodName}($2):
+    """
+    $0
+    """
+    pass

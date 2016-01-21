@@ -1,0 +1,15 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: C++ Class Definition
+# key: class
+# binding: direct-keybinding
+# --
+// *****************************************************************************
+/// $1
+
+class ${2:SomeName} {
+
+public:
+    ${2:$(yas/substr yas-text "[^: ]*")}();
+    ${3:virtual ~${2:$(yas/substr yas-text "[^: ]*")}();}
+
+};

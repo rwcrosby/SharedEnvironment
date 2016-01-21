@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: REPREXIT
+# key: RE
+# binding: direct-keybinding
+# --
+REPREXIT( $0 );

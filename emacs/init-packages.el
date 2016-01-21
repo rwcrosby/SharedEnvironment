@@ -2,7 +2,7 @@
 ; This is run as the after-init-hook
 
 ; Snippets
-(setq yas-snippet-dirs '("~/win_d/SharedEnvironment/emacs/snippets"))
+(setq yas-snippet-dirs '("~/win_c/SharedEnvironment/emacs/snippets"))
 (yas-global-mode 1)
 
 ; Disabled 2/14/15 - Seems to be generating high cpu...
@@ -48,12 +48,12 @@
 (global-set-key "\C-ca" 'org-agenda)
 
 (setq org-todo-keywords '((sequence "TODO" "WORKING" "|" "DONE")))
-(setq org-directory "~/win_d/SharedEnvironment/orgmode")
-(setq org-mobile-inbox-for-pull "~/win_d/SharedEnvironment/orgmode/flagged.org")
-(setq org-mobile-directory "~/win_d/SharedEnvironment/orgmode/MobileOrg")
-(setq org-agenda-files '("~/win_h/Projects/Spawar.org"
-			 "~/win_h/Projects/ACNT.org"
-			 "~/win_h/Projects/APU.org"))
+(setq org-directory "~/win_c/SharedEnvironment/orgmode")
+(setq org-mobile-inbox-for-pull "~/win_c/SharedEnvironment/orgmode/flagged.org")
+(setq org-mobile-directory "~/win_c/SharedEnvironment/orgmode/MobileOrg")
+(setq org-agenda-files '("~/win_c/Projects/Spawar.org"
+			 "~/win_c/Projects/ACNT.org"
+			 "~/win_c/Projects/APU.org"))
 (setq org-agenda-ndays 30)
 (setq org-default-priority 68)
 
@@ -72,6 +72,8 @@
 ;(workgroups-mode)
 ;(setq wg-emacs-exit-save-behavior nil)
 
+;; dired+
+(setq diredp-hide-details-initially-flag nil)
 ;; which-function
 (which-function-mode)
 

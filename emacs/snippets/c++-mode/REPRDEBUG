@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: REPRDEBUG
+# key: RE
+# binding: direct-keybinding
+# --
+REPRDEBUG( $0 );

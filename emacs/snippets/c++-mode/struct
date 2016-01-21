@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: C++ Structure Definition
+# key: struct
+# binding: direct-keybinding
+# --
+// *****************************************************************************
+/// $1
+
+struct ${2:SomeName} {
+
+    ${2:$(yas/substr yas-text "[^: ]*")}();
+    ${3:virtual ~${2:$(yas/substr yas-text "[^: ]*")}();}
+
+};

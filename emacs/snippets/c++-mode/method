@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: C++ Method Definition
+# key: method
+# binding: direct-keybinding
+# --
+// *****************************************************************************
+
+${2:void}
+$3::$4($0)
+{
+
+}

@@ -11,7 +11,7 @@ export PATH=~/.local/bin:$PATH
 
 if [ "$TERM" != "dumb" ]; then
    export LS_OPTIONS='--color=auto'
-   eval `dircolors ~/win_d/SharedEnvironment/bash/dircolors`
+   eval `dircolors ~/win_c/SharedEnvironment/bash/dircolors`
 
    case $OSTYPE in
        darwin*)
