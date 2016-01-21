@@ -20,10 +20,6 @@
 (setq user-full-name "Ralph W. Crosby")
 (setq user-mail-address "ralph.crosby@navy.mil")
 
-(setq package-archives (quote (("gnu" . "https://elpa.gnu.org/packages/")
-                               ("melpa" . "https://melpa.milkbox.net/packages/")
-                               ("elpy" . "http://jorgenschaefer.github.io/packages/"))))
-
 (server-start)
 
 ; startup options
@@ -196,8 +192,10 @@
 ;; which-function
 (which-function-mode)
 
-;; Package initialization *****************************************************************
+;; ********************************************* Package initialization
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 ;; icicles
@@ -219,15 +217,15 @@
 (setq reftex-default-bibliography '("~/win_h/Papers/nn.bib"))
 
 (setq reftex-section-levels '(("part" . 0)
-			      ("chapter" . 1)
-			      ("section" . 2)
-			      ("frametitle" . 3)
-			      ("subsection" . 3)
-			      ("subsubsection" . 4)
-			      ("paragraph" . 5)
-			      ("subparagraph" . 6)
-			      ("addchap" . -1)
-			      ("addsec" . -2)))
+                              ("chapter" . 1)
+                              ("section" . 2)
+                              ("frametitle" . 3)
+                              ("subsection" . 3)
+                              ("subsubsection" . 4)
+                              ("paragraph" . 5)
+                              ("subparagraph" . 6)
+                              ("addchap" . -1)
+                              ("addsec" . -2)))
 
 ; org mode
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -236,11 +234,9 @@
 
 (setq org-todo-keywords '((sequence "TODO" "WORKING" "|" "DONE")))
 (setq org-directory "~/win_c/SharedEnvironment/orgmode")
-(setq org-mobile-inbox-for-pull "~/win_c/SharedEnvironment/orgmode/flagged.org")
-(setq org-mobile-directory "~/win_c/SharedEnvironment/orgmode/MobileOrg")
 (setq org-agenda-files '("~/win_c/Projects/Spawar.org"
-			 "~/win_c/Projects/ACNT.org"
-			 "~/win_c/Projects/APU.org"))
+                         "~/win_c/Projects/ACNT.org"
+                         "~/win_c/Projects/APU.org"))
 (setq org-agenda-ndays 30)
 (setq org-default-priority 68)
 
@@ -276,3 +272,12 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 ;; icicles
 (icicle-mode)
+
+;; Markdown mode
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; Python environment
+(elpy-enable)
+(elpy-use-ipython)
