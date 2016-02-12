@@ -281,3 +281,8 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 ;; Python environment
 (elpy-enable)
 (elpy-use-ipython)
+
+(define-key elpy-mode-map (kbd "<M-left>") nil)
+(define-key elpy-mode-map (kbd "<M-right>") nil)
+(define-key elpy-mode-map (kbd "<M-up>") nil)
+(define-key elpy-mode-map (kbd "<M-down>") nil)
