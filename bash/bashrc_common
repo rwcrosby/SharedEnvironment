@@ -21,19 +21,16 @@ if [ "$TERM" != "dumb" ]; then
     SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
     eval `dircolors ${SCRIPT_DIR}/dircolors`
 
-    SHPATH=
-    case $OSTYPE in
-        darwin*)
-            ;;
-        linux*)
-            if [ -d /usr/share/source-highlight ]; then
-                SHPATH=/usr/share/source-highlight/
-            fi
-            ;;
-    esac
+    if [[ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]]; then
+        SH=/usr/share/source-highlight/
+    else
+        SH=src-hilite-lesspipe.sh
+    fi
     
-    export LESSOPEN="| ${SHPATH}src-hilite-lesspipe.sh %s"
+    export LESSOPEN="| ${SH} %s"
     export LESS=' -R '
+
+    echo $LESSOPEN
     
 fi
 
