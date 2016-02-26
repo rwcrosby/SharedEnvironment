@@ -15,9 +15,9 @@ export LD_RUN_PATH=~/usr/lib64:~/usr/lib:$LD_RUN_PATH
 # Colors
 
 if [ "$TERM" != "dumb" ]; then
-    
+
     export LS_OPTIONS='--color=auto'
-    
+
     SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
     eval `dircolors ${SCRIPT_DIR}/dircolors`
 
@@ -26,12 +26,10 @@ if [ "$TERM" != "dumb" ]; then
     else
         SH=src-hilite-lesspipe.sh
     fi
-    
+
     export LESSOPEN="| ${SH} %s"
     export LESS=' -R '
 
-    echo $LESSOPEN
-    
 fi
 
 # Aliases

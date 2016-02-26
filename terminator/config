@@ -45,7 +45,7 @@
       type = Terminal
       order = 0
       parent = child1
-      command = tmux attach
+      command = tmux attach || tmux new
     [[[terminal5]]]
       profile = default
       type = Terminal
