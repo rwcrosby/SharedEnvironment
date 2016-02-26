@@ -9,7 +9,7 @@
 
       ;; Linux Specific Stuff
 
-      ((eq system-type 'gnu-linux)
+      ((eq system-type 'gnu/linux)
        
        (setq rwc-paths '( "/home/crosbyr/.local/bin" ))
 

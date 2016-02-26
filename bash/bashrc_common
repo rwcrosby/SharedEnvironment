@@ -15,21 +15,26 @@ export LD_RUN_PATH=~/usr/lib64:~/usr/lib:$LD_RUN_PATH
 # Colors
 
 if [ "$TERM" != "dumb" ]; then
-   export LS_OPTIONS='--color=auto'
-   eval `dircolors ~/win_c/SharedEnvironment/bash/dircolors`
+    
+    export LS_OPTIONS='--color=auto'
+    
+    SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
+    eval `dircolors ${SCRIPT_DIR}/dircolors`
 
-   case $OSTYPE in
-       darwin*)
-  	   SHPATH=
-           ;;
-       linux*)
-           SHPATH=/usr/share/source-highlight/
-           ;;
-   esac
-
-   export LESSOPEN="| ${SHPATH}src-hilite-lesspipe.sh %s"
-   export LESS=' -R '
-
+    SHPATH=
+    case $OSTYPE in
+        darwin*)
+            ;;
+        linux*)
+            if [ -d /usr/share/source-highlight ]; then
+                SHPATH=/usr/share/source-highlight/
+            fi
+            ;;
+    esac
+    
+    export LESSOPEN="| ${SHPATH}src-hilite-lesspipe.sh %s"
+    export LESS=' -R '
+    
 fi
 
 # Aliases
