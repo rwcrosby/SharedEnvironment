@@ -1,18 +1,28 @@
-;
-; Linux Specific Stuff
-;
+(cond
+      ;; Windows Specific Stuff
+ 
+      ((eq system-type 'windows-nt)
+  
+       (setq rwc-paths '( "C:/Users/crosbyr/Packages/Cygwin/bin" ))
+  
+       )
 
-(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-(setq TeX-view-program-selection '((output-pdf "Evince")))
+      ;; Linux Specific Stuff
 
-(setq ispell-program-name '"aspell")
-(setq lpr-switches (quote ("-PPDF")))
+      ((eq system-type 'gnu-linux)
+       
+       (setq rwc-paths '( "/home/crosbyr/.local/bin" ))
 
-(setq rwc-paths '( "/home/crosbyr/.local/bin" ))
+       (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
+       (setq TeX-view-program-selection '((output-pdf "Evince")))
 
-;
-; Initialization for all systems
-;
+       (setq ispell-program-name '"aspell")
+       (setq lpr-switches (quote ("-PPDF")))
+       
+       )
+)
+
+;; Initialization for all systems
 
 (setenv "PATH" (mapconcat 'identity (append rwc-paths (split-string (getenv "PATH") ":") ) ":"))
 (setq exec-path (append rwc-paths exec-path))
@@ -22,19 +32,21 @@
 
 (server-start)
 
-; startup options
+;; startup options
+
 (setq column-number-mode t)		; show column numbers
-(setq inhibit-startup-screen t)	; don't show startup screen
-(global-hl-line-mode 1)			; highlight current line
-(setq-default truncate-lines t)	; truncate lines by default
-(tool-bar-mode -1)	            ; don't show the scrollbar
-(show-paren-mode t)		        ; highlight matching parenthesis
-(desktop-save-mode t)	        ; save desktop on exit
-(setq debug-on-error nil)       ; Don't automatically open debugger
+(setq inhibit-startup-screen t)	    ; don't show startup screen
+(global-hl-line-mode 1)			    ; highlight current line
+(setq-default truncate-lines t)	    ; truncate lines by default
+(tool-bar-mode -1)	                    ; don't show the scrollbar
+(show-paren-mode t)		            ; highlight matching parenthesis
+(desktop-save-mode t)	            ; save desktop on exit
+(setq debug-on-error nil)             ; Don't automatically open debugger
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-; Default faces
+;; Default faces
+
 (set-face-attribute 'default t
 		    :background "#faf1c2")
 
@@ -42,8 +54,9 @@
 		    :slant 'italic
 		    :foreground '"Firebrick")
 
-; Clean up some keys
-; Crummy buffer list...
+;; Clean up some keys
+
+;; Crummy buffer list...
 (global-unset-key (kbd "C-x C-b"))
 
 ; Run a function in an alternate directory
@@ -279,10 +292,12 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Python environment
-(elpy-enable)
-(elpy-use-ipython)
+(when (require 'elpy nil 'no-error)
+  (elpy-enable)
+  (elpy-use-ipython)
+  (define-key elpy-mode-map (kbd "<M-left>") nil)
+  (define-key elpy-mode-map (kbd "<M-right>") nil)
+  (define-key elpy-mode-map (kbd "<M-up>") nil)
+  (define-key elpy-mode-map (kbd "<M-down>") nil)
+  )
 
-(define-key elpy-mode-map (kbd "<M-left>") nil)
-(define-key elpy-mode-map (kbd "<M-right>") nil)
-(define-key elpy-mode-map (kbd "<M-up>") nil)
-(define-key elpy-mode-map (kbd "<M-down>") nil)

@@ -1,18 +1,13 @@
-(add-to-list 'load-path "~/win_d/SharedEnvironment/emacs")
+(add-to-list 'load-path "~/win_c/SharedEnvironment/emacs")
 
 (set-face-attribute 'default t
 		    :height 90)
 
-(setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
-(setq TeX-view-program-selection '((output-pdf "Evince")))
-
-(setq ispell-program-name '"aspell")
-(setq lpr-switches (quote ("-PPDF")))
 
 (setq rwc-paths '( "/home/crosbyr/Development/bin"
-		   "/home/crosbyr/.local/bin" ))
+        		   "/home/crosbyr/.local/bin" ))
 
-(load "init-global.el")
+(load "init-global-v2.el")
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -42,6 +42,9 @@ alias ec='emacsclient -n'
 alias l='less -SR'
 alias go='gvfs-open'
 
+alias gpu='ssh -Y g219089.chs.spawar.navy.mil'
+alias gput='ssh -Y g219089.chs.spawar.navy.mil -t tmux a'
+
 # Make my preferred utilities standard
 
 export EDITOR=nano
