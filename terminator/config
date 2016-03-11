@@ -5,55 +5,55 @@
   go_left = None
   go_right = None
   go_up = None
-[profiles]
-  [[default]]
-    use_system_font = False
-    background_darkness = 0.47
-    scrollback_lines = 10000
-    background_image = None
-    foreground_color = "#000000"
-    font = Monospace 8
-    background_color = "#ffffdd"
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
-   [[[window0]]]
-      type = Window
+      type = Terminal
+    [[[window0]]]
       parent = ""
+      type = Window
   [[Std]]
     [[[child0]]]
-      position = 92:37
-      type = Window
       order = 0
       parent = ""
+      position = 92:37
       size = 1412, 902
+      type = Window
     [[[child1]]]
-      position = 706
-      type = HPaned
       order = 0
       parent = child0
+      position = 706
+      type = HPaned
     [[[child3]]]
+      order = 1
+      parent = child1
       position = 451
       type = VPaned
-      order = 1
-      parent = child1
     [[[terminal2]]]
-      profile = default
-      type = Terminal
+      command = tmux attach || tmux new
       order = 0
       parent = child1
-      command = tmux attach || tmux new
-    [[[terminal5]]]
       profile = default
       type = Terminal
-      order = 1
-      parent = child3
     [[[terminal4]]]
-      profile = default
-      type = Terminal
       order = 0
       parent = child3
+      profile = default
+      type = Terminal
+    [[[terminal5]]]
+      order = 1
+      parent = child3
+      profile = default
+      type = Terminal
 [plugins]
+[profiles]
+  [[default]]
+    background_color = "#ffffdd"
+    background_darkness = 0.47
+    background_image = None
+    font = Monospace 10
+    foreground_color = "#000000"
+    scrollback_lines = 10000
+    use_system_font = False
