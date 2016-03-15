@@ -1,20 +1,53 @@
+# Add a directory (if it exists) to a path
+
+function Add2Var
+{
+    if [ -d "$2" ]; then
+	val='$'${1}
+	export ${1}="${2}":`eval echo $val`
+    fi
+}
+
+# Set platform dependent variables
+
+case $OSTYPE in
+    darwin*)
+	    LDLIB=DYLD_LIBRARY_PATH
+	    export TIME="/usr/bin/time -l"
+        ;;
+    linux*)
+	    LDLIB=LD_LIBRARY_PATH
+	    export TIME="/usr/bin/time --verbose"
+        ;;
+esac
+
 # Prompt
 
 export PS1='\[\033[34m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
-# My directoryies
+# My directories
 
-export PATH=~/.local/bin:$PATH
-export PATH=~/usr/bin:$PATH
-export PATH=~/Development/bin:$PATH
+Add2Var PATH ~/.local/bin
+Add2Var PATH ~/usr/bin
+Add2Var PATH ~/Development/bin
 
-export MANPATH=~/usr/share/man:$MANPATH
-export LD_LIBRARY_PATH=~/usr/lib64:~/usr/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=~/usr/lib64:~/usr/lib:$LD_RUN_PATH
+Add2Var MANPATH ~/usr/share/man
+
+Add2Var $LDLIB ~/usr/lib64
+Add2Var $LDLIB ~/usr/lib
+Add2Var $LDLIB ~/.local/lib64
+Add2Var $LDLIB ~/.local/lib
+
+if [[ $OSTYPE = linux* ]]; then
+    Add2Var LD_RUN_PATH ~/usr/lib64
+    Add2Var LD_RUN_PATH ~/usr/lib
+    Add2Var LD_RUN_PATH ~/.local/lib64
+    Add2Var LD_RUN_PATH ~/.local/lib
+fi
 
 # Colors
 
-if [ "$TERM" != "dumb" ]; then
+if [[ "$TERM" != "dumb" ]]; then
 
     export LS_OPTIONS='--color=auto'
 
@@ -22,7 +55,7 @@ if [ "$TERM" != "dumb" ]; then
     eval `dircolors ${SCRIPT_DIR}/dircolors`
 
     if [[ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]]; then
-        SH=/usr/share/source-highlight/
+        SH=/usr/share/source-highlight/src-hilite-lesspipe.sh
     else
         SH=src-hilite-lesspipe.sh
     fi
@@ -53,10 +86,7 @@ export PAGER=less
 # History file
 
 HISTCONTROL=ignoreboth
-shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command
-
-shopt -s checkwinsize
+shopt -s histappend

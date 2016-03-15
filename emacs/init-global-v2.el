@@ -1,28 +1,34 @@
 (cond
       ;; Windows Specific Stuff
- 
+
       ((eq system-type 'windows-nt)
-  
-       (setq rwc-paths '( "C:/Users/crosbyr/Packages/Cygwin/bin" ))
-  
+       (message "windows-nt Initialization")
+       )
+
+      ;; Mac Specific Stuff
+
+      ((eq system-type 'darwin)
+       (message "darwin Initialization")
        )
 
       ;; Linux Specific Stuff
 
       ((eq system-type 'gnu/linux)
-       
-       (setq rwc-paths '( "/home/crosbyr/.local/bin" ))
+       (message "gnu/linux Initialization")
 
        (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
        (setq TeX-view-program-selection '((output-pdf "Evince")))
 
        (setq ispell-program-name '"aspell")
        (setq lpr-switches (quote ("-PPDF")))
-       
+
        )
 )
 
 ;; Initialization for all systems
+;; For the path and exec-path it is assumed that emacs will be launched from a
+;; 'command line' app of some sort so rwc-paths will only need to contain any
+;; additional directories not in the bash login path
 
 (setenv "PATH" (mapconcat 'identity (append rwc-paths (split-string (getenv "PATH") ":") ) ":"))
 (setq exec-path (append rwc-paths exec-path))
@@ -294,10 +300,9 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 ;; Python environment
 (when (require 'elpy nil 'no-error)
   (elpy-enable)
-  (elpy-use-ipython)
+;  (elpy-use-ipython)
   (define-key elpy-mode-map (kbd "<M-left>") nil)
   (define-key elpy-mode-map (kbd "<M-right>") nil)
   (define-key elpy-mode-map (kbd "<M-up>") nil)
   (define-key elpy-mode-map (kbd "<M-down>") nil)
   )
-
