@@ -207,6 +207,7 @@
 ;; Ruler and line numbers
 (add-hook 'find-file-hook (lambda () (ruler-mode 1)))
 (global-linum-mode 1)
+(set-face-attribute 'linum nil :height 90)
 
 ;; which-function
 (which-function-mode)
@@ -225,7 +226,7 @@
 (setq icicle-inter-candidates-min-spaces 5)
 
 ; Snippets
-(setq yas-snippet-dirs '("~/win_c/SharedEnvironment/emacs/snippets"))
+(setq yas-snippet-dirs '("~/SharedEnvironment/emacs/snippets"))
 (yas-global-mode 1)
 
 ; Auctex
@@ -252,10 +253,10 @@
 (global-set-key "\C-ca" 'org-agenda)
 
 (setq org-todo-keywords '((sequence "TODO" "WORKING" "|" "DONE")))
-(setq org-directory "~/win_c/SharedEnvironment/orgmode")
-(setq org-agenda-files '("~/win_c/Projects/Spawar.org"
-                         "~/win_c/Projects/ACNT.org"
-                         "~/win_c/Projects/APU.org"))
+;; (setq org-directory "~/win_c/SharedEnvironment/orgmode")
+;; (setq org-agenda-files '("~/win_c/Projects/Spawar.org"
+;;                          "~/win_c/Projects/ACNT.org"
+;;                          "~/win_c/Projects/APU.org"))
 (setq org-agenda-ndays 30)
 (setq org-default-priority 68)
 
@@ -298,6 +299,9 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Python environment
+
+(pyenv-mode)
+
 (when (require 'elpy nil 'no-error)
   (elpy-enable)
 ;  (elpy-use-ipython)
