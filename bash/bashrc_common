@@ -3,8 +3,8 @@
 function Add2Var
 {
     if [ -d "$2" ]; then
-	val='$'${1}
-	export ${1}="${2}":`eval echo $val`
+        val='$'${1}
+        export ${1}="${2}":`eval echo $val`
     fi
 }
 
@@ -68,7 +68,7 @@ fi
 # Aliases
 
 alias ls='ls $LS_OPTIONS --group-directories-first'
-alias ll='ls $LS_OPTIONS -lG  --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
+alias ll='ls $LS_OPTIONS -l  --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
 alias la='ls $LS_OPTIONS -lA  --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
 
 alias ec='emacsclient -n'
