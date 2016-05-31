@@ -54,11 +54,15 @@
 ;; Default faces
 
 (set-face-attribute 'default t
-		    :background "#faf1c2")
+                    :background "#faf1c2")
 
 (set-face-attribute 'font-lock-comment-face t
-		    :slant 'italic
-		    :foreground '"Firebrick")
+                    :slant 'italic
+                    :foreground '"Firebrick")
+
+(set-face-attribute 'region nil
+                    :background "#666"
+                    :foreground "#ffffff")
 
 ;; Clean up some keys
 
