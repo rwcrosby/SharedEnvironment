@@ -3,6 +3,7 @@
 # key: program
 # --
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 $0
 """
@@ -12,11 +13,19 @@ Ralph W. Crosby
 ralph.crosby@navy.mil
 SSCLANT Charleston, SC
 """
+
 __all__ = []
 
 # **************************************************
 
 import argparse
+import logging
+
+# **************************************************
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s.%(msecs)03d %(message)s',
+                    datefmt='%H:%M:%S')
 
 # **************************************************
 
@@ -32,10 +41,10 @@ def parse_command_line():
 # **************************************************
 
 def run(infile):
-    """
 
-    """
-    pass
+    logging.info("{} starting".format(os.path.basename(__file__)))
+
+    logging.info("{} completed".format(os.path.basename(__file__)))
 
 # **************************************************
 
