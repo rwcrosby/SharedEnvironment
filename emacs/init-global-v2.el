@@ -299,7 +299,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
     (no-catch nil)))
 
 ;; icicles
-(icicle-mode)
+;; (icicle-mode)    10/06/2017
 
 ;; Markdown mode
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
@@ -319,3 +319,33 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
   (define-key elpy-mode-map (kbd "<M-up>") nil)
   (define-key elpy-mode-map (kbd "<M-down>") nil)
   )
+
+
+;; Ivy
+
+(ivy-mode 1)
+
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+
+;; Neotree
+
+(global-set-key  (kbd "C-<f8>") 'neotree-toggle)
+
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+;; Projectile
+
+(projectile-mode)
+(setq projectile-completion-system 'ivy)
+(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-vc-integration '(face char))
