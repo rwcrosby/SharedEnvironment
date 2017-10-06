@@ -128,6 +128,10 @@
 ; Close all buffers
 (global-set-key (kbd "C-<f10>") 'desktop-clear)
 
+; Reset start and end of line
+(global-set-key (kbd "<home>") 'move-beginning-of-line)
+(global-set-key (kbd "<end>") 'move-end-of-line)
+
 ; CUA editing mode
 (cua-mode t)
 
@@ -308,6 +312,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 (when (require 'elpy nil 'no-error)
   (elpy-enable)
+  (setq elpy-rpc-backend "jedi")
 ;  (elpy-use-ipython)
   (define-key elpy-mode-map (kbd "<M-left>") nil)
   (define-key elpy-mode-map (kbd "<M-right>") nil)
