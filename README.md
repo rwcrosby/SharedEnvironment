@@ -4,3 +4,4 @@ This is a simple project holding the various files that are shared amongst the L
 + TMUX
 + Terminator
 + EMACS
++ Python
