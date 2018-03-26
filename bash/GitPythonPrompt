@@ -24,7 +24,11 @@ function updatePrompt {
         COLOR=$BLACK
     fi
 
-    export PS1="$BLACK\t $BLUE$(pyenv version-name) $COLOR\w${RESET} \$ "
+    if [ -n "$VIRTUAL_ENV" ]; then
+        export PS1="$BLACK\t $BLUE$(basename $VIRTUAL_ENV) $COLOR\w${RESET} \$ "
+    else
+        export PS1="$BLACK\t $COLOR\w${RESET} \$ "
+    fi
 
 }
 

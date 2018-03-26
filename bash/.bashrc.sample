@@ -117,6 +117,13 @@ if ! shopt -oq posix; then
 fi
 
 # RWC Common Definitions
-if [ -f ~/Development/bashrc_common ]; then
-    . ~/Development/bashrc_common
+
+if [ -f ~/Development/bash/bashrc_common ]; then
+    . ~/Development/bash/bashrc_common
+fi
+
+# Python environment setup
+
+if [ -f ~/SharedEnvironment/bash/GitPythonPrompt ]; then
+     . ~/SharedEnvironment/bash/GitPythonPrompt
 fi
