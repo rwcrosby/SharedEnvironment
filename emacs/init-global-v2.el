@@ -349,3 +349,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (setq projectile-completion-system 'ivy)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setq neo-vc-integration '(face char))
+
+;; Defaults for specific file types
+
+(add-hook 'text-mode-hook #'visual-line-mode)
