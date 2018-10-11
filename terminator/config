@@ -7,46 +7,47 @@
   go_up = None
 [layouts]
   [[default]]
-    [[[child1]]]
-      parent = window0
-      profile = default
-      type = Terminal
-    [[[window0]]]
-      parent = ""
-      type = Window
-  [[Std]]
     [[[child0]]]
+      fullscreen = False
+      last_active_term = db423e05-a2b7-48c6-9335-10ed68fc45dd
+      last_active_window = True
+      maximised = False
       order = 0
       parent = ""
-      position = 92:37
-      size = 1412, 902
+      position = 1533:34
+      size = 1405, 895
+      title = /bin/bash
       type = Window
     [[[child1]]]
       order = 0
       parent = child0
-      position = 706
+      position = 700
+      ratio = 0.5
       type = HPaned
     [[[child3]]]
       order = 1
       parent = child1
-      position = 451
+      position = 445
+      ratio = 0.5
       type = VPaned
     [[[terminal2]]]
-      command = tmux attach || tmux new
       order = 0
       parent = child1
       profile = default
       type = Terminal
+      uuid = db423e05-a2b7-48c6-9335-10ed68fc45dd
     [[[terminal4]]]
       order = 0
       parent = child3
       profile = default
       type = Terminal
+      uuid = 13b691c9-c055-4b8b-8fab-ddff8595513d
     [[[terminal5]]]
       order = 1
       parent = child3
       profile = default
       type = Terminal
+      uuid = ea9a5f64-c019-4bb1-8a60-7d35e8a8af32
 [plugins]
 [profiles]
   [[default]]
