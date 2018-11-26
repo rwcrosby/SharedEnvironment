@@ -214,7 +214,11 @@
 
 ;; Ruler and line numbers
 (add-hook 'find-file-hook (lambda () (ruler-mode 1)))
+
 (global-linum-mode 1)
+
+(add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+
 (set-face-attribute 'linum nil :height 90)
 
 ;; which-function
