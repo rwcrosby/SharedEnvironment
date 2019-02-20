@@ -19,12 +19,18 @@ set PATH ~/.local/bin $PATH
 
 set MANPATH ~/.local/share/man $MANPATH
 
-set $LDLIB ~/.local/lib64:$$LDLIB
-set $LDLIB ~/.local/lib:$$LDLIB
+set -x $LDLIB ~/.local/lib64:$$LDLIB
+set -x $LDLIB ~/.local/lib:$$LDLIB
 
 if test (uname) = "Linux"
-    set LD_RUN_PATH ~/.local/lib64:$LD_RUN_PATH
-    set LD_RUN_PATH ~/.local/lib:$LD_RUN_PATH
+    set -x $LDLIB ~/.local/lib64:"$$LDLIB"
+    set -x $LDLIB ~/.local/lib:"$$LDLIB"
+end
+
+# Add CUDA if available
+
+if test -d /usr/local/cuda
+    set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
 end
 
 # Find my functions
