@@ -207,8 +207,9 @@
 (setq dired-listing-switches "-alG --group-directories-first --time-style=long-iso")
 
 ;; Eliminate training lines in c and python modes on save
-(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
-(add-hook 'python-mode-hook '(lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;; When C++ was included it appeared to delete training in all modes.
+;(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;(add-hook 'python-mode-hook '(lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 (setq tags-revert-without-query 1)
 
@@ -265,10 +266,15 @@
 (global-set-key "\C-ca" 'org-agenda)
 
 (setq org-todo-keywords '((sequence "TODO" "WORKING" "|" "DONE")))
-;; (setq org-directory "~/win_c/SharedEnvironment/orgmode")
-;; (setq org-agenda-files '("~/win_c/Projects/Spawar.org"
-;;                          "~/win_c/Projects/ACNT.org"
-;;                          "~/win_c/Projects/APU.org"))
+
+(setq org-todo-keyword-faces
+      '(("WORKING" . "slateblue3") ("TODO" . "red") ("DONE" . "dark green"))
+)
+
+(setq org-priority-faces '((?A . (:foreground "white" :background "red"))
+                           (?B . (:foreground "white" :background "DarkGoldenrod3"))
+                           (?C . (:foreground "white" :background "cyan4"))))
+
 (setq org-agenda-ndays 30)
 (setq org-default-priority 68)
 
