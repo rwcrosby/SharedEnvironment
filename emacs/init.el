@@ -4,8 +4,7 @@
 ;;
 ;; '(package-selected-packages
 ;;   (quote
-;;    (neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex))))
-
+;;    (neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex flycheck))))
 
 (cond
       ;; Windows Specific Stuff
@@ -21,6 +20,10 @@
        
        (setq ns-alternate-modifier (quote super))
        (setq ns-command-modifier (quote meta))
+
+       (setq TeX-view-program-list
+	     (quote
+	      (("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
        
        )
 
@@ -57,7 +60,7 @@
 (setq inhibit-startup-screen t)	    ; don't show startup screen
 (global-hl-line-mode 1)			    ; highlight current line
 (setq-default truncate-lines t)	    ; truncate lines by default
-(tool-bar-mode nil)	                ; don't show the scrollbar
+(tool-bar-mode -1)                  ; don't show the scrollbar
 (show-paren-mode t)		            ; highlight matching parenthesis
 (desktop-save-mode t)	            ; save desktop on exit
 (setq debug-on-error nil)           ; Don't automatically open debugger
@@ -120,10 +123,6 @@
 (setq TeX-PDF-mode t)				      ; PDF output for tex files
 
 (setq ispell-program-name "aspell")
-
-(setq TeX-view-program-list
-  (quote
-    (("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
 
 
 ; Next/Prev Error

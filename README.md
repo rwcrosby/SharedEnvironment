@@ -1,7 +1,11 @@
-This is a simple project holding the various files that are shared amongst the Linux VM's and systems.
+# Shared Environment
 
-+ Bash Shell
-+ TMUX
-+ Terminator
-+ EMACS
-+ Python
+This is a simple project holding the various files that are shared amongst the Mac and Linux systems. See the individual directories for details.
+
+- Bash Shell
+- EMACS
+- Fish Shell
+- LaTeX
+- Python
+- Terminator (Obsolete)
+- TMUX

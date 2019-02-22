@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+#+OPTIONS:   H:3 toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
+#+LATEX_CLASS: OrgNotes
+#+STARTUP: indent logdone
+
+#+TITLE: Emacs Configuration
+
+* Standard packages:
+- all-the-icons 
+- auctex 
+- bookmark+ 
+- counsel 
+- counsel-projectile 
+- csv-mode 
+- dired+ 
+- dired-sort-menu+ 
+- elpy 
+- fish-mode 
+- flycheck
+- htmlize 
+- jedi 
+- magit 
+- markdown-mode+ 
+- neotree 
+- org 
+- projectile 
+- swiper 
+- yaml-mode 
+
+
+* Tasks
+** TODO Setup default python virtual environment at startup
+
