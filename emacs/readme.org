@@ -28,6 +28,22 @@
 - yaml-mode 
 
 
+* Configuration
+
+1. In ~/.emacs:
+#+BEGIN_SRC elist
+(add-to-list 'load-path "~/SharedEnvironment/emacs")
+
+(setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
+
+(setq rwc-paths nil)
+
+(load "init")
+#+END_SRC
+
 * Tasks
-** TODO Setup default python virtual environment at startup
+** DONE Setup default python virtual environment at startup
+CLOSED: [2019-02-24 Sun 17:13]
+- <2019-02-24 Sun 17:13> Added DefaultPyvenv.el
+  + Added line to .emacs to set the variable
 

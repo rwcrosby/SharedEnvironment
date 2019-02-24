@@ -361,6 +361,8 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "-i --simple-prompt")
 
+(pyvenv-activate rwc-default-pyvenv)
+
 ; (setq tramp-use-ssh-controlmaster-options nil)
 
 ;; Ivy/Counsel
