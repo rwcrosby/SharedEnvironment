@@ -41,6 +41,7 @@
 (load "init")
 #+END_SRC
 
+
 * Tasks
 ** DONE Setup default python virtual environment at startup
 CLOSED: [2019-02-24 Sun 17:13]
