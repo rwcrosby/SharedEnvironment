@@ -7,14 +7,24 @@
 
 * Standard packages:
 - all-the-icons 
+  + A bunch of interesting icons, another way to add unicode characters 
+  + https://github.com/domtronn/all-the-icons.el
 - auctex 
 - bookmark+ 
-- counsel 
+- counsel
+  + Provides M-x selector
+  + uses Ivy
+  + https://github.com/domtronn/all-the-icons.el
+  + Various quick functions:
+    * Insert unicode <f2-u> 
 - counsel-projectile 
 - csv-mode 
 - dired+ 
 - dired-sort-menu+ 
 - elpy 
+  + General python interface
+  + Use pyvenv to activate environment
+  + https://elpy.readthedocs.io/en/latest/index.html
 - fish-mode 
 - flycheck
 - htmlize 
@@ -22,24 +32,44 @@
 - magit 
 - markdown-mode+ 
 - neotree 
+  + Simple directory tree
+  + https://github.com/jaypei/emacs-neotree
+  + <M-f8> to activate
+  + Seems I managed to dork up the icon display
 - org 
 - projectile 
+  + Provides project capabilities
+  + https://projectile.readthedocs.io/en/latest/usage/
+  + Detects .git and considers that a project boundary
+  + <C-c p> is the command prefix
 - swiper 
+  + Provides current buffer search
 - yaml-mode 
 
 
 * Configuration
 
-1. In ~/.emacs:
-#+BEGIN_SRC elist
-(add-to-list 'load-path "~/SharedEnvironment/emacs")
+- In ~/.emacs:
+  #+BEGIN_SRC elist
+  (add-to-list 'load-path "~/SharedEnvironment/emacs")
 
-(setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
+  (setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
 
-(setq rwc-paths nil)
+  (setq rwc-paths nil)
 
-(load "init")
-#+END_SRC
+  (load "init")
+  #+END_SRC
+
+- Display resolution
+  + 4k Dell monitors (With default resolution)
+    * (display-pixel-width) 5280
+    * (display-pixel-height) 1080
+  + MPB Retina
+    * (display-pixel-width) 1440
+    * (display-pixel-height) 900
+  + Home Monitors
+    * (display-pixel-width) 6560
+    * (display-pixel-height) 1440
 
 
 * Tasks

@@ -6,7 +6,11 @@
 #+TITLE: Fish Configuration
 
 * Installation
-#+BEGIN_SRC shell
-ln -s ~/SharedEnvironment/fish ~/.config/fish
-#+END_SRC
+
+- Point to the configuration
+  #+BEGIN_SRC shell
+  ln -s ~/SharedEnvironment/fish ~/.config/fish
+  #+END_SRC
+
+- MacOS - Add ~/usr/local/bin/fish~ to ~/etc/shells~
 
