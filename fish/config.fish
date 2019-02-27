@@ -5,12 +5,25 @@ set sdir (dirname (status --current-filename))
 # Platform dependent settings
 
 switch (uname)
+    
     case Linux
+
         set  LDLIB LD_LIBRARY_PATH
         set -x TIME /usr/bin/time --verbose
+
     case Darwin
+        
         set LDLIB DYLD_LIBRARY_PATH
         set -x TIME /usr/bin/time -l
+        
+        # Homebrew - Disable automatic cleanup
+        set -x HOMEBREW_NO_INSTALL_CLEANUP 1
+
+        # Homebrew paths
+
+        set PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+        set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
+
 end
 
 # My Directories
@@ -57,7 +70,7 @@ set -U fish_color_operator magenta
 
 # Hook direnv
 
-eval (direnv hook $SHELL)
+eval (direnv hook fish)
 
 # Directory formatting
 

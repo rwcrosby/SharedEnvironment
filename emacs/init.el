@@ -1,3 +1,11 @@
+;; Standard emacs configuration
+;;
+;; Assumes
+;;
+;; '(package-selected-packages
+;;   (quote
+;;    (neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex flycheck))))
+
 (cond
       ;; Windows Specific Stuff
 
@@ -8,13 +16,21 @@
       ;; Mac Specific Stuff
 
       ((eq system-type 'darwin)
-       (message "darwin Initialization")
+       (message "MacOs Initialization")
+       
+       (setq ns-alternate-modifier (quote super))
+       (setq ns-command-modifier (quote meta))
+
+       (setq TeX-view-program-list
+	     (quote
+	      (("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
+       
        )
 
       ;; Linux Specific Stuff
 
       ((eq system-type 'gnu/linux)
-       (message "gnu/linux Initialization")
+       (message "Linux Initialization")
 
        (setq TeX-view-program-list '(("Evince" "evince --page-index=%(outpage) %o")))
        (setq TeX-view-program-selection '((output-pdf "Evince")))
@@ -40,14 +56,14 @@
 
 ;; startup options
 
-(setq column-number-mode t)		; show column numbers
+(setq column-number-mode t)		    ; show column numbers
 (setq inhibit-startup-screen t)	    ; don't show startup screen
 (global-hl-line-mode 1)			    ; highlight current line
 (setq-default truncate-lines t)	    ; truncate lines by default
-(tool-bar-mode -1)	                    ; don't show the scrollbar
+(tool-bar-mode -1)                  ; don't show the scrollbar
 (show-paren-mode t)		            ; highlight matching parenthesis
 (desktop-save-mode t)	            ; save desktop on exit
-(setq debug-on-error nil)             ; Don't automatically open debugger
+(setq debug-on-error nil)           ; Don't automatically open debugger
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -103,8 +119,11 @@
 (add-hook 'LaTeX-mode-hook 'outline-minor-mode 1)     ; outlining for text files
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)           ; with AUCTeX LaTeX mode
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode); For viewers
+
 (setq TeX-PDF-mode t)				      ; PDF output for tex files
+
 (setq ispell-program-name "aspell")
+
 
 ; Next/Prev Error
 (global-set-key (kbd "<f5>") 'previous-error)
@@ -185,30 +204,12 @@
        (list (line-beginning-position)
              (line-beginning-position 2)))))
 
-; ido mode
-;(require 'ido)
-;(ido-mode t)
-
-;(setq ido-enable-flex-matching t)
-;(global-set-key (kbd "C-x C-b") 'ido-switch-buffer)
-
-; Desktop save/restore
-;(autoload 'dta-hook-up "desktopaid_rwc.el" "Desktop Aid" t)
-;(dta-hook-up)
-;(setq dta-cfg-dir "~/.emacs.d/")
-;(setq dta-default-auto nil)
-;(setq dta-default-cfg "desktopaid.conf")
-;(global-set-key [f11] 'dta-load-session)
-
-;(recentf-mode t)
-
-;; (add-hook 'after-init-hook (lambda () (load "init-packages")))
-
 (setq dired-listing-switches "-alG --group-directories-first --time-style=long-iso")
 
 ;; Eliminate training lines in c and python modes on save
-(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
-(add-hook 'python-mode-hook '(lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;; When C++ was included it appeared to delete training in all modes.
+;(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;(add-hook 'python-mode-hook '(lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 (setq tags-revert-without-query 1)
 
@@ -218,6 +219,7 @@
 (global-linum-mode 1)
 
 (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+(add-hook 'dired-mode-hook (lambda () (linum-mode 0)))
 
 (set-face-attribute 'linum nil :height 90)
 
@@ -265,12 +267,49 @@
 (global-set-key "\C-ca" 'org-agenda)
 
 (setq org-todo-keywords '((sequence "TODO" "WORKING" "|" "DONE")))
-;; (setq org-directory "~/win_c/SharedEnvironment/orgmode")
-;; (setq org-agenda-files '("~/win_c/Projects/Spawar.org"
-;;                          "~/win_c/Projects/ACNT.org"
-;;                          "~/win_c/Projects/APU.org"))
+
+(setq org-todo-keyword-faces
+      '(("WORKING" . "slateblue3") ("TODO" . "red") ("DONE" . "dark green"))
+)
+
+(setq org-priority-faces '((?A . (:foreground "white" :background "red"))
+                           (?B . (:foreground "white" :background "DarkGoldenrod3"))
+                           (?C . (:foreground "white" :background "cyan4"))))
+
 (setq org-agenda-ndays 30)
 (setq org-default-priority 68)
+
+(setq org-latex-classes
+   (quote
+    (("beamer" "\\documentclass[presentation]{beamer}"
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+     ("article" "\\documentclass[11pt]{article}"
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+     ("report" "\\documentclass[11pt]{report}"
+      ("\\part{%s}" . "\\part*{%s}")
+      ("\\chapter{%s}" . "\\chapter*{%s}")
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+     ("book" "\\documentclass[11pt]{book}"
+      ("\\part{%s}" . "\\part*{%s}")
+      ("\\chapter{%s}" . "\\chapter*{%s}")
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+     ("OrgNotes" "\\documentclass[11pt]{OrgNotes}"
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+      ("\\section{%s}" . "\\section*{%s}")))))
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -302,9 +341,6 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
       (throw 'bookmark--jump-via 'BOOKMARK-FILE-JUMP)
     (no-catch nil)))
 
-;; icicles
-;; (icicle-mode)    10/06/2017
-
 ;; Markdown mode
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
@@ -312,20 +348,24 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 ;; Python environment
 
-(pyenv-mode)
-
 (when (require 'elpy nil 'no-error)
   (elpy-enable)
   (setq elpy-rpc-backend "jedi")
 ;  (elpy-use-ipython)
-  (define-key elpy-mode-map (kbd "<M-left>") nil)
-  (define-key elpy-mode-map (kbd "<M-right>") nil)
-  (define-key elpy-mode-map (kbd "<M-up>") nil)
-  (define-key elpy-mode-map (kbd "<M-down>") nil)
-  )
+;  (define-key elpy-mode-map (kbd "<M-left>") nil)
+;  (define-key elpy-mode-map (kbd "<M-right>") nil)
+;  (define-key elpy-mode-map (kbd "<M-up>") nil)
+;  (define-key elpy-mode-map (kbd "<M-down>") nil)
+)
 
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "-i --simple-prompt")
 
-;; Ivy
+(pyvenv-activate rwc-default-pyvenv)
+
+; (setq tramp-use-ssh-controlmaster-options nil)
+
+;; Ivy/Counsel
 
 (ivy-mode 1)
 
@@ -343,9 +383,12 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 ;; Neotree
 
-(global-set-key  (kbd "C-<f8>") 'neotree-toggle)
+(require 'all-the-icons)
 
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(global-set-key  (kbd "M-<f8>") 'neotree-toggle)
+
+;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+(setq neo-theme (if (display-graphic-p) 'arrow))
 
 ;; Projectile
 
@@ -353,6 +396,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (setq projectile-completion-system 'ivy)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setq neo-vc-integration '(face char))
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Defaults for specific file types
 

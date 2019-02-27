@@ -29,14 +29,14 @@ logging.basicConfig(level=logging.INFO,
 
 # **************************************************
 
-def parse_command_line():
+def parse_command_line(cmd=None):
 
     p = argparse.ArgumentParser(description = __doc__)
 
     p.add_argument('infile',
                    help="""Input file""")
 
-    return p.parse_args()
+    return p.parse_args(cmd) if cmd else p.parse_args()
 
 # **************************************************
 

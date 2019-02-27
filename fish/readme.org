@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+#+OPTIONS:   H:3 toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
+#+LATEX_CLASS: OrgNotes
+#+STARTUP: indent logdone
+
+#+TITLE: Fish Configuration
+
+* Installation
+#+BEGIN_SRC shell
+ln -s ~/SharedEnvironment/fish ~/.config/fish
+#+END_SRC
+

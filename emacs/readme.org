@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+#+OPTIONS:   H:3 toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
+#+LATEX_CLASS: OrgNotes
+#+STARTUP: indent logdone
+
+#+TITLE: Emacs Configuration
+
+* Standard packages:
+- all-the-icons 
+- auctex 
+- bookmark+ 
+- counsel 
+- counsel-projectile 
+- csv-mode 
+- dired+ 
+- dired-sort-menu+ 
+- elpy 
+- fish-mode 
+- flycheck
+- htmlize 
+- jedi 
+- magit 
+- markdown-mode+ 
+- neotree 
+- org 
+- projectile 
+- swiper 
+- yaml-mode 
+
+
+* Configuration
+
+1. In ~/.emacs:
+#+BEGIN_SRC elist
+(add-to-list 'load-path "~/SharedEnvironment/emacs")
+
+(setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
+
+(setq rwc-paths nil)
+
+(load "init")
+#+END_SRC
+
+
+* Tasks
+** DONE Setup default python virtual environment at startup
+CLOSED: [2019-02-24 Sun 17:13]
+- <2019-02-24 Sun 17:13> Added DefaultPyvenv.el
+  + Added line to .emacs to set the variable
+
