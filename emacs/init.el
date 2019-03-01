@@ -124,7 +124,6 @@
 
 (setq ispell-program-name "aspell")
 
-
 ; Next/Prev Error
 (global-set-key (kbd "<f5>") 'previous-error)
 (global-set-key (kbd "<f6>") 'next-error)
@@ -225,19 +224,6 @@
 
 ;; which-function
 (which-function-mode)
-
-;; ********************************************* Package initialization
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize)
-
-;; icicles
-(setq icicle-Completions-text-scale-decrease 0.0)
-(setq icicle-candidate-width-factor 120)
-(setq icicle-completions-format (quote vertical))
-(setq icicle-file-sort (quote icicle-dirs-first-p))
-(setq icicle-inter-candidates-min-spaces 5)
 
 ; Snippets
 (setq yas-snippet-dirs '("~/SharedEnvironment/emacs/snippets"))
