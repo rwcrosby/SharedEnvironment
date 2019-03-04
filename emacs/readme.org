@@ -71,6 +71,12 @@
     * (display-pixel-width) 6560
     * (display-pixel-height) 1440
 
+- <2019-03-01 Fri 15:35> BUilding from source on GPU Workstation
+  + Need to install freetype-devel, libXft-devel, gtk3-devel before configuring to get proper font support
+    #+BEGIN_SRC shell
+    ./configure --with-x-toolkit --with-xft
+    #+END_SRC
+  
 
 * Tasks
 ** DONE Setup default python virtual environment at startup
