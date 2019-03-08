@@ -5,6 +5,49 @@
 
 #+TITLE: Emacs Configuration
 
+
+* Configuration
+
+- Display resolution
+  + 4k Dell monitors (With default resolution)
+    * (display-pixel-width) 5280
+    * (display-pixel-height) 1080
+  + MPB Retina
+    * (display-pixel-width) 1440
+    * (display-pixel-height) 900
+  + Home Monitors
+    * (display-pixel-width) 6560
+    * (display-pixel-height) 1440
+
+- ELPY/Python
+  + <2016-03-17 Thu 15:10> Created .dir-locals.el file in the 2016-02_LSTM_Examples_TF directory to autoload the appropriate virtual environment.
+  + <2016-07-13 Wed 08:10> Need to make sure to set the virtual environment for elpy using pyvenv-activate
+  + <2016-07-13 Wed 11:47> Added --simple-prompt option to the Python Shell Interperter Args variable
+
+- In ~/.emacs:
+  #+BEGIN_SRC elist
+  (add-to-list 'load-path "~/SharedEnvironment/emacs")
+
+  (setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
+
+  (setq rwc-paths nil)
+
+  (load "init")
+  #+END_SRC
+
+- OS/X
+  + Run from a command line "app" created with automater
+    #+BEGIN_SRC shell
+    bash --login -c "nohup emacs &> /dev/null &"
+    #+END_SRC
+  
+- <2019-03-01 Fri 15:35> Building from source on GPU Workstation
+  + Need to install freetype-devel, libXft-devel, gtk3-devel before configuring to get proper font support
+    #+BEGIN_SRC shell
+    ./configure --with-x-toolkit --with-xft
+    #+END_SRC
+
+
 * Standard packages:
 - all-the-icons 
   + A bunch of interesting icons, another way to add unicode characters 
@@ -47,36 +90,38 @@
 - yaml-mode 
 
 
-* Configuration
+* Usage
+** Unicode entry - C-x 8 Ret
+** Editing as root
+C-x C-f /sudo::/etc/
+Note the two colons are required
 
-- In ~/.emacs:
-  #+BEGIN_SRC elist
-  (add-to-list 'load-path "~/SharedEnvironment/emacs")
-
-  (setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
-
-  (setq rwc-paths nil)
-
-  (load "init")
+** LaTeX
+*** latexmk
+- For a build whenever the file changes:
+  #+BEGIN_SRC shell
+  latexmk -pvc
   #+END_SRC
+- .latexmkrc
+  #+BEGIN_SRC perl
+  $recorder = 1;
+  $pdf_mode = 1;
+  $pdflatex = "pdflatex -interaction nonstopmode -halt-on-error -file-line-error -synctex=1 %O %S";
+  $pdf_previewer = "start open -a skim %O %S";
+  #+END_SRC
+*** Skim
+**** https://sourceforge.net/p/skim-app/wiki/TeX_and_PDF_Synchronization/
+**** Backwards
+- Use Cmd-Shift double-click to get back to emacs
+- The full path to emacsclient must be set in skim preferences
+**** Forwards
+#+BEGIN_SRC elisp
+(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+#+END_SRC
+- C-c C-v from the buffer to get to skim
 
-- Display resolution
-  + 4k Dell monitors (With default resolution)
-    * (display-pixel-width) 5280
-    * (display-pixel-height) 1080
-  + MPB Retina
-    * (display-pixel-width) 1440
-    * (display-pixel-height) 900
-  + Home Monitors
-    * (display-pixel-width) 6560
-    * (display-pixel-height) 1440
-
-- <2019-03-01 Fri 15:35> BUilding from source on GPU Workstation
-  + Need to install freetype-devel, libXft-devel, gtk3-devel before configuring to get proper font support
-    #+BEGIN_SRC shell
-    ./configure --with-x-toolkit --with-xft
-    #+END_SRC
-  
 
 * Tasks
 ** DONE Setup default python virtual environment at startup
