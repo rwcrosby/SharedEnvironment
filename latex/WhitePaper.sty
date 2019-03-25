@@ -23,7 +23,12 @@
 
 \usepackage{amsmath,amsfonts,amsthm} % Math packages for equations
 
+\@ifpackageloaded{xcolor}{%
+\definecolors{DarkGoldenrod}
+\definecolors{DarkRed}}%
+{%
 \usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+}%
 
 \usepackage[hang, small, labelfont=bf, up, textfont=it]{caption} % Custom captions under/above tables and figures
 
