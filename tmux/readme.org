@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+#+OPTIONS:   H:3 toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
+#+LATEX_CLASS: OrgNotes
+#+STARTUP: indent logdone
+
+#+TITLE: TMUX Notes
+
+* Commands
+
+- *tmux detach -a* - Detach all other clients (to fill up screen)
