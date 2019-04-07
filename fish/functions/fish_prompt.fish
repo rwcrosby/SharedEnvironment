@@ -1,6 +1,7 @@
 function fish_prompt
 
 	set_color magenta -b $prompt_background
+    echo -n '🐿  ' 
 #    echo -n '🐟 '
 #    echo -n '⚓ '
 
@@ -18,7 +19,8 @@ function fish_prompt
 
 	set_color red -b $prompt_background
 #	echo -n (prompt_pwd) '⤇  '
-	echo -n (prompt_pwd) '> '
+#	echo -n (prompt_pwd) '> '
+	echo -n (~/SharedEnvironment/python/ShellPrompt.py) '⤇  '
 
 	set_color normal
     
