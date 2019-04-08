@@ -10,6 +10,7 @@ switch (uname)
 
         set  LDLIB LD_LIBRARY_PATH
         set -x TIME /usr/bin/time --verbose
+        set PATH /sbin $PATH
 
     case Darwin
         
