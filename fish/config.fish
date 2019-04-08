@@ -59,9 +59,11 @@ set -g __fish_git_prompt_showuntrackedfiles 1
 
 set -g  __fish_git_prompt_color cyan -b $prompt_background
 
-set -g fish_prompt_pwd_dir_length 0
+set -g fish_prompt_pwd_dir_length 1
 
 set -g VIRTUAL_ENV_DISABLE_PROMPT 1
+
+set -gx PROMPT_MAX_LEN 40
 
 # Change a couple of colors to make it all a little cleaner
 
