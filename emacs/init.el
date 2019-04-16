@@ -337,17 +337,29 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (when (require 'elpy nil 'no-error)
   (elpy-enable)
   (setq elpy-rpc-backend "jedi")
-;  (elpy-use-ipython)
-;  (define-key elpy-mode-map (kbd "<M-left>") nil)
-;  (define-key elpy-mode-map (kbd "<M-right>") nil)
-;  (define-key elpy-mode-map (kbd "<M-up>") nil)
-;  (define-key elpy-mode-map (kbd "<M-down>") nil)
+  (define-key elpy-mode-map (kbd "<M-left>") nil)
+  (define-key elpy-mode-map (kbd "<M-right>") nil)
+  (define-key elpy-mode-map (kbd "<M-up>") nil)
+  (define-key elpy-mode-map (kbd "<M-down>") nil)
+
+  (setq python-shell-interpreter "jupyter"
+        python-shell-interpreter-args "console --simple-prompt"
+        python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               "jupyter")
+  
 )
 
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "-i --simple-prompt")
 
 (pyvenv-activate rwc-default-pyvenv)
+
+(defun my-delete-trailing-whitespace-hook ()
+  "Add hook to delete trailing whitespace before save"
+    (add-hook 'before-save-hook 'delete-trailing-whitespace nil 'local))
+
+(add-hook 'python-mode-hook #'my-delete-trailing-whitespace-hook)
 
 ; (setq tramp-use-ssh-controlmaster-options nil)
 
