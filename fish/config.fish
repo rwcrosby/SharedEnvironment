@@ -99,3 +99,15 @@ set fish_greeting "🐿  "(date)
 
 set -x PAGER less
 set -x EDITOR nano
+
+# If a dump terminal (from emacs tramp) reset the prompt
+
+if test "$TERM" = "dumb"
+  function fish_prompt
+    echo "\$ "
+  end
+
+  function fish_right_prompt; end
+  function fish_greeting; end
+  function fish_title; end
+end
