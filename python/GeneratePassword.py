@@ -47,6 +47,11 @@ def parse_command_line(cmd=None):
                    default=5,
                    help="""Number of passwords to generate""")
 
+    p.add_argument('--strength',
+                   type=float,
+                   default=0.6,
+                   help="""Minimum password strength""")
+
     p.add_argument('--dict_name',
                    default=DICT_NAME,
                    help="""Word dictionary to load""")
@@ -79,13 +84,19 @@ def load_dictionary(dname, minlen, maxlen):
 def run(wordlen=[5, 8],
         digitlen=4,
         numpasswords=5,
-        dict_name=DICT_NAME):
+        dict_name=DICT_NAME,
+        strength=0.6):
 
     words = load_dictionary(dict_name, *wordlen)
 
     while numpasswords:
 
-        w = words.pop().capitalize()
+        try:
+            w = words.pop().capitalize()
+        except IndexError:
+            print("Unable to get a sufficiently strong password")
+            break
+
         s = np.random.choice(SPECIAL_CHARS)
         i = np.random.randint(0, 10**digitlen)
 
@@ -96,7 +107,7 @@ def run(wordlen=[5, 8],
         #       pw = str(f"{s}{w}{i:0{digitlen}d}{s}")
         stats_pw = PasswordStats(pw)
 
-        if stats_pw.strength() >= .6:
+        if stats_pw.strength() >= strength:
             numpasswords -= 1
             print(f"{pw} {stats_pw.strength():0.3f} {stats_pw.entropy_bits:.2f}")
 
