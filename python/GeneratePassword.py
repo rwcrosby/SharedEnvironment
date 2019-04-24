@@ -22,7 +22,7 @@ import argparse
 import numpy as np
 from password_strength import PasswordStats
 
-DICT_NAME = '/usr/share/dict/web2'
+DICT_NAME = '/usr/share/dict/words'
 SPECIAL_CHARS = list(r'!@#$%^&*(){}[];:<>,.')
 
 # **************************************************
