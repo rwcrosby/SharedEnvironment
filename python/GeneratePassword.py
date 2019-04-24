@@ -20,6 +20,7 @@ __all__ = []
 
 import argparse
 import numpy as np
+from password_strength import PasswordStats
 
 DICT_NAME = '/usr/share/dict/web2'
 SPECIAL_CHARS = list(r'!@#$%^&*(){}[];:<>,.')
@@ -33,11 +34,11 @@ def parse_command_line(cmd=None):
     p.add_argument('-w', '--wordlen',
                    nargs=2,
                    type=int,
-                   default=[5, 8],
+                   default=[8, 10],
                    help="""Min and max word length""")
 
     p.add_argument('-d', '--digitlen',
-                   default=4,
+                   default=3,
                    type=int,
                    help="""Max random number length""")
 
@@ -82,12 +83,22 @@ def run(wordlen=[5, 8],
 
     words = load_dictionary(dict_name, *wordlen)
 
-    for n in range(numpasswords):
+    while numpasswords:
 
-        w = words.pop()
-        i = np.random.choice(SPECIAL_CHARS)
-        s = np.random.randint(0, 10**digitlen)
-        print(f"{w} {i} {s:0{digitlen}d}")
+        w = words.pop().capitalize()
+        s = np.random.choice(SPECIAL_CHARS)
+        i = np.random.randint(0, 10**digitlen)
+
+        comp = [w, f"{i:0{digitlen}d}", s, s]
+        np.random.shuffle(comp)
+        pw = ''.join(comp)
+
+        #       pw = str(f"{s}{w}{i:0{digitlen}d}{s}")
+        stats_pw = PasswordStats(pw)
+
+        if stats_pw.strength() >= .6:
+            numpasswords -= 1
+            print(f"{pw} {stats_pw.strength():0.3f} {stats_pw.entropy_bits:.2f}")
 
 
 # **************************************************
