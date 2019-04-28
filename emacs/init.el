@@ -4,7 +4,7 @@
 ;;
 ;; '(package-selected-packages
 ;;   (quote
-;;    (neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex flycheck))))
+;;    (zoom-window neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex flycheck))))
 
 (cond
       ;; Windows Specific Stuff
@@ -46,11 +46,14 @@
 ;; 'command line' app of some sort so rwc-paths will only need to contain any
 ;; additional directories not in the bash login path
 
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (setenv "PATH" (mapconcat 'identity (append rwc-paths (split-string (getenv "PATH") ":") ) ":"))
 (setq exec-path (append rwc-paths exec-path))
 
 (setq user-full-name "Ralph W. Crosby")
-(setq user-mail-address "ralph.crosby@navy.mil")
+(setq user-mail-address "ralphcrosby@gmail.com")
 
 (server-start)
 
@@ -387,6 +390,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 ;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-theme (if (display-graphic-p) 'arrow))
+(setq neo-window-fixed-size nil)
 
 ;; Projectile
 
