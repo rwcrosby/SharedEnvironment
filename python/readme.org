@@ -13,6 +13,8 @@ http://docutils.sourceforge.net/docs/user/rst/quickref.html
 https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 https://github.com/numpy/numpydoc/blob/master/README.rst
 https://github.com/numpy/numpy/blob/master/doc/example.py
+
+
 * Environments
 ** IPython
 - jupyter notebook --no-browser
@@ -43,8 +45,12 @@ https://github.com/numpy/numpy/blob/master/doc/example.py
 - For some reason elpy in python decided to use flake8 for syntax checking. Installed with pip and set up a configuration file in ~/.config/flake8.
 - <2019-03-16 Sat 16:19> See flake8 configuration information above
 ** <2018-05-15 Tue> Got rid of all the crap and are just using virtualenv directly.
+
+
 * flake8
 - Symlink the flake8 file to ~/.config/flake8
+  
+
 * Help
 ** pydoc
 + python -m rwcdoc -p8889 starts a browser on the port
@@ -64,6 +70,8 @@ Then can use help(obj) to get better help
   I[35] ~/Projects/ACNT_2016-BAR-0006/LSTM_Example_TF: import tensorflow.models.rnn as rnn
   I[36] ~/Projects/ACNT_2016-BAR-0006/LSTM_Example_TF: help(rnn.rnn)
   #+END_SRC
+
+
 * iPython
 ** Cell reference
 + Use _i$n$ to reference a cell
@@ -83,12 +91,25 @@ plt.savefig('somefile.pdf')
 #+END_SRC
 In the same cell as the figure generation
 
+
 * jupyter
 - jupyter remote configuration
   + Need to open port 8888 on firewall
   + Search jupyter remote to get cookbook
 - Jupyter kernels
   + Definitions are in ~/.local/share/jupyter/kernels
+
+
+* Scripts
+** ShellPrompt.py
+- Build a shell prompt compressing portions of the directory path
+** GeneratePasswords.py
+- Create potential random passwords
+- Random word
+- Random integer
+- Random special character
+
+
 * Sphinx
 ** Numpydoc
 - Need to add
@@ -96,6 +117,8 @@ In the same cell as the figure generation
   numpydoc_show_class_members = False
   #+END_SRC
   to the conf.py file to both eliminate warnings and get next/prev page to work
+
+
 * Win10
 ** Note: use a common directory for all work (e.g. %HOMEPATH%\Development)
 ** Visual Studio
