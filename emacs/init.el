@@ -16,7 +16,7 @@
       ;; Mac Specific Stuff
 
       ((eq system-type 'darwin)
-       (message "MacOs Initialization")
+       (message "MacOS Initialization")
        
        (setq ns-alternate-modifier (quote super))
        (setq ns-command-modifier (quote meta))
@@ -24,6 +24,8 @@
        (setq TeX-view-program-list
 	     (quote
 	      (("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
+
+       (setq rwc-paths '("/usr/local/opt/coreutils/libexec/gnubin" "/usr/local/bin"))
        
        )
 
@@ -47,7 +49,7 @@
 ;; additional directories not in the bash login path
 
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa-" . "https://melpa.org/packages/") t)
 
 (setenv "PATH" (mapconcat 'identity (append rwc-paths (split-string (getenv "PATH") ":") ) ":"))
 (setq exec-path (append rwc-paths exec-path))
@@ -403,3 +405,8 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 ;; Defaults for specific file types
 
 (add-hook 'text-mode-hook #'visual-line-mode)
+
+;; Zoom window
+
+(global-set-key (kbd "C-c z") 'zoom-window-zoom)
+
