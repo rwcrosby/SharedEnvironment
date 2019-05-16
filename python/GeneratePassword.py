@@ -20,6 +20,7 @@ __all__ = []
 
 import argparse
 import numpy as np
+import sys
 from password_strength import PasswordStats
 
 DICT_NAME = '/usr/share/dict/words'
@@ -45,7 +46,8 @@ def parse_command_line(cmd=None):
     p.add_argument('-n', '--numpasswords',
                    type=int,
                    default=5,
-                   help="""Number of passwords to generate""")
+                   help="""Number of passwords to generate, if set to zero
+                           will generate a single password without newline""")
 
     p.add_argument('--strength',
                    type=float,
@@ -75,27 +77,23 @@ def load_dictionary(dname, minlen, maxlen):
 
     np.random.shuffle(words)
 
-    print(f"{len(words)} loaded")
+    # print(f"{len(words)} words loaded", file=sys.stderr)
 
     return words
 
 # **************************************************
 
-def run(wordlen=[5, 8],
-        digitlen=4,
-        numpasswords=5,
-        dict_name=DICT_NAME,
-        strength=0.6):
+def get_password(wordlen, digitlen, words, strength):
+    """
+    Get and return a single password
+    """
 
-    words = load_dictionary(dict_name, *wordlen)
-
-    while numpasswords:
+    while True:
 
         try:
             w = words.pop().capitalize()
         except IndexError:
-            print("Unable to get a sufficiently strong password")
-            break
+            sys.exit("Unable to get a sufficiently strong password")
 
         s = np.random.choice(SPECIAL_CHARS)
         i = np.random.randint(0, 10**digitlen)
@@ -108,7 +106,27 @@ def run(wordlen=[5, 8],
         stats_pw = PasswordStats(pw)
 
         if stats_pw.strength() >= strength:
-            numpasswords -= 1
+            return pw, stats_pw
+
+# **************************************************
+
+def run(wordlen=[5, 8],
+        digitlen=4,
+        numpasswords=5,
+        dict_name=DICT_NAME,
+        strength=0.6):
+
+    words = load_dictionary(dict_name, *wordlen)
+
+    if numpasswords == 0:
+        pw, stats_pw = get_password(wordlen, digitlen, words, strength)
+        print(pw, end='')
+
+    else:
+
+        for i in range(numpasswords):
+
+            pw, stats_pw = get_password(wordlen, digitlen, words, strength)
             print(f"{pw} {stats_pw.strength():0.3f} {stats_pw.entropy_bits:.2f}")
 
 
