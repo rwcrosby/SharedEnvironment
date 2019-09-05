@@ -25,7 +25,9 @@
 	     (quote
 	      (("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
 
-       (setq rwc-paths '("/usr/local/opt/coreutils/libexec/gnubin" "/usr/local/bin"))
+       (setq rwc-paths '("/usr/local/opt/coreutils/libexec/gnubin"
+                         "/Library/TeX/texbin"
+                         "/usr/local/bin"))
        
        )
 
