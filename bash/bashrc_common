@@ -93,6 +93,19 @@ alias l='less -SR'
 alias gpu='ssh -Y g219089.chs.spawar.navy.mil'
 alias gput='ssh -Y g219089.chs.spawar.navy.mil -t tmux a'
 
+# Create aliases for the python virtual environments
+
+PVE=~/.local/PVE
+
+pushd $PVE &> /dev/null
+
+for d in */
+do
+    alias ${d%/}="source $PVE/${d%/}/bin/activate"
+done
+
+popd &> /dev/null
+
 # Make my preferred utilities standard
 
 export EDITOR=nano

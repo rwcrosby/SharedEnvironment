@@ -111,3 +111,17 @@ if test "$TERM" = "dumb"
   function fish_greeting; end
   function fish_title; end
 end
+
+# Add alias for Python virtual environments
+
+set PVE ~/.local/PVE
+
+pushd $PVE > /dev/null
+
+for d in */
+    set VE (string trim -c '/' $d)
+    alias $VE="source $PVE/$VE/bin/activate.fish"
+end
+
+popd > /dev/null
+
