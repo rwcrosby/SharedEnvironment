@@ -47,6 +47,12 @@ if test -d /usr/local/cuda
     set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
 end
 
+# Add SNAP package manager if installed
+
+if test -d /var/lib/snapd/snap/bin 
+    set PATH /var/lib/snapd/snap/bin $PATH
+end
+
 # Find my functions
 
 set -g fish_function_path $sdir/functions $fish_function_path

@@ -98,6 +98,12 @@ In the same cell as the figure generation
   + Search jupyter remote to get cookbook
 - Jupyter kernels
   + Definitions are in ~/.local/share/jupyter/kernels
+- Jupyter config is in ~/.jupyter/jupyter_notebook_config.py
+  Around line 201:
+  #+BEGIN_SRC 
+  c.NotebookApp.token=''
+  c.NotebookApp.password=''
+  #+END_SRC
 
 
 * Scripts
@@ -117,6 +123,18 @@ In the same cell as the figure generation
   numpydoc_show_class_members = False
   #+END_SRC
   to the conf.py file to both eliminate warnings and get next/prev page to work
+
+
+* Updating Packages
+** Using ~pip-review~
+- To list all outdated packates
+  #+BEGIN_SRC 
+  pip-review
+  #+END_SRC
+- To automatically update all packates
+  #+BEGIN_SRC 
+  pip-review -a
+  #+END_SRC
 
 
 * Win10
