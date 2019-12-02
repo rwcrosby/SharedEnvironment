@@ -24,14 +24,20 @@
   + <2016-07-13 Wed 11:47> Added --simple-prompt option to the Python Shell Interperter Args variable
 
 - In ~/.emacs:
-  #+BEGIN_SRC elist
+  #+BEGIN_SRC elisp
+  (require 'package)
+  (add-to-list 'package-archives
+    '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
+
   (add-to-list 'load-path "~/SharedEnvironment/emacs")
 
-  (setq rwc-default-pyvenv "~/.local/PVE/Py3.7")
+  (setq rwc-default-pyvenv "~/.local/PVE/Py3.6")
 
-  (setq rwc-paths nil)
+  (setq rwc-path '())
 
-  (load "init")
+  (load "init.el")
   #+END_SRC
 
 - OS/X
@@ -48,6 +54,33 @@
 
 
 * Standard packages:
+
+- Install with:
+  #+BEGIN_SRC elisp
+  (setq package-selected-packages '(neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex))
+
+  (require 'package)
+
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
+
+  (package-refresh-contents)
+
+  (package-install-selected-packages)
+  #+END_SRC
+
+(setq package-selected-packages '(neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex))
+
+(require 'package)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(package-refresh-contents)
+
+(package-install-selected-packages)
+
+
 - all-the-icons 
   + A bunch of interesting icons, another way to add unicode characters 
   + https://github.com/domtronn/all-the-icons.el
