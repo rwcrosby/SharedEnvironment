@@ -47,6 +47,16 @@ if test -d /usr/local/cuda
     set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
 end
 
+# Add texlive if it exists
+
+if test -d /usr/local/texlive/2019
+
+   set PATH /usr/local/texlive/2019/bin/x86_64-linux $PATH
+   set MANPATH /usr/local/texlive/2019/texmf-dist/doc/man $MANPATH
+   set INFOPATH /usr/local/texlive/2019/texmf-dist/doc/info $INFOPATH
+
+end
+
 # Add SNAP package manager if installed
 
 if test -d /var/lib/snapd/snap/bin 
