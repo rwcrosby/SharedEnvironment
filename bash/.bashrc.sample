@@ -118,8 +118,8 @@ fi
 
 # RWC Common Definitions
 
-if [ -f ~/Development/bash/bashrc_common ]; then
-    . ~/Development/bash/bashrc_common
+if [ -f ~/SharedEnvironment/bash/bashrc_common ]; then
+    . ~/SharedEnvironment/bash/bashrc_common
 fi
 
 # Python environment setup

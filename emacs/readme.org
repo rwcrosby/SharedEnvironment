@@ -35,7 +35,7 @@
 
   (setq rwc-default-pyvenv "~/.local/PVE/Py3.6")
 
-  (setq rwc-path '())
+  (setq rwc-paths '())
 
   (load "init.el")
   #+END_SRC
@@ -52,6 +52,8 @@
     ./configure --with-x-toolkit --with-xft
     #+END_SRC
 
+- <2019-12-25 Wed 11:37> Building on BobTheDragon (MacBook '11)
+  + All seems to be working
 
 * Standard packages:
 
@@ -68,17 +70,6 @@
 
   (package-install-selected-packages)
   #+END_SRC
-
-(setq package-selected-packages '(neotree fish-mode htmlize counsel-projectile projectile all-the-icons counsel yaml-mode swiper org markdown-mode+ magit jedi elpy dired-sort-menu+ dired+ csv-mode bookmark+ auctex))
-
-(require 'package)
-
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
-(package-refresh-contents)
-
-(package-install-selected-packages)
 
 
 - all-the-icons 
