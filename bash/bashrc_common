@@ -119,5 +119,15 @@ HISTFILESIZE=2000
 
 shopt -s histappend
 
-# Directory environment
-eval "$(direnv hook bash)"
+# Python git environment setup
+
+if [ -f ~/SharedEnvironment/bash/GitPythonPrompt ]; then
+     . ~/SharedEnvironment/bash/GitPythonPrompt
+fi
+
+# Standard python stuff
+
+if [ -d ~/SharedEnvironment/python ]; then
+     export PYTHONPATH=~/SharedEnvironment/python
+fi
+

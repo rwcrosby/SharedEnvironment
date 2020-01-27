@@ -9,3 +9,10 @@ This is a simple project holding the various files that are shared amongst the M
 - Python
 - Terminator (Obsolete)
 - TMUX
+
+
+ ## Useful commands:
+ 
+- Update all git projects in a directory:
+
+  `find . -type d -name .git -exec /bin/bash -c "cd {}/..; pwd; git pull" \;`

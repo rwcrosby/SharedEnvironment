@@ -45,7 +45,8 @@ https://github.com/numpy/numpy/blob/master/doc/example.py
 - For some reason elpy in python decided to use flake8 for syntax checking. Installed with pip and set up a configuration file in ~/.config/flake8.
 - <2019-03-16 Sat 16:19> See flake8 configuration information above
 ** <2018-05-15 Tue> Got rid of all the crap and are just using virtualenv directly.
-
+** <2020-01-27 Mon> Implemented pyenv on the Mac just to get python versions
+- Homebrew was a problem
 
 * flake8
 - Symlink the flake8 file to ~/.config/flake8
