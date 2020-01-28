@@ -124,6 +124,7 @@
 
 * Usage
 ** Unicode entry - C-x 8 Ret
+
 ** Editing as root
 C-x C-f /sudo::/etc/
 Note the two colons are required
@@ -153,6 +154,11 @@ Note the two colons are required
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 #+END_SRC
 - C-c C-v from the buffer to get to skim
+
+** Printing
+- <2020-01-28 Tue> C-u M-x ps-print-buffer-with-faces
+  + Will prompt for output filename
+  + Convert to .pdf with ps2pdf or print from preview
 
 
 * Tasks
