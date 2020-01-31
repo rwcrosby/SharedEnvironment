@@ -131,3 +131,16 @@ if [ -d ~/SharedEnvironment/python ]; then
      export PYTHONPATH=~/SharedEnvironment/python
 fi
 
+# pyenv support
+
+# Since all we're using pyenv for is getting python distributions we don't actually
+# install the hooks
+
+if [ -d ~/.pyenv ]; then
+   export PYENV_ROOT=~/.pyenv
+
+   if [ -d ~/.pyenv/bin ]; then
+       Add2Var PATH ~/.pyenv/bin
+   fi
+fi
+
