@@ -141,3 +141,15 @@ end
 
 popd > /dev/null
 
+# pyenv support
+
+# Since all we're using pyenv for is getting python distributions we don't actually
+# install the hooks
+
+if test -d ~/.pyenv
+   set -xg PYENV_ROOT ~/.pyenv
+
+   if test -d ~/.pyenv/bin
+      set PATH ~/.pyenv/bin $PATH
+   end
+end
