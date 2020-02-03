@@ -67,13 +67,36 @@
 
 % Default frame title
 
+\geometry{top=7mm, left=7mm, right=7mm}
+
 \setbeamertemplate{frametitle}{
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north west, yshift=-1mm, xshift=1mm] at (current page.north west) {\includegraphics[scale=.15]{NIWCLANT.png}};
     \node[anchor=north west, yshift=-5mm, xshift=16mm] at (current page.north west) {\LARGE\textbf\insertframetitle\par};
-    \node[anchor=north west, yshift=-13mm] at (current page.north west) {\includegraphics[scale=.5]{NIWC_header_line.png}};
+    \node[anchor=north west, yshift=-13mm, xshift=-1.25mm] at (current page.north west) {\includegraphics[scale=.5]{NIWC_header_line.png}};
   \end{tikzpicture}
 }
+
+% Blocks
+
+\providecolors{LightGray}
+\providecolors{DarkGreen}
+\providecolors{DarkRed}
+\providecolors{Navy}
+\providecolors{White}
+
+\setbeamercolor{block title}{bg=Navy,fg=White}
+\setbeamercolor{block body}{bg=LightGray}
+
+\setbeamercolor{block title example}{bg=DarkGreen,fg=White}
+\setbeamercolor{block body example}{bg=LightGray}
+
+\setbeamercolor{block title alerted}{bg=DarkRed,fg=White}
+\setbeamercolor{block body alerted}{bg=LightGray}
+
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
 
 % Other utility commands
 
