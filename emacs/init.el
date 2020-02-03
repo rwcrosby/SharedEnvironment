@@ -71,6 +71,7 @@
 (show-paren-mode t)		            ; highlight matching parenthesis
 (desktop-save-mode t)	            ; save desktop on exit
 (setq debug-on-error nil)           ; Don't automatically open debugger
+(delete-selection-mode 1)           ; Delete selected text on typing
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -392,6 +393,7 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 
 ;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-theme (if (display-graphic-p) 'arrow))
+(setq neo-smart-open nil)
 (setq neo-window-fixed-size nil)
 
 ;; Projectile
@@ -400,6 +402,8 @@ Non-nil optional arg BATCHP is passed to `bookmark-load'."
 (setq projectile-completion-system 'ivy)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setq neo-vc-integration '(face char))
+(setq projectile-track-known-projects-automatically nil)
+
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Defaults for specific file types
