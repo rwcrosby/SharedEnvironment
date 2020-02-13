@@ -106,16 +106,10 @@
 
 \newcommand{\closing}[1]{
   \begin{frame}
-  \frametitle{Thank You!}
+  \frametitle{#1}
 
-  \begin{center}
-    \large
-      #1
-    \vspace{25pt}
-
-    \includegraphics[scale=.5]{NIWC_ShortClosing.png}
-
-  \end{center}
+  \centering
+  \includegraphics[width=\textwidth]{NIWC_Closing.png}
 
 \end{frame}
 
