@@ -24,7 +24,7 @@ case $OSTYPE in
         export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
         export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
-        alias go='open'
+        # alias go='open' Conflicts with the go language
 
         # Man pages output to skim
         manp()
