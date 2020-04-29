@@ -140,7 +140,7 @@
 
 \predate{
   \fontsize{14}{24}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
-  Uploaded:
+  Submission Timestamp:
 }
 
 \postdate{                % Anything that will appear after \author is printed
@@ -170,3 +170,30 @@
 	\StrLeft{#1}{1}[\firstletter] % Capture the first letter of the abstract for the lettrine
 	\initial{\firstletter}\textbf{\StrGobbleLeft{#1}{1}} % Print the abstract with the first letter as a lettrine and the rest in bold
 }
+
+%----------------------------------------------------------------------------------------
+%	Some useful commands for grading
+%----------------------------------------------------------------------------------------
+
+\newcommand{\ok}{
+  $\color{green}{Done}:\ \checkmark$
+}
+
+\newcommand{\err}[1]{
+  $\color{blue}{Incorrect:\ \textit{-#1}}$
+}
+
+\newcommand{\missing}[1]{
+  $\color{magenta}{Missing:\ \textit{-#1}}$
+}
+
+
+% $\color{green}{Done}:\ \checkmark$
+% $\color{magenta}{Missing:\ \text{-1}}$
+% $\color{blue}{Incorrect:\ \text{-1}}$
+
+
+% $\color{green}{Good\ \checkmark}$
+% $\color{blue}{Problems Found\ \times}$
+% $\color{magenta}{Missing\ \times}$
+
