@@ -4,7 +4,7 @@ function Add2Var
 {
     if [ -d "$2" ]; then
         val='$'${1}
-        export ${1}="${2}":`eval echo $val`
+        export ${1}="${2}":"`eval echo $val`"
     fi
 }
 
@@ -12,6 +12,9 @@ function Add2Var
 
 case $OSTYPE in
     darwin*)
+
+        # Silence zsh as default message
+        export BASH_SILENCE_DEPRECATION_WARNING=1
         
 	    LDLIB=DYLD_LIBRARY_PATH
 	    export TIME="/usr/bin/time -l"
@@ -142,5 +145,6 @@ if [ -d ~/.pyenv ]; then
    if [ -d ~/.pyenv/bin ]; then
        Add2Var PATH ~/.pyenv/bin
    fi
+   
 fi
 
