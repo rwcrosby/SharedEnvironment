@@ -4,7 +4,7 @@ function Add2Var
 {
     if [ -d "$2" ]; then
         val='$'${1}
-        export ${1}="${2}":`eval echo $val`
+        export ${1}="${2}":"`eval echo $val`"
     fi
 }
 
@@ -12,6 +12,9 @@ function Add2Var
 
 case $OSTYPE in
     darwin*)
+
+        # Silence zsh as default message
+        export BASH_SILENCE_DEPRECATION_WARNING=1
         
 	    LDLIB=DYLD_LIBRARY_PATH
 	    export TIME="/usr/bin/time -l"
@@ -24,7 +27,7 @@ case $OSTYPE in
         export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
         export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
-        alias go='open'
+        # alias go='open' Conflicts with the go language
 
         # Man pages output to skim
         manp()
@@ -119,5 +122,29 @@ HISTFILESIZE=2000
 
 shopt -s histappend
 
-# Directory environment
-eval "$(direnv hook bash)"
+# Python git environment setup
+
+if [ -f ~/SharedEnvironment/bash/GitPythonPrompt ]; then
+     . ~/SharedEnvironment/bash/GitPythonPrompt
+fi
+
+# Standard python stuff
+
+if [ -d ~/SharedEnvironment/python ]; then
+     export PYTHONPATH=~/SharedEnvironment/python
+fi
+
+# pyenv support
+
+# Since all we're using pyenv for is getting python distributions we don't actually
+# install the hooks
+
+if [ -d ~/.pyenv ]; then
+   export PYENV_ROOT=~/.pyenv
+
+   if [ -d ~/.pyenv/bin ]; then
+       Add2Var PATH ~/.pyenv/bin
+   fi
+   
+fi
+

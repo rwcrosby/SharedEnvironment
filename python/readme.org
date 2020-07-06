@@ -35,6 +35,7 @@ https://github.com/numpy/numpy/blob/master/doc/example.py
   mkvirtualenv -r ~/PythonVirtualEnvironments/PVERequirements.lst -p /home/crosbyr/usr/bin/python3.4 --system-site-packages
   #+END_SRC
 + <2019-03-16 Sat 16:17> Moved away from this, just using virtualenv and direnv
+** Current setup: pyenv for python versions, building customr virtualenvs
 ** <2016-03-24 Thu 09:03> More screwing with environments
 - Using pyenv and --system-site-packages doesn't seem to work, site-packages not set up correctly and pip isn't installing to it.
 - So it's easy enough to install all the packages into the VE.
@@ -45,7 +46,9 @@ https://github.com/numpy/numpy/blob/master/doc/example.py
 - For some reason elpy in python decided to use flake8 for syntax checking. Installed with pip and set up a configuration file in ~/.config/flake8.
 - <2019-03-16 Sat 16:19> See flake8 configuration information above
 ** <2018-05-15 Tue> Got rid of all the crap and are just using virtualenv directly.
-
+** <2020-01-27 Mon> Implemented pyenv on the Mac just to get python versions
+- Homebrew was a problem
+** <2020-01-31 Fri> Implemented pyenv on ACNT1 and GPU, recreated all virtual envs
 
 * flake8
 - Symlink the flake8 file to ~/.config/flake8
