@@ -153,3 +153,12 @@ if test -d ~/.pyenv
       set PATH ~/.pyenv/bin $PATH
    end
 end
+
+# Rust support
+
+if test -d ~/.cargo
+
+   if test -d ~/.cargo/bin
+      set PATH ~/.cargo/bin $PATH
+   end
+end
