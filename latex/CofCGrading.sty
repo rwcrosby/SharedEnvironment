@@ -21,6 +21,8 @@
 
 \usepackage{microtype} % Better typography
 
+\usepackage{ifthen}
+
 \usepackage{amsmath,amsfonts,amsthm} % Math packages for equations
 
 
@@ -187,6 +189,13 @@
   $\color{magenta}{Missing:\ \textit{-#1}}$
 }
 
+\newcommand{\dd}[1]{
+  \ifthenelse{#1=0}{
+    $\color{green}{\textit{0}}$
+  }{
+    $\color{red}{\textit{-#1}}$
+  }
+}
 
 % $\color{green}{Done}:\ \checkmark$
 % $\color{magenta}{Missing:\ \text{-1}}$
