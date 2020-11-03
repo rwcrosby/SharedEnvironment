@@ -71,8 +71,8 @@ set -g fish_function_path $sdir/functions $fish_function_path
 
 set -g prompt_background white
 
-set -g __fish_git_prompt_showdirtystate 1
-set -g __fish_git_prompt_showuntrackedfiles 1
+#set -g __fish_git_prompt_showdirtystate 1
+#set -g __fish_git_prompt_showuntrackedfiles 1
 
 set -g  __fish_git_prompt_color cyan -b $prompt_background
 

@@ -51,7 +51,7 @@
 ;; additional directories not in the bash login path
 
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 (setenv "PATH" (mapconcat 'identity (append rwc-paths (split-string (getenv "PATH") ":") ) ":"))
 (setq exec-path (append rwc-paths exec-path))

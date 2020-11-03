@@ -73,6 +73,7 @@ def run(max_len, min_seg):
 
     print(os.sep.join(parts), end='')
 
+
 # **************************************************
 
 if __name__ == '__main__':
