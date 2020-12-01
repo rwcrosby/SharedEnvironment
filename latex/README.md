@@ -1,16 +1,10 @@
-# -*- coding: utf-8 -*-
-#+OPTIONS:   H:3 toc:nil \n:nil @:t ::t |:t ^:{} -:t f:t *:t <:t
-#+LATEX_CLASS: OrgNotes
-#+STARTUP: indent logdone
+# LaTeX General Notes
 
-#+TITLE: LaTeX General Notes
-
-* Zotero
+## Zotero
 - Output is biblatex format
 - Example in: Documents/FY2018 ANTEX/2018-06-01 Cyber Shorelines/ShortPaper.tex
 
-
-* Personal files
+## Personal files
 - On Mac they should be in ~/Library/texmf/tex/latex
 - With =\input=, extension should be .tex
 - With =\usepackage=, extension should be .sty
