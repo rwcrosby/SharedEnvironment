@@ -1,0 +1,13 @@
+---
+documentclass: Markdown
+toc: False
+lof: False
+graphics: True
+toc-depth: 1
+toccolor: Maroon
+mathspec: 1
+numbersections: True
+include-before:
+  \thispagestyle{firstpage}
+
+---
