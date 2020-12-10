@@ -17,7 +17,8 @@
 \RequirePackage{amsmath,amsfonts,amsthm} % Math packages for equations
 \RequirePackage{currfile}
 
-\@ifpackageloaded{xcolor}{
+\@ifpackageloaded{xcolor}
+{
   \definecolors{DarkGoldenrod}
   \definecolors{DarkRed}
 }
@@ -93,7 +94,8 @@
 \fancypagestyle{firstpage}{
   \renewcommand{\headrule}{}
   \fancyhf{}    % Just eliminate the header, not the footer so the distribution statement prints
-  \fancyfoot[L]{\small \textsf \diststmt}
+  \fancyfoot[L]{\small \textsf \sourcefile}
+  \fancyfoot[C]{\small \textsf \diststmt}
   \fancyfoot[R]{\small \textsf{\thepage\ of \pageref{LastPage}}}
   \renewcommand{\footrule}{\HorRule}
 }
@@ -101,7 +103,8 @@
 \fancypagestyle{stdpage}{
   \fancyhf{}
   \fancyhead[C]{\large \color{Maroon} \textsf \@title}
-  \fancyfoot[L]{\small \textsf \diststmt}
+  \fancyfoot[L]{\small \textsf \sourcefile}
+  \fancyfoot[C]{\small \textsf \diststmt}
   \fancyfoot[R]{\small \textsf{\thepage\ of \pageref{LastPage}}}
   \renewcommand{\headrule}{{\HorRule}}
 }
