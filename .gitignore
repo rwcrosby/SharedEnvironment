@@ -2,3 +2,4 @@
 .DS_Store
 .vscode
 /fish/fish_variables
+fish/functions/fish_variables

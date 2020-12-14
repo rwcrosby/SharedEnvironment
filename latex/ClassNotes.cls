@@ -45,6 +45,7 @@
 \def\width{29}
 
 \newcommand\makegrid[1]{
+    \vspace{.1in}
     \noindent
     \begin{tikzpicture}[x=.25in, y=.25in, semitransparent]
         \draw[step=.25in, line width=0.2mm, blue!40!white] (0,0) grid (\width,#1);
@@ -56,5 +57,6 @@
         \noindent
         \large
         \textsf{#1}
+
     }
 }

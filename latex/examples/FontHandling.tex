@@ -1,0 +1,64 @@
+\documentclass[11pt]{article}
+
+\usepackage{emoji}
+
+% Use fontenc to handl 8-bit ascii
+\usepackage{fontenc}
+
+% Times and associated math font
+\usepackage{mathptmx}
+
+% Adjust paragraph handling
+% See: https://tex.stackexchange.com/questions/375889/adjusting-space-between-paragraphs
+\setlength\parskip{1em plus 0.1em minus 0.2em}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\section{Emoji's}
+
+\emoji{+1}
+\emoji{chipmunk}
+\emoji{pizza}
+\emoji{rolling-on-the-floor-laughing}
+
+\section{Standard Font Handling}
+
+\subsection{Using Declaration Format}
+
+\rmfamily 
+Serif Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+\sffamily 
+Sans Serif Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+\ttfamily 
+Monospace Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+\subsection{Using command format}
+
+\textsf{abcdefghijklmnopqrstuvwxyz}\par
+\textrm{abcdefghijklmnopqrstuvwxyz}\par
+\texttt{abcdefghijklmnopqrstuvwxyz}
+
+
+
+\section{Specific Font Selection}
+
+{
+    \usefont{T1}{phv}{m}{n}
+    This is Abobe Helvetica
+}
+
+{
+    \usefont{T1}{cmss}{m}{n}
+    This is Computer Modern Sans
+}
+
+\end{document}

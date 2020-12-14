@@ -8,17 +8,17 @@ rootname="${filename%%.*}"
 
 thisdir=`dirname "$0"`
 
+title=$2
 author=${3:-"Ralph W. Crosby, PhD."}
 date=${4:-`date`}
 
 config=${md2pdf_config:-$thisdir/Md2PdfPandocConfig.yaml}
 template=${md2pdf_template:-$thisdir/md2pdf.pandoc.template}
 
-
-if [ -v 2 ] ; then
+if [[ "x$title" != "x" ]]; then 
        pandoc -V date="$date" \
               -V author="$author" \
-              -V title="$2" \
+              -V title="$title" \
               -o $rootname.pdf \
               --template="$template" \
               --pdf-engine=lualatex \
@@ -33,4 +33,3 @@ else
               "$config" \
               $infile 
 fi
-
