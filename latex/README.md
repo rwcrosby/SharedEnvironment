@@ -21,9 +21,16 @@ Format an EMACS .org file for printing.
 
 # Font Handling
 
-## Default
+See examples/FontHandling.tex
 
-## Emoji's
+- /usr/local/texlive/2020/texmf-dist/doc/latex/psnfss/psnfss2e.pdf
+
+- http://ctan.math.washington.edu/tex-archive/macros/unicodetex/latex/fontspec/fontspec.pdf
+- https://www.tug.org/pracjourn/2006-1/schmidt/schmidt.pdf
+- https://www.latex-project.org/help/documentation/fntguide.pdf
+
+
+
 # Personal files
 - On Mac they should be in ~/Library/texmf/tex/latex
 - With `\\input`, extension should be .tex

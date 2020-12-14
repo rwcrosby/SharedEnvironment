@@ -38,7 +38,7 @@
 \setlist{noitemsep} % Remove spacing between bullet/numbered list elements
 
 \RequirePackage{sectsty} % Enables custom section titles
-\allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands (Helvetica)
+\allsectionsfont{\usefont{T1}{phv}{b}{n}} % Change the font of all section commands (Helvetica)
 
 %----------------------------------------------------------------------------------------
 %	MARGINS AND SPACING
@@ -53,7 +53,6 @@
 	right=.75in, % Right margin
 	includehead, % Include space for a header
 	includefoot, % Include space for a footer
-	%showframe, % Uncomment to show how the type block is set on the page
 }
 
 \setlength{\columnsep}{7mm} % Column separation width
@@ -62,10 +61,8 @@
 %	FONTS
 %----------------------------------------------------------------------------------------
 
-\RequirePackage[T1]{fontenc} % Output font encoding for international characters
+\RequirePackage{fontenc} % Output font encoding for international characters
 \RequirePackage[utf8]{inputenc} % Required for inputting international characters
-
-% \RequirePackage{XCharter} % Use the XCharter font
 
 %----------------------------------------------------------------------------------------
 %	HEADERS AND FOOTERS
@@ -121,7 +118,7 @@
   \vspace{-70pt}            % Move the entire title section up
   \HorRule
   \vskip 5pt 
-  \fontsize{20}{24}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
+  \fontsize{20}{24}\usefont{T1}{phv}{b}{n}\selectfont % Helvetica
   \color{DarkRed}           % Text colour for the title and author(s)
   \centering
 }
@@ -133,7 +130,7 @@
   
 \preauthor{
   \centering
-  \fontsize{14}{17}\usefont{OT1}{phv}{m}{n}\selectfont % Helvetica
+  \fontsize{14}{17}\usefont{T1}{phv}{m}{n}\selectfont % Helvetica
 }
     
 \postauthor{
@@ -142,31 +139,10 @@
 
 \predate{
   \centering
-  \fontsize{14}{17}\usefont{OT1}{phv}{m}{n}\selectfont % Helvetica
+  \fontsize{14}{17}\usefont{T1}{phv}{m}{n}\selectfont % Helvetica
 }
 
 \postdate{
   \HorRule
   \vskip 5pt
-}
-
-%----------------------------------------------------------------------------------------
-%	ABSTRACT
-%----------------------------------------------------------------------------------------
-
-\RequirePackage{lettrine} % Package to accentuate the first letter of the text (lettrine)
-\RequirePackage{fix-cm}	% Fixes the height of the lettrine
-
-\newcommand{\initial}[1]{ % Defines the command and style for the lettrine
-	\lettrine[lines=3,findent=4pt,nindent=0pt]{% Lettrine takes up 3 lines, the text to the right of it is indented 4pt and further indenting of lines 2+ is stopped
-		\color{DarkGoldenrod}% Lettrine colour
-		{#1}% The letter
-	}{}%
-}
-
-\RequirePackage{xstring} % Required for string manipulation
-
-\newcommand{\lettrineabstract}[1]{
-	\StrLeft{#1}{1}[\firstletter] % Capture the first letter of the abstract for the lettrine
-	\initial{\firstletter}\textbf{\StrGobbleLeft{#1}{1}} % Print the abstract with the first letter as a lettrine and the rest in bold
 }
