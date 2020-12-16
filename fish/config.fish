@@ -149,8 +149,8 @@ popd > /dev/null
 if test -d ~/.pyenv
    set -xg PYENV_ROOT ~/.pyenv
 
-   if test -d ~/.pyenv/bin
-      set PATH ~/.pyenv/bin $PATH
+   if test -d ~/.pyenv/pyenv/bin
+      set PATH ~/.pyenv/pyenv/bin $PATH
    end
 end
 
