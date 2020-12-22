@@ -1,0 +1,151 @@
+# Add a directory (if it exists) to a path
+
+function Add2Var
+{
+    if [ -d "$2" ]; then
+        val='$'${1}
+        export ${1}="${2}":"`eval echo $val`"
+    fi
+}
+
+# Set platform dependent variables
+
+case $OSTYPE in
+    darwin*)
+
+        # Silence zsh as default message
+        export BASH_SILENCE_DEPRECATION_WARNING=1
+        
+	    LDLIB=DYLD_LIBRARY_PATH
+	    export TIME="/usr/bin/time -l"
+        
+        # Disable automatic cleanup
+        export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+        # Homebrew paths
+
+        export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+        export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+
+        # alias go='open' Conflicts with the go language
+
+        # Man pages output to skim
+        manp()
+        {
+            man -t "${1}" | open -f -a Skim
+        }
+
+        ;;
+    linux*)
+        
+	    LDLIB=LD_LIBRARY_PATH
+	    export TIME="/usr/bin/time --verbose"
+
+        alias go='gvfs-open'
+
+        ;;
+esac
+
+# Prompt
+
+export PS1='\[\033[34m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# My directories
+
+Add2Var PATH ~/.local/bin
+
+Add2Var MANPATH ~/.local/share/man
+
+Add2Var $LDLIB ~/.local/lib64
+Add2Var $LDLIB ~/.local/lib
+
+if [[ $OSTYPE = linux* ]]; then
+    Add2Var LD_RUN_PATH ~/.local/lib64
+    Add2Var LD_RUN_PATH ~/.local/lib
+fi
+
+# Colors
+
+if [[ "$TERM" != "dumb" ]]; then
+
+    export LS_OPTIONS='--color=auto'
+
+    SCRIPT_DIR=${0:a:h}
+    # SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
+    eval `dircolors ${SCRIPT_DIR}/dircolors`
+
+    if [[ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]]; then
+        SH=/usr/share/source-highlight/src-hilite-lesspipe.sh
+    else
+        SH=src-hilite-lesspipe.sh
+    fi
+
+    export LESSOPEN="| ${SH} %s"
+    export LESS=' -R '
+
+fi
+
+# Aliases
+
+alias ls='ls $LS_OPTIONS --group-directories-first'
+alias ll='ls $LS_OPTIONS -l  --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
+alias la='ls $LS_OPTIONS -lA  --group-directories-first --time-style="+%Y-%m-%d %H:%M:%S"'
+
+alias ec='emacsclient -n'
+alias l='less -SR'
+
+alias gpu='ssh -Y g219089.chs.spawar.navy.mil'
+alias gput='ssh -Y g219089.chs.spawar.navy.mil -t tmux a'
+
+# Create aliases for the python virtual environments
+
+PVE=~/.local/PVE
+
+pushd $PVE &> /dev/null
+
+for d in */
+do
+    alias ${d%/}="source $PVE/${d%/}/bin/activate"
+done
+
+popd &> /dev/null
+
+# Make my preferred utilities standard
+
+export EDITOR=nano
+export PAGER=less
+
+# History file
+
+# HISTCONTROL=ignoreboth
+# HISTSIZE=1000
+# HISTFILESIZE=2000
+
+# shopt -s histappend
+
+# Python git environment setup
+
+if [ -f ~/SharedEnvironment/zsh/GitPythonPrompt ]; then
+     . ~/SharedEnvironment/zsh/GitPythonPrompt
+fi
+
+# Standard python stuff
+
+if [ -d ~/SharedEnvironment/python ]; then
+     export PYTHONPATH=~/SharedEnvironment/python
+fi
+
+# pyenv support
+
+# Since all we're using pyenv for is getting python distributions we don't actually
+# install the hooks
+
+if [ -d ~/.pyenv ]; then
+   export PYENV_ROOT=~/.pyenv
+
+   if [ -d ~/.pyenv/bin ]; then
+       Add2Var PATH ~/.pyenv/bin
+   fi
+   
+fi
+

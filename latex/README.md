@@ -29,10 +29,10 @@ See examples/FontHandling.tex
 - https://www.tug.org/pracjourn/2006-1/schmidt/schmidt.pdf
 - https://www.latex-project.org/help/documentation/fntguide.pdf
 
-
-
 # Personal files
+
 - On Mac they should be in ~/Library/texmf/tex/latex
+- On Linux they should be in ~/texmf/tex/latex
 - With `\\input`, extension should be .tex
 - With `\\usepackage`, extension should be .sty
 - https://tex.stackexchange.com/questions/91167/why-use-sty-files
