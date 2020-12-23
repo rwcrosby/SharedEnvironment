@@ -43,9 +43,7 @@ end
 
 # Add CUDA if available
 
-if test -d /usr/local/cuda
-    set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
-end
+test -d /usr/local/cuda; and set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
 
 # Add texlive if it exists
 
@@ -59,9 +57,7 @@ end
 
 # Add SNAP package manager if installed
 
-if test -d /var/lib/snapd/snap/bin 
-    set PATH /var/lib/snapd/snap/bin $PATH
-end
+test -d /var/lib/snapd/snap/bin; and set PATH /var/lib/snapd/snap/bin $PATH
 
 # Find my functions
 
@@ -146,19 +142,14 @@ popd > /dev/null
 # Since all we're using pyenv for is getting python distributions we don't actually
 # install the hooks
 
-if test -d ~/.pyenv
-   set -xg PYENV_ROOT ~/.pyenv
-
-   if test -d ~/.pyenv/pyenv/bin
-      set PATH ~/.pyenv/pyenv/bin $PATH
-   end
-end
+test -d ~/.pyenv; and set -xg PYENV_ROOT ~/.pyenv
+test -d ~/.pyenv/pyenv/bin; and set PATH ~/.pyenv/pyenv/bin $PATH
 
 # Rust support
 
-if test -d ~/.cargo
+test -d ~/.cargo/bin; and set PATH ~/.cargo/bin $PATH
 
-   if test -d ~/.cargo/bin
-      set PATH ~/.cargo/bin $PATH
-   end
-end
+# Iterm2 Shell Integration
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
