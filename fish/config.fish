@@ -22,14 +22,14 @@ switch (uname)
 
         # Homebrew paths
 
-        set PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+        set fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
         set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 
 end
 
 # My Directories
 
-set PATH ~/.local/bin $PATH
+set fish_user_paths ~/.local/bin $fish_user_paths
 
 set MANPATH ~/.local/share/man $MANPATH
 
@@ -47,17 +47,19 @@ test -d /usr/local/cuda; and set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
 
 # Add texlive if it exists
 
-if test -d /usr/local/texlive/2019
+set texyear 2020
 
-   set PATH /usr/local/texlive/2019/bin/x86_64-linux $PATH
-   set MANPATH /usr/local/texlive/2019/texmf-dist/doc/man $MANPATH
-   set INFOPATH /usr/local/texlive/2019/texmf-dist/doc/info $INFOPATH
+if test -d /usr/local/texlive/$texyear
+
+   set fish_user_paths /usr/local/texlive/$texyear/bin/x86_64-linux $fish_user_paths
+   set MANPATH /usr/local/texlive/$texyear/texmf-dist/doc/man $MANPATH
+   set INFOPATH /usr/local/texlive/$texyear/texmf-dist/doc/info $INFOPATH
 
 end
 
 # Add SNAP package manager if installed
 
-test -d /var/lib/snapd/snap/bin; and set PATH /var/lib/snapd/snap/bin $PATH
+test -d /var/lib/snapd/snap/bin; and set fish_user_paths /var/lib/snapd/snap/bin $fish_user_paths
 
 # Find my functions
 
@@ -85,7 +87,7 @@ set -U fish_color_operator magenta
 
 # Hook direnv
 
-eval (direnv hook fish)
+direnv hook fish | source
 
 # Directory formatting
 
@@ -143,13 +145,12 @@ popd > /dev/null
 # install the hooks
 
 test -d ~/.pyenv; and set -xg PYENV_ROOT ~/.pyenv
-test -d ~/.pyenv/pyenv/bin; and set PATH ~/.pyenv/pyenv/bin $PATH
+test -d ~/.pyenv/pyenv/bin; and set fish_user_paths ~/.pyenv/pyenv/bin $fish_user_paths
 
 # Rust support
 
-test -d ~/.cargo/bin; and set PATH ~/.cargo/bin $PATH
+test -d ~/.cargo/bin; and set fish_user_paths ~/.cargo/bin $fish_user_paths
 
 # Iterm2 Shell Integration
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
