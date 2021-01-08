@@ -22,11 +22,14 @@ https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
 | _\DejaSans ⌘_ I    | Insert org type timestamp |
 |                    | |
 | _\DejaSans ⌘_ d    | Extend selection |
+|                    | |
 | _\DejaSans ^_ -    | Previous location |
 | _\DejaSans ^_ _    | Next location |
+|                    | |
 | _\DejaSans ^_ PgUp | Scroll up line |
 | _\DejaSans ^_ PgDn | Scroll down line |
 | _\DejaSans ⌘_ PgUp | Scroll up page |
 | _\DejaSans ⌘_ PgDn | Scroll down page |
+|                    | |
 | _\DejaSans ⌥⌘↑_    | Insert cursor up |
 | _\DejaSans ⌥⌘↓_    | Insert cursor down |

@@ -15,21 +15,29 @@ date=${4:-`date`}
 config=${md2pdf_config:-$thisdir/Md2PdfPandocConfig.yaml}
 template=${md2pdf_template:-$thisdir/md2pdf.pandoc.template}
 
-if [[ "x$title" != "x" ]]; then 
-       pandoc -V date="$date" \
-              -V author="$author" \
-              -V title="$title" \
-              -o $rootname.pdf \
-              --template="$template" \
-              --pdf-engine=lualatex \
+# Build the command options
+opts="-V date=\"$date\""
+opts=$opts" -V author=\"$author\""
+[[ "x$title" != "x" ]] && opts=$opts" -V title=\"$title\""
+opts=$opts" --template=\"$template\""
+opts=$opts" --pdf-engine=lualatex"
+
+echo $opts
+
+eval pandoc $opts \
+       -o $rootname.pdf \
+       "$config" \
+       $infile 
+
+rc=$?
+
+# If it failed, generate the .tex outout
+if [[ $rc -ne 0 ]]; then
+       echo "Creating .tex output on error"
+       eval pandoc "$opts" \
+              -s \
+              -o $rootname.tex \
               "$config" \
               $infile 
-else
-       pandoc -V date="$date" \
-              -V author="$author" \
-              -o $rootname.pdf \
-              --template="$template" \
-              --pdf-engine=lualatex \
-              "$config" \
-              $infile 
+
 fi
