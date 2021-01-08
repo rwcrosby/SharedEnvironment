@@ -10,7 +10,9 @@ numbersections: True
 include-before: |
   \thispagestyle{firstpage}
 
-header-includes: |
-  \newfontfamily\DejaSans{DejaVu Sans}
-
+header-includes:
+- \newfontfamily\DejaSans{DejaVu Sans}
+- \usepackage{tcolorbox}
+- \newtcolorbox{myquote}{colframe=Maroon!75!black}
+- \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
 ---

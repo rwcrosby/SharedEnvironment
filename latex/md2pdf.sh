@@ -22,8 +22,7 @@ opts=$opts" -V author=\"$author\""
 opts=$opts" --template=\"$template\""
 opts=$opts" --pdf-engine=lualatex"
 
-echo $opts
-
+# First run to create the .pdf
 eval pandoc $opts \
        -o $rootname.pdf \
        "$config" \
