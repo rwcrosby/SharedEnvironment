@@ -8,9 +8,10 @@ title: VSCODE information
 
 - Center Editor Window
 - Org Mode (vscode-org-mode)
+    + Not really using this one anymore
 - Insert Date String
-    - <2020-12-11 Fri 08:53> Adjusted format to matup⇧⇧ch Org mode
-    - <2020-12-11 Fri 09:00>
+    - <2020-12-11 Fri 08:53> Adjusted format to match Org mode
+    - <2021-01-15 Fri 09:05> Would be nice to be able to select date
 
 # Keyboard
 
@@ -35,3 +36,13 @@ https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
 | _\DejaSans ⌥⌘↓_    | Insert cursor down |
 |                    | |
 | _\DejaSans ⇧⌘._     | Focus to Breadcrumb |
+
+# File Locations
+
+Files are linked to from `SharedEnvironment`
+
+- User Tasks: 
+    + MacOS: `~/Library/Application Support/Code/User/tasks.json`
+
+- User Settings:
+    + MacOS: `~/Library/Application Support/Code/User/settings.json`

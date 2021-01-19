@@ -24,9 +24,9 @@ opts=$opts" --pdf-engine=lualatex"
 
 # First run to create the .pdf
 eval pandoc $opts \
-       -o $rootname.pdf \
+       -o \"$rootname.pdf\" \
        "$config" \
-       $infile 
+       \"$infile\" 
 
 rc=$?
 
@@ -35,8 +35,8 @@ if [[ $rc -ne 0 ]]; then
        echo "Creating .tex output on error"
        eval pandoc "$opts" \
               -s \
-              -o $rootname.tex \
+              -o \"$rootname.tex\" \
               "$config" \
-              $infile 
+              \"$infile\" 
 
 fi
