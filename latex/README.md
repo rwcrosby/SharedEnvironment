@@ -3,6 +3,10 @@ title: LaTeX General Notes
 numbersections: False
 ---
 
+To Setup:
+
+- `ln -s ~/SharedEnvironmment/latex/latexmkrc ~/.latexmkrc`
+
 # Class Files
 
 ## `ClassNotes.cls`
@@ -20,6 +24,8 @@ Used with `md2pdf.sh` script to format a markdown file.
 Format an EMACS .org file for printing.
 
 # Font Handling
+
+> This needs work
 
 See examples/FontHandling.tex
 
@@ -50,6 +56,13 @@ Generic replacement for abstract. Should probably be converted into a class file
 ## `md2pdf.sh`
 
 Convert a markdown file into a pdf.
+
+Parameters:
+
+1. filename
+2. title (Default assumed to be in document)
+3. author (default Me)
+4. date (Default current date)
 
 # Zotero
 - Output is biblatex format
