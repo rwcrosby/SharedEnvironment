@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Default Light+",
-    "editor.lineHeight": 13,
+    "editor.lineHeight": 12,
     "editor.minimap.enabled": false,
     "breadcrumbs.enabled": true,
     "go.formatTool": "goimports",
@@ -16,5 +16,6 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python"
+    "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python",
+    "python.showStartPage": false
 }
