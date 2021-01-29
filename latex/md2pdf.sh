@@ -12,13 +12,15 @@ title=$2
 author=${3:-"Ralph W. Crosby, PhD."}
 date=${4:-`date`}
 
-config=${md2pdf_config:-$thisdir/Md2PdfPandocConfig.yaml}
+config=${md2pdf_config:-$thisdir/md2pdf.pandoc.config.yaml}
 template=${md2pdf_template:-$thisdir/md2pdf.pandoc.template}
+shortener=${md2pdf_shortener:-$thisdir/md2pdf.shorten.filename.py}
 
 # Build the command options
-opts="-V date=\"$date\""
-opts=$opts" -V author=\"$author\""
-[[ "x$title" != "x" ]] && opts=$opts" -V title=\"$title\""
+opts="-M date=\"$date\""
+opts=$opts" -M author=\"$author\""
+[[ "x$title" != "x" ]] && opts=$opts" -M title=\"$title\""
+opts=$opts" -M dispfilename=\"$($shortener -m 50 "$infile" )\""
 opts=$opts" --template=\"$template\""
 opts=$opts" --pdf-engine=lualatex"
 

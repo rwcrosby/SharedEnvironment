@@ -420,7 +420,8 @@ $if(logo)$
 $endif$
 $endif$
 
-\newcommand\sourcefile{$sourcefile/last$}
+% \newcommand\sourcefile{$sourcefile/last$}
+\newcommand\sourcefile{$dispfilename$}
 \renewcommand\diststmt{$diststmt$}
 
 \begin{document}
