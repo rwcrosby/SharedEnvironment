@@ -17,5 +17,8 @@
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python",
-    "python.showStartPage": false
+    "python.showStartPage": false,
+    "cSpell.userWords": [
+        "deconflict"
+    ]
 }
