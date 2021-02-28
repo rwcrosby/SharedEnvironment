@@ -1,27 +1,21 @@
 \documentclass[11pt]{article}
 
-\usepackage{emoji}
+\usepackage{fontspec}
 
-% Use fontenc to handl 8-bit ascii
-\usepackage{fontenc}
-
-% Times and associated math font
-\usepackage{mathptmx}
+\setmainfont{comicsansms}
 
 % Adjust paragraph handling
 % See: https://tex.stackexchange.com/questions/375889/adjusting-space-between-paragraphs
 \setlength\parskip{1em plus 0.1em minus 0.2em}
 \setlength\parindent{0pt}
 
+\newfontface\emoji{applecoloremoji}
+
 \begin{document}
 
-\section{Emoji's}
+This is regular text.
 
-\emoji{+1}
-\emoji{chipmunk}
-\emoji{pizza}
-\emoji{check-mark}
-\emoji{rolling-on-the-floor-laughing}
+<{\emoji 🐿}>
 
 \section{Standard Font Handling}
 
