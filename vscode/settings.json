@@ -8,7 +8,6 @@
     "editor.cursorStyle": "block",
     "explorer.compactFolders": false,
     "workbench.editor.closeEmptyGroups": false,
-    "window.zoomLevel": 1,
     "latex-workshop.view.pdf.viewer": "tab",
     "workbench.startupEditor": "none",
     "insertDateString.format": "<YYYY-MM-DD DDD hh:mm>",
@@ -17,5 +16,6 @@
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python",
-    "python.showStartPage": false
+    "python.showStartPage": false,
+    "window.zoomLevel": 1
 }
