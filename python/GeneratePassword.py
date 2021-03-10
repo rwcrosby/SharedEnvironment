@@ -49,9 +49,9 @@ def parse_command_line(cmd=None):
                    help="""Number of passwords to generate, if set to zero
                            will generate a single password without newline""")
 
-    p.add_argument('--strength',
+    p.add_argument('-s', '--strength',
                    type=float,
-                   default=0.6,
+                   default=0.5,
                    help="""Minimum password strength""")
 
     p.add_argument('--dict_name',
