@@ -17,5 +17,10 @@
     "python.linting.enabled": true,
     "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python",
     "python.showStartPage": false,
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "workbench.tree.indent": 20,
+    "cSpell.userWords": [
+        "diststmt",
+        "numbersections"
+    ]
 }

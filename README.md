@@ -10,8 +10,12 @@ This is a simple project holding the various files that are shared amongst the M
 - Terminator (Obsolete)
 - TMUX
 
+## `dot` file Handling
 
- ## Useful commands:
+- Implemented dotbot (https://github.com/anishathalye/dotbot) via `pip`
+- Configuration in `dotbot.conf.yaml`
+
+## Useful commands:
  
 - Update all git projects in a directory:
 
