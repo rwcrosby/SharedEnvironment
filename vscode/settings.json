@@ -15,12 +15,20 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "~/.local/PVE/PyCurrent/bin/python",
+    "python.pythonPath": "/Users/crosbyr/.local/PVE/Py3.7.7_Tf1/bin/python3.7",
     "python.showStartPage": false,
-    "window.zoomLevel": 1,
     "workbench.tree.indent": 20,
     "cSpell.userWords": [
+        "CONOPS",
         "diststmt",
         "numbersections"
-    ]
+    ],
+    "go.toolsManagement.autoUpdate": true,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "window.zoomLevel": 1
 }
