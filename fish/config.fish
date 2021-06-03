@@ -25,6 +25,9 @@ switch (uname)
         set fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
         set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 
+        # Homebrew github access token
+        set -x HOMEBREW_GITHUB_API_TOKEN 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
+
 end
 
 # My Directories

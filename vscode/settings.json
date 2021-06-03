@@ -30,5 +30,7 @@
             "filenamePattern": "*.ipynb"
         }
     ],
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "git.confirmSync": false,
+    "workbench.editor.untitled.hint": "hidden"
 }
