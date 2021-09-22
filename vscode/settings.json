@@ -24,13 +24,12 @@
         "numbersections"
     ],
     "go.toolsManagement.autoUpdate": true,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
-    "window.zoomLevel": 1,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "git.confirmSync": false,
-    "workbench.editor.untitled.hint": "hidden"
+    "workbench.editor.untitled.hint": "hidden",
+    "python.defaultInterpreterPath": "/Users/crosbyr/.local/PVE/Py3.7.7_Tf1/bin/python3.7",
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.zoomLevel": 1
 }

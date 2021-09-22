@@ -9,9 +9,9 @@ rootname="${filename%%.*}"
 thisdir=`dirname "$0"`
 
 title=$2
-# author=${3:-"Ralph W. Crosby, PhD."}
-author=$3
-date=${4:-`date`}
+author=${3:-"Ralph W. Crosby, PhD."}
+# author=$3
+date=${4:-`date +'%d-%b-%Y %T'`}
 
 config=${md2pdf_config:-$thisdir/md2pdf.pandoc.config.yaml}
 template=${md2pdf_template:-$thisdir/md2pdf.pandoc.template}
