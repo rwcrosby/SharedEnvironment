@@ -111,10 +111,6 @@
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\newcommand{\authorstyle}[1]{{\large\usefont{OT1}{phv}{b}{n}\color{Maroon}#1}} % Authors style (Helvetica)
-
-\newcommand{\institution}[1]{{\footnotesize\usefont{OT1}{phv}{m}{sl}\color{Black}#1}} % Institutions style (Helvetica)
-
 \usepackage{titling} % Allows custom title configuration
 
 \newcommand{\HorRule}{      % Defines the gold horizontal rule around the title
@@ -125,31 +121,26 @@
 
 \pretitle{
   \vspace{-50pt}            % Move the entire title section up
-  \HorRule
-  \vspace{10pt}             % Horizontal rule before the title
-  \fontsize{20}{24}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
-  \color{Maroon}           % Text colour for the title and author(s)
+  \HorRule{}
+  \Large\sffamily\bf
+  \color{Maroon}
 }
 
-\posttitle{\par\vskip 10pt} % Whitespace under the title
+\posttitle{\par} % Whitespace under the title
 
 \preauthor{
-  \fontsize{14}{24}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
-}
-
-%\postauthor{\par\vskip 15pt} % Whitespace under the title
+  \large\sffamily\bf
+  }
+  
 \postauthor{\par} % Whitespace under the title
-
+  
 \predate{
-  \fontsize{14}{24}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
-  Submission Timestamp:
+  \large\sffamily\bf
 }
 
 \postdate{                % Anything that will appear after \author is printed
-  \vspace{10pt}             % Space before the rule
-  \par
+  \newline
   \HorRule                  % Horizontal rule after the title
-  \vspace{10pt}             % Space after the title section
 }
 
 %----------------------------------------------------------------------------------------
