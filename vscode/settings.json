@@ -31,5 +31,12 @@
     "workbench.editor.untitled.hint": "hidden",
     "python.defaultInterpreterPath": "/Users/crosbyr/.local/PVE/Py3.7.7_Tf1/bin/python3.7",
     "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDragAndDrop": false,
+    "cSpell.enableFiletypes": [
+        "!go",
+        "!rust"
+    ],
+    "redhat.telemetry.enabled": false,
+    "explorer.confirmDelete": false,
     "window.zoomLevel": 1
 }

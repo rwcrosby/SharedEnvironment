@@ -6,9 +6,11 @@ This is a simple project holding the various files that are shared amongst the M
 - EMACS
 - Fish Shell
 - LaTeX
+- Microsoft templates
 - Python
 - Terminator (Obsolete)
 - TMUX
+- Z Shell
 
 ## `dot` file Handling
 
