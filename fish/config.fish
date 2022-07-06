@@ -133,14 +133,18 @@ end
 
 set PVE ~/.local/PVE
 
-pushd $PVE > /dev/null
+if test -d $PVE
 
-for d in */
-    set VE (string trim -c '/' $d)
-    alias $VE="source $PVE/$VE/bin/activate.fish"
+  pushd $PVE > /dev/null
+
+  for d in */
+      set VE (string trim -c '/' $d)
+      alias $VE="source $PVE/$VE/bin/activate.fish"
+  end
+
+  popd > /dev/null
+
 end
-
-popd > /dev/null
 
 # pyenv support
 

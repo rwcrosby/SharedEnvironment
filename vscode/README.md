@@ -48,6 +48,15 @@ Files are linked to from `SharedEnvironment/vscode`
 - User Settings:
     + MacOS: `~/Library/Application Support/Code/User/settings.json`
 
+# Remote handling
+
+- Won't start with fish shell on the remote
+    - Correction, fish wasn't the problem
+
+- Need to force the host type in the vscode remote settings
+    `Remote.SSH: Host Platform`
+
+
 # Wish List
 
 - Better date/timestamp insertion capability
