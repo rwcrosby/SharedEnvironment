@@ -38,5 +38,10 @@
     ],
     "redhat.telemetry.enabled": false,
     "explorer.confirmDelete": false,
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "remote.SSH.connectTimeout": 30,
+    "remote.SSH.remotePlatform": {
+        "zorro": "linux",
+        "muffin": "linux"
+    }
 }
