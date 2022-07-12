@@ -36,12 +36,14 @@ set fish_user_paths ~/.local/bin $fish_user_paths
 
 set MANPATH ~/.local/share/man $MANPATH
 
-set -x $LDLIB ~/.local/lib64:$$LDLIB
-set -x $LDLIB ~/.local/lib:$$LDLIB
+# Private libraries
+
+test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:$$LDLIB
+test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:$$LDLIB
 
 if test (uname) = "Linux"
-    set -x $LDLIB ~/.local/lib64:"$$LDLIB"
-    set -x $LDLIB ~/.local/lib:"$$LDLIB"
+    test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:"$$LDLIB"
+    test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:"$$LDLIB"
 end
 
 # Add CUDA if available
