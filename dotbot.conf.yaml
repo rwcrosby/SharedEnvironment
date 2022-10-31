@@ -1,9 +1,14 @@
 - clean:
     - '~'
 
+- create:
+    - ~/.config/direnv
+    - ~/Library/texmf/tex
+
 - link:
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.latexmkrc: latex/latexmkrc
     ~/.config/flake8: python/flake8
     ~/.config/fish: fish
     ~/.config/direnv/direnvrc: .direnvrc
+    ~/Library/texmf/tex/latex: latex

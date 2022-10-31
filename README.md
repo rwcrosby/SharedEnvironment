@@ -14,8 +14,11 @@ This is a simple project holding the various files that are shared amongst the M
 
 ## `dot` file Handling
 
-- Implemented dotbot (https://github.com/anishathalye/dotbot) via `pip`
 - Configuration in `dotbot.conf.yaml`
+- Installation
+  - `brew install dotbot`
+  - `rm -rf ~/.config/fish`
+  - `dotbot -c ~/SharedEnvironment/dotbot/dotbot.conf.yaml`
 
 ## Useful commands:
  
