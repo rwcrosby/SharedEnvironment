@@ -15,6 +15,7 @@
 \RequirePackage[english]{babel} % English language hyphenation
 \RequirePackage{microtype} % Better typography
 \RequirePackage{amsmath,amsfonts,amsthm} % Math packages for equations
+\RequirePackage{array} % For markdown tables
 \RequirePackage{currfile}
 
 \@ifpackageloaded{xcolor}

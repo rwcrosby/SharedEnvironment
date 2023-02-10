@@ -38,10 +38,20 @@
     ],
     "redhat.telemetry.enabled": false,
     "explorer.confirmDelete": false,
-    "window.zoomLevel": 1,
     "remote.SSH.connectTimeout": 30,
     "remote.SSH.remotePlatform": {
         "zorro": "linux",
         "muffin": "linux"
-    }
+    },
+    "debug.javascript.autoAttachFilter": "smart",
+    "haskell.manageHLS": "GHCup",
+    "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
+    "kotlin.languageServer.enabled": false,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+    "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "always",
+    "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
+    "rust-analyzer.inlayHints.typeHints.hideNamedConstructor": true,
+    "window.zoomLevel": 1
 }
