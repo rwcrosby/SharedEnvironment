@@ -17,6 +17,9 @@ switch (uname -a)
         string match -q "*WSL2*" (uname -a); \
             and set -x DISPLAY (route -n | grep UG | head -n1 | awk '{print $2}'):0
 
+        set -x PROMPT_LEAD_CHAR 'α '
+        set -x PROMPT_TRAIL_CHAR ' Ω⇒ '
+
     case "*Darwin*"
         
         set LDLIB DYLD_LIBRARY_PATH
@@ -24,12 +27,15 @@ switch (uname -a)
         
         # Homebrew paths
 
-        eval (/opt/homebrew/bin/brew shellenv)
+        eval (/opt/homebrew/bin/brew   shellenv)
         set fish_user_paths $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin $fish_user_paths
         set MANPATH $HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman $MANPATH
 
         # Homebrew - Disable automatic cleanup
         set -x HOMEBREW_NO_INSTALL_CLEANUP 1
+
+        set -x PROMPT_LEAD_CHAR '🐿 '
+        set -x PROMPT_TRAIL_CHAR '⇒ '
 
     case "*"
         echo "Unable to determine system type"
