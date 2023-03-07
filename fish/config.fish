@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
 
 set sdir (dirname (status --current-filename))
+set -g fish_function_path $sdir/functions $fish_function_path
 
 # Platform dependent settings
 
-switch (uname)
+switch (uname -a)
     
-    case Linux
+    case "*Linux*"
 
         set  LDLIB LD_LIBRARY_PATH
         set -x TIME /usr/bin/time --verbose
 
         set PATH /sbin $PATH
 
-    case Darwin
+        string match -q "*WSL2*" (uname -a); \
+            and set -x DISPLAY (route -n | grep UG | head -n1 | awk '{print $2}'):0
+
+    case "*Darwin*"
         
         set LDLIB DYLD_LIBRARY_PATH
         set -x TIME /usr/bin/time -l
@@ -27,28 +31,25 @@ switch (uname)
         # Homebrew - Disable automatic cleanup
         set -x HOMEBREW_NO_INSTALL_CLEANUP 1
 
-        # Homebrew github access token
-        set -x HOMEBREW_GITHUB_API_TOKEN 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
+    case "*"
+        echo "Unable to determine system type"
+        exit -1
 
 end
 
  
 # My Directories
 
-set fish_user_paths ~/.local/bin $fish_user_paths
-
-set MANPATH ~/.local/share/man $MANPATH
+Add2Var fish_user_paths ~/.local/bin
+Add2Var MANPATH ~/.local/share/man
 
 test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:"$$LDLIB"
 test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:"$$LDLIB"
 
 # Add SNAP package manager if installed
+# 3/7/23 - Appears to be installed in the system libraries.
 
-test -d /var/lib/snapd/snap/bin; and set fish_user_paths /var/lib/snapd/snap/bin $fish_user_paths
-
-# Find my functions
-
-set -g fish_function_path $sdir/functions $fish_function_path
+# test -d /var/lib/snapd/snap/bin; and set fish_user_paths /var/lib/snapd/snap/bin $fish_user_paths
 
 # Prompt handling
 

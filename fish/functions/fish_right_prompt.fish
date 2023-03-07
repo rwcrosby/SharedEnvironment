@@ -2,7 +2,7 @@ function fish_right_prompt
 
 	set -g __fish_git_show_informative_status 0
 
-	echo -n (fish_git_prompt)
+	# echo -n (fish_git_prompt)
 	set_color magenta -b $prompt_background
 
     if test -n "$VIRTUAL_ENV"
