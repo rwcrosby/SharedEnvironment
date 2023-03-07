@@ -19,6 +19,7 @@ switch (uname -a)
 
         set -x PROMPT_LEAD_CHAR 'α '
         set -x PROMPT_TRAIL_CHAR ' Ω⇒ '
+        set GREETING_LEAD ""
 
     case "*Darwin*"
         
@@ -36,6 +37,7 @@ switch (uname -a)
 
         set -x PROMPT_LEAD_CHAR '🐿 '
         set -x PROMPT_TRAIL_CHAR '⇒ '
+        set GREETING_LEAD "🐿  "
 
     case "*"
         echo "Unable to determine system type"
@@ -51,11 +53,6 @@ Add2Var MANPATH ~/.local/share/man
 
 test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:"$$LDLIB"
 test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:"$$LDLIB"
-
-# Add SNAP package manager if installed
-# 3/7/23 - Appears to be installed in the system libraries.
-
-# test -d /var/lib/snapd/snap/bin; and set fish_user_paths /var/lib/snapd/snap/bin $fish_user_paths
 
 # Prompt handling
 
@@ -99,7 +96,7 @@ set -x LESSOPEN "| $SH %s"
 set -x LESS '-SR '
 
 # Greeting
-set fish_greeting "🐿  "(date)
+set fish_greeting $GREETING_LEAD(date)
 
 # Default pager and editor
 
