@@ -9,7 +9,6 @@ function theme_precmd {
 
     local promptsize=${#${(%):---(%n@%m)---()--}}
     local pwdsize=${#${(%):-%~}}
-    # local vesize=${#${(%):-$(virtualenv_prompt_info)}}
     local vesize="${#${(%)$(virtualenv_prompt_info)}} + 1"
 
     if [[ "$promptsize + $pwdsize + $vesize" -gt $TERMWIDTH ]]; then
@@ -117,7 +116,7 @@ setprompt () {
     # Finally, the prompt.
 
     PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_UL$PR_BLUE`virtualenv_prompt_info`$PR_CYAN-$PR_UL_DATA$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
+$PR_UL$PR_BLUE`virtualenv_prompt_info`$PR_CYAN$PR_HBAR$PR_UL_DATA$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
 $PR_CYAN%(!.%SROOT%s.%n)$PR_GREY@$PR_GREEN%m\
 $PR_GREY)$PR_CYAN$PR_HBAR$PR_URCORNER\
 

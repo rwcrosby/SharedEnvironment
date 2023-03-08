@@ -39,6 +39,9 @@ case $OSTYPE in
 	    LDLIB=LD_LIBRARY_PATH
 	    export TIME="/usr/bin/time --verbose"
 
+        # Set the display for wsl
+        [[ $(uname -a) == *WSL* ]] && export DISPLAY=$(route -n | grep UG | head -n1 | awk '{print $2}'):0
+        
         ;;
 
 esac
