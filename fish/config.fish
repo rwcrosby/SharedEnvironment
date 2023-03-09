@@ -10,6 +10,7 @@ switch (uname)
 
         set  LDLIB LD_LIBRARY_PATH
         set -x TIME /usr/bin/time --verbose
+
         set PATH /sbin $PATH
 
     case Darwin
@@ -17,50 +18,29 @@ switch (uname)
         set LDLIB DYLD_LIBRARY_PATH
         set -x TIME /usr/bin/time -l
         
-        # Homebrew - Disable automatic cleanup
-        set -x HOMEBREW_NO_INSTALL_CLEANUP 1
-
         # Homebrew paths
 
-        set fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
-        set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
+        eval (/opt/homebrew/bin/brew shellenv)
+        set fish_user_paths $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin $fish_user_paths
+        set MANPATH $HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman $MANPATH
+
+        # Homebrew - Disable automatic cleanup
+        set -x HOMEBREW_NO_INSTALL_CLEANUP 1
 
         # Homebrew github access token
         set -x HOMEBREW_GITHUB_API_TOKEN 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
 
 end
 
+ 
 # My Directories
 
 set fish_user_paths ~/.local/bin $fish_user_paths
 
 set MANPATH ~/.local/share/man $MANPATH
 
-# Private libraries
-
-test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:$$LDLIB
-test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:$$LDLIB
-
-if test (uname) = "Linux"
-    test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:"$$LDLIB"
-    test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:"$$LDLIB"
-end
-
-# Add CUDA if available
-
-test -d /usr/local/cuda; and set -x $LDLIB /usr/local/cuda/lib64:"$$LDLIB"
-
-# Add texlive if it exists
-
-set texyear 2020
-
-if test -d /usr/local/texlive/$texyear
-
-   set fish_user_paths /usr/local/texlive/$texyear/bin/x86_64-linux $fish_user_paths
-   set MANPATH /usr/local/texlive/$texyear/texmf-dist/doc/man $MANPATH
-   set INFOPATH /usr/local/texlive/$texyear/texmf-dist/doc/info $INFOPATH
-
-end
+test -d ~/.local/lib64; and set -x $LDLIB ~/.local/lib64:"$$LDLIB"
+test -d ~/.local/lib; and set -x $LDLIB ~/.local/lib:"$$LDLIB"
 
 # Add SNAP package manager if installed
 
@@ -92,11 +72,11 @@ set -U fish_color_operator magenta
 
 # Hook direnv
 
-direnv hook fish | source
+type -q direnv; and direnv hook fish | source
 
 # Directory formatting
 
-eval (dircolors -c $sdir/dircolors)
+type -q dircolors; and eval (dircolors -c $sdir/dircolors)
 set -g LS_OPTIONS --color=auto
 set -x LC_COLLATE C
 

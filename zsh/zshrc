@@ -1,0 +1,95 @@
+# Personal zsh customizations
+
+# Find out where this script is located
+
+HERE=${0:a:h:h}
+
+# Avoid duplicates
+
+typeset -U PATH path manpath
+
+# Set platform dependent variables
+
+case $OSTYPE in
+    darwin*)
+
+	    LDLIB=DYLD_LIBRARY_PATH
+	    export TIME="/usr/bin/time -l"
+        
+        # Disable automatic cleanup
+        export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+        # Homebrew paths
+
+        if [ -d /usr/local/opt/coreutils/libexec ]; then
+            path=(/usr/local/opt/coreutils/libexec/gnubin $path)
+            manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
+        fi 
+
+        # Man pages output to skim
+        manp()
+        {
+            man -t "${1}" | open -f -a Skim
+        }
+
+        ;;
+
+    linux*)
+        
+	    LDLIB=LD_LIBRARY_PATH
+	    export TIME="/usr/bin/time --verbose"
+
+        ;;
+
+esac
+
+
+# Homebrew
+[ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+
+# Direnv
+[ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"
+
+# Rust
+
+[ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
+
+# Python setup
+
+PVE=~/.local/PVE
+
+pushd $PVE &> /dev/null
+
+for d in * 
+    alias ${d%/}="source $PVE/${d%/}/bin/activate"
+
+popd &> /dev/null
+
+[ -d ~/SharedEnvironment/python ] && export PYTHONPATH=$HERE/python
+
+# Since all we're using pyenv for is getting python distributions 
+# we don't actually install the hooks
+
+[ -d ~/.pyenv ] && export PYENV_ROOT=~/.pyenv
+[ -d ~/.pyenv/bin ] && export path=(~/.pyenv/bin $path)
+
+# My directories
+
+path=(~/.local/bin $path)
+
+manpath=(~/.local/share/man $manpath)
+
+# export $LDLIB=(~/.local/lib64 ${(P)LDLIB})
+# export $LDLIB=(~/.local/lib ${(P)LDLIB})
+
+# if [[ $OSTYPE = linux* ]]; then
+#     Add2Var LD_RUN_PATH ~/.local/lib64
+#     Add2Var LD_RUN_PATH ~/.local/lib
+# fi
+
+
+# Aliases
+
+pprint() {
+    for v in ${(P)1}; echo $v
+}
