@@ -35,8 +35,8 @@ switch (uname -a)
         # Homebrew - Disable automatic cleanup
         set -x HOMEBREW_NO_INSTALL_CLEANUP 1
 
-        set -x PROMPT_LEAD_CHAR '🐿 '
-        set -x PROMPT_TRAIL_CHAR '⇒ '
+        set -x PROMPT_LEAD_CHAR '🐿  '
+        set -x PROMPT_TRAIL_CHAR ' ⇒ '
         set GREETING_LEAD "🐿  "
 
     case "*"
@@ -102,18 +102,6 @@ set fish_greeting $GREETING_LEAD(date)
 
 set -x PAGER less
 set -x EDITOR nano
-
-# If a dump terminal (from emacs tramp) reset the prompt
-
-if test "$TERM" = "dumb"
-  function fish_prompt
-    echo "\$ "
-  end
-
-  function fish_right_prompt; end
-  function fish_greeting; end
-  function fish_title; end
-end
 
 # Add alias for Python virtual environments
 
