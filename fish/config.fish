@@ -39,6 +39,9 @@ switch (uname -a)
         set -x PROMPT_TRAIL_CHAR ' ⇒ '
         set GREETING_LEAD "🐿  "
 
+        # MacTEX
+        test -d /Library/TeX/texbin; and set fish_user_paths /Library/TeX/texbin $fish_user_paths
+
     case "*"
         echo "Unable to determine system type"
         exit -1

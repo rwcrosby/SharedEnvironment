@@ -26,6 +26,9 @@ case $OSTYPE in
             manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
         fi 
 
+        # MacTeX
+        [ -d /Library/TeX/texbin ] && path=(/Library/TeX/texbin $path)
+
         # Man pages output to skim
         manp()
         {
