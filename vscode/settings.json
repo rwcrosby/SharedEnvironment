@@ -53,10 +53,17 @@
     "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "always",
     "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
     "rust-analyzer.inlayHints.typeHints.hideNamedConstructor": true,
-    "window.zoomLevel": 1,
     "[python]": {
         "editor.formatOnType": true
     },
     "print.alternateBrowser": false,
-    "terminal.integrated.inheritEnv": false
+    "terminal.integrated.inheritEnv": false,
+    "lldb.suppressUpdateNotifications": true,
+    "[go]": {
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": false
+        }
+},
+"window.zoomLevel": 1
 }

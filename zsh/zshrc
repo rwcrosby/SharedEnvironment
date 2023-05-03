@@ -35,6 +35,9 @@ case $OSTYPE in
             man -t "${1}" | open -f -a Skim
         }
 
+        # Homebrew
+        [ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+
         ;;
 
     linux*)
@@ -50,23 +53,19 @@ case $OSTYPE in
 esac
 
 
-# Homebrew
-[ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
-
-# Direnv
-[ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"
-
 # Rust
-
 [ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
 
-# Python setup
+# Direnv
+[ $(command -v direnv) ] && eval "$(direnv hook zsh)"
+
+# Python
 
 PVE=~/.local/PVE
 
 pushd $PVE &> /dev/null
 
-for d in * 
+for d in *(N) 
     alias ${d%/}="source $PVE/${d%/}/bin/activate"
 
 popd &> /dev/null
@@ -82,20 +81,21 @@ popd &> /dev/null
 # My directories
 
 path=(~/.local/bin $path)
-
 manpath=(~/.local/share/man $manpath)
-
-# export $LDLIB=(~/.local/lib64 ${(P)LDLIB})
-# export $LDLIB=(~/.local/lib ${(P)LDLIB})
-
-# if [[ $OSTYPE = linux* ]]; then
-#     Add2Var LD_RUN_PATH ~/.local/lib64
-#     Add2Var LD_RUN_PATH ~/.local/lib
-# fi
-
 
 # Aliases
 
 pprint() {
     for v in ${(P)1}; echo $v
 }
+
+alias l=less 
+
+# Default editor
+[ $(command -v nano) ] && {
+    export EDITOR=$(which nano)
+    export VISUAL=$(which nano)
+}
+
+# Set emacs editing mode
+bindkey -e

@@ -6,15 +6,17 @@ graphics: True
 toc-depth: 1
 toccolor: Maroon
 mathspec: 1
-numbersections: True
+numbersections: False
 include-before: |
   \thispagestyle{firstpage}
 
-header-includes:
-- \newfontfamily\DejaSans{DejaVu Sans}
-- \usepackage{tcolorbox}
-- \newtcolorbox{myquote}{colframe=Maroon!75!black}
-- \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
-
-author: Ralph W. Crosby, Ph.D.
+header-includes: |
+  \newfontfamily\DejaSans{DejaVu Sans}
+  \usepackage{tcolorbox}
+  \usepackage{float}
+  \newtcolorbox{myquote}{colframe=Maroon!75!black}
+  \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
+  \makeatletter
+  \def\fps@figure{H}
+  \makeatother
 ---

@@ -16,6 +16,20 @@ This is a simple project holding the various files that are shared amongst the M
 
 - Configuration in `dotbot.conf.yaml`
 - Installation
+  - MacOS
+```shell
+brew install dotbot
+rm -rf ~/.config/fish
+dotbot -c ~/Projects/SharedEnvironment/dotbot.conf.yaml`
+```
+  - Linux
+```shell
+cd ~/Projects
+git clone vhttps://github.com/anishathalye/dotbot.git
+rm -rf ~/.config/fish
+~/Projects/dotbot/dotbot -c ~/Projects/SharedEnvironment/dotbot.conf.yaml`
+```
+
   - `brew install dotbot`
   - `rm -rf ~/.config/fish`
   - `dotbot -c ~/SharedEnvironment/dotbot/dotbot.conf.yaml`
