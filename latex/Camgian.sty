@@ -1,7 +1,6 @@
 \definecolor{cam-green}{HTML}{4CA856}
 \definecolor{cam-gray}{HTML}{d9d9d9}
 
-
 \usepackage{montserrat}
 \newcommand{\hdrfont}[1]{\usefont{T1}{\sfdefault}{#1}{n}}
 
@@ -9,11 +8,7 @@
 %	Headers and footers
 %----------------------------------------------------------------------------------------
 
-\renewcommand{\HorRule}{    % Define a standard horizontal rule line
-  \vbox to 0pt{\hbox to \headwidth{\color{cam-green} \rule{\headwidth}{1pt}}\vss}
-}
-
-\renewcommand{\headrule}{\HorRule}
+\renewcommand{\rulecolor}{cam-green}
 
 \fancyhead[L]{
   \Large\hdrfont{sb}\thetitle
@@ -23,8 +18,11 @@
   \includegraphics[width=1.5in]{Camgian-Soccer-WebsiteBanner.png}
 }
 
+% Default the distibution statement to the truncated source file name
+\renewcommand{\diststmt}{\sourcefile{}}
+
 \fancyfoot[L]{\small \textsf{\@author}}
-\fancyfoot[C]{\small \textsf{\thepage\ of \pageref{LastPage}}}
+\fancyfoot[C]{\small \textsf{\thepage\ of \pageref{LastPage}\\\diststmt}}
 \fancyfoot[R]{\small \textsf{\@date}}
 
 \newcommand{\firstpage}{fancy}
@@ -33,9 +31,9 @@
 % Title
 %----------------------------------------------------------------------------------------
 
-
 \usepackage{titling}
 
+% No title
 \renewcommand{\maketitle}{}
 
 %----------------------------------------------------------------------------------------

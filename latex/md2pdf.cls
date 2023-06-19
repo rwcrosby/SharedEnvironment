@@ -62,8 +62,7 @@
 %	Headers and footers
 %----------------------------------------------------------------------------------------
 
-% Create a distrubution statement with 
-% \renewcommand{\diststmt{Blah}}
+% Specify the distribution statement as a variable in the document header
 \newcommand{\diststmt}{}
 
 \newcommand{\rulecolor}{DarkGoldenrod}

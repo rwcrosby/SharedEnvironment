@@ -422,7 +422,9 @@ $endif$
 
 % \newcommand\sourcefile{$sourcefile/last$}
 \newcommand\sourcefile{$dispfilename$}
+$if(diststmt)$
 \renewcommand\diststmt{$diststmt$}
+$endif$
 
 \begin{document}
 

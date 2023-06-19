@@ -49,6 +49,8 @@ opts="-M date=\"$date\""
 opts=$opts" -M dispfilename=\"$($shortener -m 50 "$infile" )\""
 opts=$opts" --template=\"$template\""
 opts=$opts" --pdf-engine=lualatex"
+opts=$opts" -f markdown-implicit_figures"
+opts=$opts" --highlight-style=tango"
 
 # Attempt to create the requested target
 

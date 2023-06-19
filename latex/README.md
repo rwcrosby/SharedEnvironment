@@ -3,14 +3,6 @@ title: LaTeX General Notes
 numbersections: False
 ---
 
-# Working
-
-- Setup symlink for local working cls and sty files
-
-    ```shell
-    ln -s ~/Projects/md2pdf ~/Library/texmf/tex/generic
-    ```
-
 # Overview
 
 The primary script is `md2pdf.sh` which is intended to invoke `pandoc` to render a markdown file to pdf. 
@@ -38,6 +30,14 @@ ln -s ~/SharedEnvironmment/latex/latexmkrc ~/.latexmkrc
 
 Or see `dotbot` setup instructions in the root directory
 
+
+## For Development
+
+- Setup symlink for local working cls and sty files
+
+    ```shell
+    ln -s ~/Projects/md2pdf ~/Library/texmf/tex/generic
+    ```
 
 # Class Files
 
