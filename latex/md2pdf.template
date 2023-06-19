@@ -425,20 +425,28 @@ $endif$
 \renewcommand\diststmt{$diststmt$}
 
 \begin{document}
+
 $if(has-frontmatter)$
 \frontmatter
 $endif$
+
 $if(title)$
+
 $if(beamer)$
 \frame{\titlepage}
 $else$
+
 \maketitle
+\thispagestyle{\firstpage}
+
 $endif$
+
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
+
 $endif$
 
 $for(include-before)$

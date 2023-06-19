@@ -2,15 +2,18 @@
 
 This is a simple project holding the various files that are shared amongst the Mac and Linux systems. See the individual directories for details.
 
-- Bash Shell
-- EMACS
+- Containers
 - Fish Shell
 - LaTeX
 - Microsoft templates
 - Python
-- Terminator (Obsolete)
 - TMUX
 - Z Shell
+
+- Obsolete Sections
+  - Bash Shell (Obsolete)
+  - EMACS (Obsolete)
+  - Terminator (Obsolete)
 
 ## `dot` file Handling
 

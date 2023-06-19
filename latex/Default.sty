@@ -1,5 +1,3 @@
-\newcommand{\hdrfont}[1]{\usefont{T1}{phv}{#1}{n}}
-
 %----------------------------------------------------------------------------------------
 %	Headers and footers
 %----------------------------------------------------------------------------------------
@@ -19,63 +17,41 @@
 
 \newcommand{\firstpage}{firstpage}
 
+
 %----------------------------------------------------------------------------------------
 % Title
 %----------------------------------------------------------------------------------------
 
+\newcommand{\hdrfont}[1]{\usefont{T1}{phv}{#1}{n}}
+
 \usepackage{titling}
 
 \pretitle{
-  \vspace{-1.0in}
+  \vspace{-1.0in}            % Move the entire title section up
   \HorRule{}
   \Large\hdrfont{b}
   \color{Maroon}
 }
-\posttitle{\par}
   
+\posttitle{\par}
+
 \preauthor{
-    \large\hdrfont{sb}
+  \large\hdrfont{sb}
 }
+  
 \postauthor{\par}
-    
+  
 \predate{
   \large\hdrfont{sb}
 }
+
 \postdate{
   \newline
   \HorRule
 }
-        
+
 %----------------------------------------------------------------------------------------
 %	Sections
 %----------------------------------------------------------------------------------------
 
 \allsectionsfont{\hdrfont{sb}} % Change the font of all section commands (Helvetica)
-
-%----------------------------------------------------------------------------------------
-%	Some useful commands for grading
-%----------------------------------------------------------------------------------------
-
-\newcommand{\ok}{
-  $\color{green}{Done}:\ \checkmark$
-}
-
-\newcommand{\err}[1]{
-  $\color{blue}{Incorrect:\ \textit{-#1}}$
-}
-
-\newcommand{\miss}[1]{
-  $\color{magenta}{Missing:\ \textit{-#1}}$
-}
-
-\newcommand{\late}[1]{
-  $\textbf{\color{red}{Late: \textit{-#1}}}$
-}
-
-\newcommand{\dd}[1]{
-  \ifthenelse{#1=0}{
-    $\color{green}{\textit{0}}$
-  }{
-    $\color{red}{\textit{-#1}}$
-  }
-}

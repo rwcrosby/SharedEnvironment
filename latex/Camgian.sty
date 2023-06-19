@@ -1,0 +1,45 @@
+\definecolor{cam-green}{HTML}{4CA856}
+\definecolor{cam-gray}{HTML}{d9d9d9}
+
+
+\usepackage{montserrat}
+\newcommand{\hdrfont}[1]{\usefont{T1}{\sfdefault}{#1}{n}}
+
+%----------------------------------------------------------------------------------------
+%	Headers and footers
+%----------------------------------------------------------------------------------------
+
+\renewcommand{\HorRule}{    % Define a standard horizontal rule line
+  \vbox to 0pt{\hbox to \headwidth{\color{cam-green} \rule{\headwidth}{1pt}}\vss}
+}
+
+\renewcommand{\headrule}{\HorRule}
+
+\fancyhead[L]{
+  \Large\hdrfont{sb}\thetitle
+  \vspace{3pt}
+}
+\fancyhead[R]{
+  \includegraphics[width=1.5in]{Camgian-Soccer-WebsiteBanner.png}
+}
+
+\fancyfoot[L]{\small \textsf{\@author}}
+\fancyfoot[C]{\small \textsf{\thepage\ of \pageref{LastPage}}}
+\fancyfoot[R]{\small \textsf{\@date}}
+
+\newcommand{\firstpage}{fancy}
+
+%----------------------------------------------------------------------------------------
+% Title
+%----------------------------------------------------------------------------------------
+
+
+\usepackage{titling}
+
+\renewcommand{\maketitle}{}
+
+%----------------------------------------------------------------------------------------
+%	Sections
+%----------------------------------------------------------------------------------------
+
+\allsectionsfont{\hdrfont{sb}} % Change the font of all section commands (Helvetica)

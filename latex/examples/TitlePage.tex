@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+
+\usepackage{emoji}
+
+% Use fontenc to handl 8-bit ascii characters
+\usepackage[T1]{fontenc}
+
+
+\usepackage{graphicx}
+\usepackage{lastpage} % Used to determine the number of pages in the document (for "Page X of Total")
+
+%----------------------------------------------------------------------------------------
+% Adjust paragraph handling
+%----------------------------------------------------------------------------------------
+
+% \setlength\parskip{1em plus 0.1em minus 0.2em}
+\setlength\parskip{6pt}
+\setlength\parindent{0pt}
+
+%----------------------------------------------------------------------------------------
+% Adjust colors
+%----------------------------------------------------------------------------------------
+
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+\definecolor{cam-gray}{HTML}{d9d9d9}
+\definecolor{cam-green}{HTML}{4CA856}
+
+%----------------------------------------------------------------------------------------
+% Margins and spacing
+%----------------------------------------------------------------------------------------
+
+\usepackage{geometry} % Required for adjusting page dimensions
+
+\geometry{
+	top=.5in, % Top margin
+	bottom=.5in, % Bottom margin
+	left=.75in, % Left margin
+	right=.75in, % Right margin
+	includehead, % Include space for a header
+	includefoot, % Include space for a footer
+  headsep=0.5in,
+}
+
+%----------------------------------------------------------------------------------------
+%	Headers and Footers
+%----------------------------------------------------------------------------------------
+
+\usepackage{montserrat}
+
+\usepackage{fancyhdr} % Needed to define custom headers/footers
+
+\newcommand{\RuleColor}{%
+  \color{Maroon}
+}
+
+\newcommand{\HorRule}{    % Define a standard horizontal rule line
+  \vbox to 0pt{\hbox to \headwidth{\RuleColor \rule{\headwidth}{1pt}}\vss}
+}
+
+\renewcommand{\headrule}{{\HorRule}}
+\renewcommand{\footrule}{{\HorRule}}
+
+\makeatletter
+\title{A title or something}
+\author{Me myself and I}
+\date{\today}
+
+\fancypagestyle{firstpage}{
+  \renewcommand{\headrule}{}
+  \fancyhead{}
+  \fancyfoot[L]{\small \textsf{\@author}}
+  \fancyfoot[C]{\small \textsf{\thepage\ of \pageref{LastPage}\\Diststmt}}
+  \fancyfoot[R]{\small \textsf{\@date}}
+}
+  
+\fancypagestyle{stdpage}{
+  \fancyhead[L]{%
+    \Large \textsf \@title%
+  }
+  \fancyhead[R]{%
+    \includegraphics[width=1.5in]{Camgian-Soccer-WebsiteBanner.png}
+  }
+  
+  \fancyfoot[L]{\small \textsf{\@author}}
+  \fancyfoot[C]{\small \textsf{\thepage\ of \pageref{LastPage}\\Diststmt}}
+  \fancyfoot[R]{\small \textsf{\@date}}
+  }
+  
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	Title page
+%----------------------------------------------------------------------------------------
+
+\renewcommand{\RuleColor}{\color{cam-green}}
+
+% Eliminate the titlepage entirely
+\renewcommand{\maketitle}{}
+
+% Custom titlepage
+\makeatletter
+\renewcommand{\maketitle}{%
+  \vspace*{-1.0in}
+  \HorRule
+  \vspace*{9pt}
+  {
+    \centerline{\Large \usefont{T1}{\sfdefault}{semibold}{n} \@title}
+  }\par
+  {
+    \large \usefont{T1}{\sfdefault}{sb}{n} \@author
+  }\par
+  {
+    \normalsize \textsf{\@date}
+  }\par
+  \HorRule
+}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	Set the section heading style
+%----------------------------------------------------------------------------------------
+
+\usepackage{sectsty}
+\allsectionsfont{\usefont{T1}{\sfdefault}{semibold}{n}}
+
+%----------------------------------------------------------------------------------------
+%	Title page, front matter
+%----------------------------------------------------------------------------------------
+
+\pagestyle{stdpage}
+
+\begin{document}
+
+\thispagestyle{firstpage}
+\maketitle 
+
+%----------------------------------------------------------------------------------------
+%	Document content
+%----------------------------------------------------------------------------------------
+
+\section{Emoji's}
+
+\emoji{+1}
+\emoji{chipmunk}
+\emoji{pizza}
+\emoji{check-mark}
+\emoji{rolling-on-the-floor-laughing}
+
+\section{Standard Font Handling}
+
+\subsection{Using Declaration Format}
+
+\rmfamily 
+Serif Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+\sffamily 
+Sans Serif Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+Bold: \textbf{bold}\par
+Italics: \textit{italics}
+
+\ttfamily 
+Monospace Family:
+abcdefghijklmnopqrstuvwxyz
+$\Sigma \Omega \Longrightarrow \Downarrow$
+
+\subsection{Using command format}
+
+\textsf{abcdefghijklmnopqrstuvwxyz}\par
+\textrm{abcdefghijklmnopqrstuvwxyz}\par
+\texttt{abcdefghijklmnopqrstuvwxyz}
+
+\subsubsection*{Sub sub section test}
+
+\subsubsection{Sub sub section test}
+
+\section{Specific Font Selection}
+
+{
+    \usefont{T1}{phv}{m}{n}
+    This is Abobe Helvetica
+}
+    
+{
+    \usefont{T1}{cmss}{m}{n}
+    This is Computer Modern Sans
+}
+  
+\pagebreak
+
+This should be on the next page
+
+\end{document}

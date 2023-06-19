@@ -1,0 +1,10 @@
+---
+documentclass: md2pdf
+toc: False
+lof: False
+graphics: True
+mathspec: 1
+numbersections: True
+header-includes:
+  - \usepackage{Camgian}
+---
