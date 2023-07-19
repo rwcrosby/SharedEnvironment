@@ -1,0 +1,36 @@
+---
+
+- name: Get network interface ids
+  shell: "ip link | grep enp0 | sed -E 's/^.*(enp\\w+).*$/\\1/'"
+  register: intf_list
+
+- name: Show interfaces found
+  debug: 
+    msg: "Adapter found: {{ item }}"
+  with_items: "{{intf_list.stdout_lines}}"
+
+- name: Save the second interface name
+  set_fact:
+    hostonly_intf: "{{intf_list.stdout_lines[1]}}"
+
+- name: Initialize the connection in network manager
+  become: yes
+  nmcli:
+    conn_name: "{{netif.conn_name}}"
+    type: ethernet
+    ifname: "{{hostonly_intf}}"
+    ip4: "{{netif.ip_addr}}"
+    gw4: "{{netif.gw_addr}}"
+    state: present
+
+# - name: Disable the host only interface
+#   become: yes
+#   shell: "ip link set {{intf_list.stdout_lines[1]}} down"
+
+# - name: Bring the connection up
+#   become: yes
+#   shell: "nmcli con up {{netif.conn_name}}"
+
+# nmcli con add type ethernet con-name "Frodo" ifname enp0s8
+# nmcli con mod Frodo ipv4.addresses 192.168.33.100/24
+# nmcli con mod Frodo ipv4.method manual ipv4.addresses 192.168.33.100/24 ipv4.gateway 192.198.33.1 

@@ -1,0 +1,133 @@
+- name: Intall stuff into wsl
+  hosts: localhost
+  vars:
+    the_user: "{{ ansible_user_id }}"
+    pycurrent: "3.11.4"
+
+  tasks:
+
+    - name: Install utilities
+      become: yes
+      apt:
+        update_cache: true
+        pkg:
+          - aptitude
+          - direnv
+          - net-tools
+          - gcc
+          - build-essential
+          - pkg-config
+          - libbz2-dev 
+          - libffi-dev 
+          - libgdbm-dev 
+          - libgdbm-compat-dev 
+          - liblzma-dev
+          - libncurses5-dev 
+          - libreadline6-dev 
+          - libsqlite3-dev 
+          - libssl-dev
+          - lzma 
+          - lzma-dev 
+          - tk-dev 
+          - uuid-dev 
+          - zlib1g-dev
+          - python3-virtualenv
+
+    - name: Add vagrant gpg key
+      become: yes
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: Add vagrant repo
+      become: yes
+      apt_repository:
+        repo: "deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+
+    - name: Install vagrant
+      become: yes
+      apt:
+        update_cache: true
+        pkg:
+          - vagrant
+
+    - name: Connect WSL Vagrant to Windows Vagrant
+      lineinfile:
+        path: ~/.zshrc
+        create: no
+        line: "{{ item }}"
+      loop:
+        - export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+        - export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/{{ the_user }}/"
+        - export PATH=$PATH:"/mnt/c/Program Files/Oracle/VirtualBox"
+        - export PATH=$PATH:"/mnt/c/Windows/System32/WindowsPowerShell/v1.0"
+
+    - name: Get Pyenv
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: ~/Projects/pyenv
+
+    - name: Path pyenv
+      lineinfile:
+        path: ~/.zshrc
+        create: no
+        line: "export PATH=$PATH:~/Projects/pyenv/bin"
+
+    - name: Install python
+      command:
+        cmd: ~/Projects/pyenv/bin/pyenv install {{ pycurrent }}
+        creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
+
+    - name: Create python virtual environment
+      pip:
+        name: pip
+        virtualenv: "~/.local/PVE/Py{{ pycurrent }}"
+        virtualenv_command: "virtualenv -p ~/.pyenv/versions/{{ pycurrent }}/bin/python"
+
+    - name: Symlink PyCurrent
+      file:
+        src: "~/.local/PVE/Py{{ pycurrent }}"
+        dest: "~/.local/PVE/PyCurrent"
+        state: link
+
+    - name: Change user shell to zsh 
+      become: yes
+      user:
+        name: "{{ the_user }}"
+        shell: /bin/zsh
+
+    - name: Download oh-my-zsh
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/oh-my-zsh.sh
+        mode: '0777'
+
+    - name: Install oh-my-zsh
+      command:
+        cmd: /tmp/oh-my-zsh.sh
+        creates: ~/.oh-my-zsh
+
+    - name: Add connection to my updates
+      lineinfile:
+        path: ~/.zshrc
+        create: no
+        line: "{{ item }}"
+        insertbefore: "^source.*oh-my-zsh.sh$"
+      loop:
+        - ZSH_THEME="bowser"
+        - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
+        - plugins=(virtualenv)
+        - source $ZSH_CUSTOM/zshrc
+
+
+# Path Powershell
+# c:\Users\rcrosby\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell
+# %SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe
+
+# export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+# export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/username/"
+# export PATH="$PATH:/mnt/d/Programs/Virtualbox"
+
+# wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+# echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+# sudo apt update && sudo apt install vagrant

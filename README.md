@@ -17,6 +17,8 @@ This is a simple project holding the various files that are shared amongst the M
 
 ## `dot` file Handling
 
+*Being replaced by the ansible playbook*
+
 - Configuration in `dotbot.conf.yaml`
 - Installation
   - MacOS

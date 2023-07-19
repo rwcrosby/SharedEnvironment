@@ -1,0 +1,85 @@
+---
+
+- name: Add brave gpg key
+  become: yes
+  apt_key:
+    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    state: present
+
+- name: Add brave repo
+  become: yes
+  apt_repository:
+    repo: "deb https://brave-browser-apt-release.s3.brave.com/ stable main"
+
+- name: Install utilities
+  become: yes
+  apt:
+    update_cache: true
+    pkg:
+      - aptitude
+      - brave-browser
+      - direnv
+      - net-tools
+      - tmux
+      - mc
+      - podman
+      - openssh-server
+      - zsh
+
+- name: Change user shell to zsh 
+  become: yes
+  user:
+    name: "{{ the_user }}"
+    shell: /bin/zsh
+
+- name: Download oh-my-zsh
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/oh-my-zsh.sh
+    mode: '0777'
+
+- name: Install oh-my-zsh
+  command:
+    cmd: /tmp/oh-my-zsh.sh
+    creates: ~/.oh-my-zsh
+
+- name: Add connection to my updates
+  lineinfile:
+    path: ~/.zshrc
+    create: no
+    line: "{{ item }}"
+    insertbefore: "^source.*oh-my-zsh.sh$"
+  loop:
+    - ZSH_THEME="bowser"
+    - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
+    - plugins=(virtualenv)
+    - source $ZSH_CUSTOM/zshrc
+
+- name: Generate ssh key
+  openssh_keypair:
+    path: ~/.ssh/id_ecdsa
+    type: ecdsa
+
+- name: Create configuration directories
+  file:
+    path: ~/.config/direnv
+    state: directory
+
+- name: Create symlinks into the shared environment
+  file:
+    dest: "{{item.key}}"
+    src: "~/Projects/SharedEnvironment/{{item.value}}"
+    state: link
+  loop:
+    "{{ links | dict2items }}"
+  vars:
+    links:
+      ~/.tmux.conf: 
+        tmux/.tmux.conf
+      ~/.config/flake8: 
+        python/flake8
+      ~/.config/direnv/direnvrc: 
+        .direnvrc
+      ~/.latexmkrc: 
+        latex/latexmkrc
+

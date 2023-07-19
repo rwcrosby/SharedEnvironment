@@ -15,3 +15,7 @@ ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
 plugins=(virtualenv)
 source $ZSH_CUSTOM/zshrc
 ```
+# Disable git status display
+
+See: https://stackoverflow.com/questions/12765344/oh-my-zsh-slow-but-only-for-certain-git-repo#25864063
+

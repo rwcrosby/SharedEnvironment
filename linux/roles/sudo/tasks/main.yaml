@@ -1,0 +1,6 @@
+- name: Allow current to use sudo without needing a password
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    line: "{{ the_user }} ALL=(ALL) NOPASSWD: ALL"
+    validate: 'visudo -cf %s'

@@ -1,0 +1,8 @@
+- name: Install stuff into linux
+  hosts: localhost
+  roles:
+    - sudo
+    - base_setup
+    - install_python
+    - gnome_customization
+    - hostonly_interface
