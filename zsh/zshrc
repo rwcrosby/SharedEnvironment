@@ -52,6 +52,10 @@ case $OSTYPE in
 
 esac
 
+# My directories
+
+path=(~/.local/bin $path)
+manpath=(~/.local/share/man $manpath)
 
 # Rust
 [ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
@@ -70,18 +74,13 @@ for d in *(N)
 
 popd &> /dev/null
 
-[ -d ~/SharedEnvironment/python ] && export PYTHONPATH=$HERE/python
+[ -d $HERE/python ] && export PYTHONPATH=$HERE/python
 
 # Since all we're using pyenv for is getting python distributions 
 # we don't actually install the hooks
 
 [ -d ~/.pyenv ] && export PYENV_ROOT=~/.pyenv
 [ -d ~/.pyenv/bin ] && export path=(~/.pyenv/bin $path)
-
-# My directories
-
-path=(~/.local/bin $path)
-manpath=(~/.local/share/man $manpath)
 
 # Aliases
 
