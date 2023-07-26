@@ -1,8 +1,15 @@
 - name: Install stuff into linux
   hosts: localhost
   roles:
-    - sudo
-    - base_setup
-    - install_python
-    - gnome_customization
-    - hostonly_interface
+    - role:sudo
+      tags: sudo
+    - role: base_setup
+      tags: base_install
+    - role: install_python
+      tags: install_python
+    - role: gnome_customization
+      tags: gnome_customization
+    # - role: hostonly_interface
+    #   tags: hostonly_interface
+
+# 7/25/23 Custom hostonly copnfiguration isn't necessary as avahi will make .local available

@@ -19,6 +19,7 @@
       - aptitude
       - brave-browser
       - direnv
+      - htop
       - net-tools
       - tmux
       - mc
