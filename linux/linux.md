@@ -15,7 +15,7 @@
 
 - Ansible setup
 
-    `ansible-platbook setup_new_ubuntu_vm`
+    `ansible-platbook setup_linux_vm`
 
 ## Ansible Roles
 
@@ -23,7 +23,6 @@
 - base_setup
 - install_python
 - gnome_customization
-- hostonly_interface
 
 # Network Setup
 

@@ -1,31 +1,6 @@
 ---
 
-- name: Add brave gpg key
-  become: yes
-  apt_key:
-    url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-    state: present
-
-- name: Add brave repo
-  become: yes
-  apt_repository:
-    repo: "deb https://brave-browser-apt-release.s3.brave.com/ stable main"
-
-- name: Install utilities
-  become: yes
-  apt:
-    update_cache: true
-    pkg:
-      - aptitude
-      - brave-browser
-      - direnv
-      - htop
-      - net-tools
-      - tmux
-      - mc
-      - podman
-      - openssh-server
-      - zsh
+- include_tasks: "{{ ansible_facts['distribution'] }}-packages.yaml"
 
 - name: Change user shell to zsh 
   become: yes

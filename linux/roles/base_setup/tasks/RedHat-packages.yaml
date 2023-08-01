@@ -1,0 +1,29 @@
+---
+
+- name: Add brave repo
+  become: yes
+  yum_repository:
+    description: Repo for the brave browser
+    name: Brave Browser
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/$basearch
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+- name: Install utilities
+  become: yes
+  yum:
+    update_cache: true
+    pkg:
+      - brave-browser
+      - htop
+      - net-tools
+      - tmux
+      - mc
+      - podman
+      - openssh-server
+      - zsh
+
+- name: Install direnv rpm
+  become: yes
+  yum:
+    pkg: https://kojipkgs.fedoraproject.org//packages/direnv/2.32.1/6.fc39/aarch64/direnv-2.32.1-6.fc39.aarch64.rpm
+    disable_gpg_check: yes
