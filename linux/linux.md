@@ -37,7 +37,6 @@ VM Setup assumes two network interfaces
 
 - `avahi`` running on the guests to allow local name resolution
 
-
 ## Network commands
 
 ```shell

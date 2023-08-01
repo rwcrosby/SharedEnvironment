@@ -1,8 +1,17 @@
 ---
 
-- name: Install gnome tools
+- name: Install gnome tools - Ubuntu
   become: yes
   apt:
     update_cache: true
     pkg:
       - dconf-editor
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install gnome tools - RHEL
+  become: yes
+  yum:
+    update_cache: true
+    pkg:
+      - dconf
+  when: ansible_facts['distribution'] == "RedHat"

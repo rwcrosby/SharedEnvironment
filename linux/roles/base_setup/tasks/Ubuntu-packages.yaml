@@ -15,6 +15,7 @@
     update_cache: true
     pkg:
       - aptitude
+      - avahi-utils
       - brave-browser
       - direnv
       - htop

@@ -1,10 +1,10 @@
 - name: Install stuff into linux
   hosts: localhost
   roles:
-    - role:sudo
+    - role: sudo
       tags: sudo
     - role: base_setup
-      tags: base_install
+      tags: base_setup
     - role: install_python
       tags: install_python
     - role: gnome_customization
