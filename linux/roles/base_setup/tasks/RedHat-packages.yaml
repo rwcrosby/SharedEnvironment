@@ -13,8 +13,10 @@
   yum:
     update_cache: true
     pkg:
+      - avahi
       - brave-browser
       - htop
+      - iperf3
       - net-tools
       - tmux
       - mc
