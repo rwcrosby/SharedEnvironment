@@ -4,18 +4,46 @@
 
 - Install ansible and git
 
-    ```
+    ```shell
     sudo apt update
     sudo apt-get install ansible git
     ```
 
 - Clone the shared environment (or link to it on a shared volume)
 
-    `git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment`
+    ```shell
+    git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment
+    ``````
 
 - Ansible setup
 
-    `ansible-platbook setup_linux_vm`
+    ```shell
+    ansible-platbook setup_linux_vm
+    ```
+
+## RHEL Notes
+- <2023-08-05 Sat 13:35> Needed to disable the firewall for zeroconf to work
+
+    ```shell
+    sudo systemctl stop firewalld.service
+    sudo systemctl disable firewalld.service
+    ```
+
+## Debian Notes
+- <2023-08-05 Sat 13:37> Packages to install
+
+    ```shell
+    su
+    apt install sudo avahi-daemon ssh
+    /usr/sbin/usermod -aG sudo rcrosby
+    ```
+
+- <2023-08-05 Sat 13:56> Shutdown/Reboot
+
+    ```shell
+    sudo systemctl poweroff
+    sudo systemctl reboot
+    ```
 
 ## Ansible Roles
 
