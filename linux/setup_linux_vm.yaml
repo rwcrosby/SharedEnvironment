@@ -1,15 +1,20 @@
 - name: Install stuff into linux
   hosts: localhost
-  roles:
-    - role: sudo
-      tags: sudo
-    - role: base_setup
-      tags: base_setup
-    - role: install_python
-      tags: install_python
-    - role: gnome_customization
-      tags: gnome_customization
-    # - role: hostonly_interface
-    #   tags: hostonly_interface
+  vars:
+    the_user: "{{ ansible_user_id }}"
+    ansible_sudo_pass: furbrain
+    pycurrent: 3.11.4
 
-# 7/25/23 Custom hostonly copnfiguration isn't necessary as avahi will make .local available
+  tasks:
+
+  - include_tasks: includes/sudo.yaml
+    tags: sudo
+  
+  - include_tasks: includes/base_setup.yaml
+    tags: base_setup
+  
+  - include_tasks: includes/install_python.yaml
+    tags: install_python
+  
+  - include_tasks: includes/gnome_customization.yaml
+    tags: gnome_customization

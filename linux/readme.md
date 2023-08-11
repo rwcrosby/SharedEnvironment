@@ -9,9 +9,24 @@
     sudo apt-get install ansible git
     ```
 
+- Allow shared drive access
+
+    ```shell
+    sudo usermod -aG rcrosby
+    ```
+
+    - logout and back in
+
+    ```shell
+    ln -s 
+    ```
+
 - Clone the shared environment (or link to it on a shared volume)
 
-    `git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment`
+    ```shell
+    git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment`
+    ln -s /media/sf_Ubuntu-22.04/home/rcrosby/Projects .
+    ```
 
 - Ansible setup
 

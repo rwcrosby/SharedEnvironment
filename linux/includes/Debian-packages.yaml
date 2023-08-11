@@ -1,0 +1,14 @@
+- name: Install utilities
+  become: yes
+  apt:
+    update_cache: true
+    pkg:
+      - aptitude
+      - direnv
+      - htop
+      - net-tools
+      - tmux
+      - mc
+      - podman
+      - openssh-server
+      - zsh
