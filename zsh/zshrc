@@ -16,14 +16,16 @@ case $OSTYPE in
 	    LDLIB=DYLD_LIBRARY_PATH
 	    export TIME="/usr/bin/time -l"
         
+        # Homebrew
+        [ -f $HOMEBREW_PREFIX/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
         # Disable automatic cleanup
         export HOMEBREW_NO_INSTALL_CLEANUP=1
 
         # Homebrew paths
 
-        if [ -d /usr/local/opt/coreutils/libexec ]; then
-            path=(/usr/local/opt/coreutils/libexec/gnubin $path)
-            manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
+        if [ -d $HOMEBREW_PREFIX/opt/coreutils/libexec ]; then
+            path=($HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin $path)
+            manpath=($HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman $manpath)
         fi 
 
         # MacTeX
@@ -34,9 +36,6 @@ case $OSTYPE in
         {
             man -t "${1}" | open -f -a Skim
         }
-
-        # Homebrew
-        [ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
 
         ;;
 
