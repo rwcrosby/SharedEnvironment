@@ -1,0 +1,66 @@
+---
+
+- include_tasks: "{{ ansible_facts['distribution'] }}-packages.yaml"
+
+- name: Change user shell to zsh 
+  become: yes
+  user:
+    name: "{{ the_user }}"
+    shell: /bin/zsh
+
+- name: Download oh-my-zsh
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/oh-my-zsh.sh
+    mode: '0777'
+
+- name: Install oh-my-zsh
+  command:
+    cmd: /tmp/oh-my-zsh.sh
+    creates: ~/.oh-my-zsh
+
+- name: Add connection to my updates
+  lineinfile:
+    path: ~/.zshrc
+    create: no
+    line: "{{ item }}"
+    insertbefore: "^source.*oh-my-zsh.sh$"
+  loop:
+    - ZSH_THEME="bowser"
+    - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
+    - plugins=(virtualenv)
+    - source $ZSH_CUSTOM/zshrc
+
+- name: Create ssh directory
+  file:
+    path: ~/.ssh
+    state: directory
+
+- name: Generate ssh key
+  openssh_keypair:
+    path: ~/.ssh/id_ecdsa
+    type: ecdsa
+
+- name: Create configuration directories
+  file:
+    path: ~/.config/direnv
+    state: directory
+
+- name: Create symlinks into the shared environment
+  file:
+    dest: "{{item.key}}"
+    src: "~/Projects/SharedEnvironment/{{item.value}}"
+    state: link
+  loop:
+    "{{ links | dict2items }}"
+  vars:
+    links:
+      ~/.tmux.conf: 
+        tmux/.tmux.conf
+      ~/.config/flake8: 
+        python/flake8
+      ~/.config/direnv/direnvrc: 
+        .direnvrc
+      ~/.latexmkrc: 
+        latex/latexmkrc
+

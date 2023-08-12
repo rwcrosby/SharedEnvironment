@@ -24,10 +24,16 @@
       - zlib1g-dev
       - python3-virtualenv
 
-- name: Get Pyenv
+- name: check for repo existing
+  stat: 
+    path: ~/Projects/pyenv/.git
+  register: pyenv
+
+- name: Get Pyenv if needed
   git:
     repo: https://github.com/pyenv/pyenv.git
     dest: ~/Projects/pyenv
+  when: not pyenv.stat.exists
 
 - name: Path pyenv
   lineinfile:
