@@ -4,17 +4,19 @@
     the_user: "{{ ansible_user_id }}"
     ansible_sudo_pass: furbrain
     pycurrent: 3.11.4
+    gui_apps: false
 
   tasks:
 
-  - include_tasks: includes/sudo.yaml
+  - import_tasks: includes/sudo.yaml
     tags: sudo
   
-  - include_tasks: includes/base_setup.yaml
+  - import_tasks: includes/base_setup.yaml
     tags: base_setup
   
-  - include_tasks: includes/install_python.yaml
+  - import_tasks: includes/install_python.yaml
     tags: install_python
   
-  - include_tasks: includes/gnome_customization.yaml
+  - import_tasks: includes/gnome_customization.yaml
     tags: gnome_customization
+    when: gui_apps

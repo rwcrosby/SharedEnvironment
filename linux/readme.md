@@ -4,33 +4,64 @@
 
 - Install ansible and git
 
-    ```
+    ```shell
     sudo apt update
     sudo apt-get install ansible git
     ```
 
+    or
+
+    ```shell
+    sudo dnf install ansible git nano fuse
+    ```
+
 - Allow shared drive access
 
-    ```shell
-    sudo usermod -aG rcrosby
-    ```
+    - VirtualBox
 
-    - logout and back in
+        ```shell
+        sudo usermod -aG vboxsf rcrosby
+        - logout and back in
 
-    ```shell
-    ln -s 
-    ```
+    - VMWare
+
+        Add to `etc/fstab`
+
+        ```shell
+        vmhgfs-fuse /mnt/hgfs fuse defaults,allow_other,uid=1000 0 0
+        ```
 
 - Clone the shared environment (or link to it on a shared volume)
 
+    - Clone
+
+        ```shell
+        git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment`
+        ```
+
+    - VirtualBox
+
+        ```shell
+        ln -s /media/sf_Ubuntu-22.04/home/rcrosby/Projects .
+        ```
+    - VMWare
+
+        ```shell
+        mkdir -p ~/Projects
+        ln -s /mnt/hgfs/rcrosby/Projects/SharedEnvironment ~/Projects/
+        ```
+
+- Copy ssh key
+
     ```shell
-    git clone https://github.com/rwcrosby/SharedEnvironment.git ~/Projects/SharedEnvironment`
-    ln -s /media/sf_Ubuntu-22.04/home/rcrosby/Projects .
-    ```
+    ansible-playbook -i vmname.local copy_ssh_key.yaml
+    ``````
 
 - Ansible setup
 
-    `ansible-platbook setup_linux_vm`
+    ```shell
+    ansible-playbook setup_linux_vm.yaml
+    ``````
 
 ## Ansible Roles
 

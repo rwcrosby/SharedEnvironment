@@ -1,9 +1,8 @@
 ---
 
-- name: Install Python dependencies
+- name: Install Python dependencies - apt
   become: yes
   apt:
-    update_cache: true
     pkg:
       - gcc
       - build-essential
@@ -23,6 +22,21 @@
       - uuid-dev 
       - zlib1g-dev
       - python3-virtualenv
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install Python dependencies - dnf
+  when: ansible_pkg_mgr == "dnf"
+  become: true
+  block:
+  
+  - name: Install dnf plugins and related packages
+    dnf:
+      pkg:
+        - dnf-plugins-core
+        - python3-virtualenv
+
+  - name: Install python dependencies
+    command: dnf -y builddep python3
 
 - name: check for repo existing
   stat: 

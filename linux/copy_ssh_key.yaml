@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  vars:
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
+    ansible_ssh_pass: furbrain
+  tasks:
+  
+  - name: Setup key
+    ansible.posix.authorized_key:
+      user: "{{ ansible_user_id }}"
+      state: present
+      key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ecdsa.pub') }}"
