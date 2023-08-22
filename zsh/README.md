@@ -19,3 +19,8 @@ source $ZSH_CUSTOM/zshrc
 
 See: https://stackoverflow.com/questions/12765344/oh-my-zsh-slow-but-only-for-certain-git-repo#25864063
 
+```shell
+git config --global --add oh-my-zsh.hide-info 1
+git config --global --add oh-my-zsh.hide-status 1
+git config --global --add oh-my-zsh.hide-dirty 1
+```
