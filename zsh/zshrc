@@ -88,6 +88,7 @@ pprint() {
 }
 
 alias l=less 
+alias mc="mc -X --nosubshell"
 
 # Default editor
 [ $(command -v nano) ] && {
