@@ -70,6 +70,15 @@
 - install_python
 - gnome_customization
 
+## Alpine
+
+- Uncomment community repo in `/etc/apk/repositories`
+
+    ```shell
+    apk update
+    apk add nano tmux sudo avahi git
+    ```
+
 # Network Setup
 
 VM Setup assumes two network interfaces
@@ -113,7 +122,14 @@ nmcli con up hostonly
         - Using .local as domain name
 
 
-# libvert VM setup
+# Virtualization
+
+## QEMU
+
+https://adonis0147.github.io/post/qemu-macos-apple-silicon/
+
+
+## libvert VM setup
 
 Physical system only
 
@@ -140,3 +156,11 @@ cat .\id_ecdsa.pub
 
 
 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGIVusjIpv43HlDuBcRv/QYWlPGAvJOB1ppNbOCQ5eyJRgxbiRcWCmEpbbjE3zJ0NG4iGYBb9iPlt0mmw3nEXpQ= camcom\rcrosby@PMWS213
+
+# Utilities
+
+## Testing
+
+https://arstechnica.com/gadgets/2020/02/how-fast-are-your-disks-find-out-the-open-source-way-with-fio/
+
+
