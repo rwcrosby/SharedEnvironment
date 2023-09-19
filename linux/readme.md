@@ -128,6 +128,10 @@ nmcli con up hostonly
 
 https://adonis0147.github.io/post/qemu-macos-apple-silicon/
 
+https://developers.redhat.com/blog/2020/03/06/configure-and-run-a-qemu-based-vm-outside-of-libvirt
+
+https://www.qemu.org/docs/master/system/keys.html
+
 
 ## libvert VM setup
 
@@ -140,6 +144,10 @@ Physical system only
 - https://www.reddit.com/r/kvm/comments/ri0db6/virt_manager_windows_vm_only_800_x_600_resolution/
 
 - https://github.com/virtio-win/virtio-win-pkg-scripts/blob/master/README.md
+
+### <2023-09-01 Fri 08:04>
+
+`virt-manager`` seems to handle this just fine in conjunction with `qemu`
 
 
 # SSH Keys
