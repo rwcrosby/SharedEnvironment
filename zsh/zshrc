@@ -87,8 +87,13 @@ pprint() {
     for v in ${(P)1}; echo $v
 }
 
+tssh() {
+    ssh $1 -t "tmux new -A"
+}
+
 alias l=less 
 alias mc="mc -X --nosubshell"
+alias kc=kubectl
 
 # Default editor
 [ $(command -v nano) ] && {
