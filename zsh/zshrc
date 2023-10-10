@@ -17,11 +17,11 @@ case $OSTYPE in
 	    export TIME="/usr/bin/time -l"
         
         # Homebrew - Need to use real path since $HOMEBREW_PREFIX isn't set yet
-        [ -f /opt/homebrew/bin/brew ] && eval $(/opt/homebrew/bin/brew shellenv)
+        [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
         # Disable automatic cleanup
         export HOMEBREW_NO_INSTALL_CLEANUP=1
 
-        # Homebrew paths
+        # Use the gnu utilities
 
         if [ -d $HOMEBREW_PREFIX/opt/coreutils/libexec ]; then
             path=($HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin $path)
@@ -30,12 +30,6 @@ case $OSTYPE in
 
         # MacTeX
         [ -d /Library/TeX/texbin ] && path=(/Library/TeX/texbin $path)
-
-        # Man pages output to skim
-        manp()
-        {
-            man -t "${1}" | open -f -a Skim
-        }
 
         ;;
 
@@ -80,20 +74,6 @@ popd &> /dev/null
 
 [ -d ~/.pyenv ] && export PYENV_ROOT=~/.pyenv
 [ -d ~/.pyenv/bin ] && export path=(~/.pyenv/bin $path)
-
-# Aliases
-
-pprint() {
-    for v in ${(P)1}; echo $v
-}
-
-tssh() {
-    ssh $1 -t "tmux new -A"
-}
-
-alias l=less 
-alias mc="mc -X --nosubshell"
-alias kc=kubectl
 
 # Default editor
 [ $(command -v nano) ] && {

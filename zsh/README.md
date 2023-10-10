@@ -24,3 +24,21 @@ git config --global --add oh-my-zsh.hide-info 1
 git config --global --add oh-my-zsh.hide-status 1
 git config --global --add oh-my-zsh.hide-dirty 1
 ```
+
+# Updated utilities
+
+- `duf` replacing `df` (best)
+- `dfc` replacing `df` (better)
+- `tldr` simplified `man`
+- `ncdu` simplified `du`
+- `bat` replacing `cat` (pager, syntax highlighting)
+
+# Notes
+
+- <2023-10-10 Tue 10:12> Fixing aliases
+
+    - Moved my aliases to alias.zsh
+    - Moved my functions to functions.zsh
+
+- <2023-10-10 Tue 13:08> Found some new utilities
+
