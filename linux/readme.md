@@ -12,7 +12,7 @@
     or
 
     ```shell
-    sudo dnf install ansible git nano fuse
+    sudo dnf -y install ansible git nano fuse
     ```
 
 - Allow shared drive access
@@ -53,8 +53,10 @@
 
 - Copy ssh key
 
+    Note the comma after .local
+
     ```shell
-    ansible-playbook -i vmname.local copy_ssh_key.yaml
+    ansible-playbook -i vmname.local, copy_ssh_key.yaml
     ``````
 
 - Ansible setup
@@ -149,6 +151,22 @@ Physical system only
 
 `virt-manager`` seems to handle this just fine in conjunction with `qemu`
 
+## UTM
+
+QEMU front end for MacOS (Also supports Apple Virtualization)
+
+### Fedora using apple virtualization
+
+- Sharing with virtiofs `sudo mount -t virtiofs share /mnt/rcrosby`
+- Clipboard working
+- zeroconf working
+
+
+
+### Debian using qemu
+
+- Sharing with virtio `sudo mount -t 9p -o trans=virtio share \mnt\rcrosby -oversion=9p2000.L`
+- zeroconf working
 
 # SSH Keys
 
@@ -171,4 +189,8 @@ ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGIVusjI
 
 https://arstechnica.com/gadgets/2020/02/how-fast-are-your-disks-find-out-the-open-source-way-with-fio/
 
+## Command Line
+
+- https://github.com/sharkdp/hexyl
+- https://github.com/sharkdp/bat
 

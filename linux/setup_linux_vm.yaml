@@ -3,7 +3,7 @@
   vars:
     the_user: "{{ ansible_user_id }}"
     ansible_sudo_pass: furbrain
-    pycurrent: 3.11.4
+    pycurrent: 3.12.0
     gui_apps: false
 
   tasks:
