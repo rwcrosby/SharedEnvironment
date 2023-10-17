@@ -18,7 +18,7 @@
 - name: Install direnv rpm
   become: yes
   yum:
-    pkg: https://kojipkgs.fedoraproject.org//packages/direnv/2.32.1/6.fc39/aarch64/direnv-2.32.1-6.fc39.aarch64.rpm
+    pkg: "https://kojipkgs.fedoraproject.org//packages/direnv/2.32.1/6.fc39/{{ ansible_architecture }}/direnv-2.32.1-6.fc39.{{ ansible_architecture }}.rpm"
     disable_gpg_check: yes
 
 - name: GUI Apps

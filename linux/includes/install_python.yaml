@@ -4,9 +4,8 @@
   become: yes
   apt:
     pkg:
-      - gcc
       - build-essential
-      - pkg-config
+      - gcc
       - libbz2-dev 
       - libffi-dev 
       - libgdbm-dev 
@@ -18,10 +17,12 @@
       - libssl-dev
       - lzma 
       - lzma-dev 
+      - pkg-config
+      - python3-virtualenv
+      - python3-pip
       - tk-dev 
       - uuid-dev 
       - zlib1g-dev
-      - python3-virtualenv
   when: ansible_pkg_mgr == "apt"
 
 - name: Install Python dependencies - dnf
@@ -34,6 +35,7 @@
       pkg:
         - dnf-plugins-core
         - python3-virtualenv
+        - python3-pip
 
   - name: Install python dependencies
     command: dnf -y builddep python3
@@ -78,5 +80,4 @@
     name: 
       - podman-compose
       - jupyterlab
-      - ansible
       
