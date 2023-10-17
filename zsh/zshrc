@@ -81,5 +81,9 @@ popd &> /dev/null
     export VISUAL=$(which nano)
 }
 
+# Bat pager theme
+
+export BAT_THEME="GitHub"
+
 # Set emacs editing mode
 bindkey -e

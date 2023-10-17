@@ -42,24 +42,18 @@
 
 - name: check for repo existing
   stat: 
-    path: ~/Projects/pyenv/.git
+    path: ~/.pyenv/.git
   register: pyenv
 
 - name: Get Pyenv if needed
   git:
     repo: https://github.com/pyenv/pyenv.git
-    dest: ~/Projects/pyenv
+    dest: ~/.pyenv
   when: not pyenv.stat.exists
-
-- name: Path pyenv
-  lineinfile:
-    path: ~/.zshrc
-    create: yes
-    line: "export PATH=$PATH:~/Projects/pyenv/bin"
 
 - name: Install python
   command:
-    cmd: ~/Projects/pyenv/bin/pyenv install {{ pycurrent }}
+    cmd: ~/.pyenv/bin/pyenv install {{ pycurrent }}
     creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
 
 - name: Create python virtual environment
