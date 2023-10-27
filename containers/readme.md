@@ -51,10 +51,13 @@ Note: On MacOS need to init the machine with --rootful to be able to connect to 
 
 - Copy portainer to local image
 
-# Hyper-v setup
+# Notes
 
-- Getting network connectibity between a vm and wsl
+- <2023-10-17 Tue 15:52> Needed to reset shadow-utils to clear error on newuidmap
 
-    https://automatingops.com/allowing-windows-subsystem-for-linux-to-communicate-with-hyper-v-vms
+    - ` newuidmap 4949 0 $(id -u) 1 1 524288 100` failed
+    - `sudo rpm --restore shadow-utils` fixed it...
 
-    Bottom line is setting the forwarding enabled on both the wsl and default virtual switches
+    https://github.com/containers/buildah/issues/3834
+
+    

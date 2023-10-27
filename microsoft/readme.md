@@ -37,8 +37,8 @@ https://communities.vmware.com/t5/VMware-Fusion-Documents/The-Unofficial-Fusion-
     - Appears as /mnt/wsl/PHYSICALDRIVE1p2
     - Needs to be remounted after reboots
 
-- <2023-10-17 Tue 13:26> Make sure to user uid:1000/gid:1000
+- <2023-10-17 Tue 13:26> Make sure to use uid:1000/gid:1000
 
 - <2023-10-17 Tue 14:07> Other config
 
-    - Enable systemd in `/etc/esl.conf`
+    - Enable systemd in `/etc/wsl.conf`
