@@ -33,7 +33,7 @@
   - name: Add brave repo
     yum_repository:
       description: Repo for the brave browser
-      name: Brave Browser
+      name: BraveBrowser
       baseurl: https://brave-browser-rpm-release.s3.brave.com/$basearch
       gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 

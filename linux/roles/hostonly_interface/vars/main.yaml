@@ -1,6 +1,0 @@
----
-
-netif:
-  conn_name: hostonly
-  ip_addr: 192.168.33.100/24
-  gw_addr: 192.168.33.1

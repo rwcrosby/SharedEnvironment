@@ -1,4 +1,0 @@
----
-
-the_user: "{{ ansible_user_id }}"
-pycurrent: "3.11.4"
