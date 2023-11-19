@@ -1,0 +1,4 @@
+---
+
+the_user: "{{ ansible_user_id }}"
+ansible_sudo_pass: "furbrain"

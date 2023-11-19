@@ -1,0 +1,62 @@
+---
+
+- name: Install Python dependencies
+  become: yes
+  apt:
+    update_cache: true
+    pkg:
+      - gcc
+      - build-essential
+      - pkg-config
+      - libbz2-dev 
+      - libffi-dev 
+      - libgdbm-dev 
+      - libgdbm-compat-dev 
+      - liblzma-dev
+      - libncurses5-dev 
+      - libreadline6-dev 
+      - libsqlite3-dev 
+      - libssl-dev
+      - lzma 
+      - lzma-dev 
+      - tk-dev 
+      - uuid-dev 
+      - zlib1g-dev
+      - python3-virtualenv
+
+- name: Get Pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: ~/Projects/pyenv
+
+- name: Path pyenv
+  lineinfile:
+    path: ~/.zshrc
+    create: yes
+    line: "export PATH=$PATH:~/Projects/pyenv/bin"
+
+- name: Install python
+  command:
+    cmd: ~/Projects/pyenv/bin/pyenv install {{ pycurrent }}
+    creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
+
+- name: Create python virtual environment
+  pip:
+    name: pip
+    virtualenv: "~/.local/PVE/Py{{ pycurrent }}"
+    virtualenv_command: "virtualenv -p ~/.pyenv/versions/{{ pycurrent }}/bin/python"
+
+- name: Symlink PyCurrent
+  file:
+    src: "~/.local/PVE/Py{{ pycurrent }}"
+    dest: "~/.local/PVE/PyCurrent"
+    state: link
+
+- name: Install standard Python packages
+  pip:
+    virtualenv: "~/.local/PVE/PyCurrent"
+    name: 
+      - podman-compose
+      - jupyterlab
+      - ansible
+      
