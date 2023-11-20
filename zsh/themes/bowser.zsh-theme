@@ -27,7 +27,6 @@ theme_preexec () {
     fi
 }
 
-
 setprompt () {
     # Need this so the prompt will work.
 
@@ -108,17 +107,17 @@ setprompt () {
     PR_LL="$PR_CYAN$PR_LLCORNER$PR_HBAR"
     PR_LR="$PR_CYAN$PR_HBAR$PR_CYAN$PR_LRCORNER$PR_NO_COLOUR"
 
-    PR_UL_DATA="$PR_GREY($PR_GREEN%$PR_PWDLEN<...<%~%<<$PR_GREY)"
-    PR_UR_DATA="$PR_GREY($PR_YELLOW%D{%H:%M:%S}$PR_GREY)"
-    PR_LL_DATA="$PR_GREY($PR_GREY)"
-    PR_LR_DATA="$PR_GREY($PR_GREY)"
+    PR_UL_DATA="$PR_CYAN($PR_GREEN%$PR_PWDLEN<...<%~%<<$PR_CYAN)"
+    PR_UR_DATA="$PR_CYAN($PR_YELLOW%D{%H:%M:%S}$PR_CYAN)"
+    PR_LL_DATA="$PR_CYAN($PR_CYAN)"
+    PR_LR_DATA="$PR_CYAN($PR_CYAN)"
 
     # Finally, the prompt.
 
     PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_UL$PR_BLUE`virtualenv_prompt_info`$PR_CYAN$PR_HBAR$PR_UL_DATA$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
-$PR_CYAN%(!.%SROOT%s.%n)$PR_GREY@$PR_GREEN%m\
-$PR_GREY)$PR_CYAN$PR_HBAR$PR_URCORNER\
+$PR_UL$PR_BLUE`virtualenv_prompt_info`$PR_CYAN$PR_HBAR$PR_UL_DATA$PR_HBAR$PR_HBAR$PR_CYAN${(e)PR_FILLBAR}$PR_HBAR$PR_CYAN(\
+$PR_CYAN%(!.%SROOT%s.%n)$PR_CYAN@$PR_GREEN%m\
+$PR_CYAN)$PR_CYAN$PR_HBAR$PR_URCORNER\
 
 $PR_CYAN$PR_LLCORNER$PR_HBAR(\
 $PR_YELLOW%D{%H:%M:%S}\
