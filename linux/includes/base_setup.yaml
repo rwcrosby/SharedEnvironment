@@ -63,11 +63,11 @@
   vars:
     links:
       ~/.tmux.conf: 
-        tmux/.tmux.conf
+        tmux/tmux.conf
       ~/.config/flake8: 
         python/flake8
       ~/.config/direnv/direnvrc: 
-        .direnvrc
+        direnvrc
       ~/.latexmkrc: 
         latex/latexmkrc
 
