@@ -1,10 +1,11 @@
 # My aliases
 
-if [ $(command -v batcat) ]; then
-    mybat=batcat
-else
-    mybat=bat
+if [ !$(command -v bat) ]; then
+    if [ $(command -v batcat) ]; then
+        alias bat=batcat
+    fi
 fi
+
 alias b="$mybat -Ppn"
 
 alias mc="mc -X --nosubshell"
