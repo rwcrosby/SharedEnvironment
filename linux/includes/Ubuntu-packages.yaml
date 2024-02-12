@@ -14,7 +14,9 @@
       - mc
       - ncdu
       - podman
+      - podman-compose
       - openssh-server
+      - skopeo
       - tmux
       - zsh
 
