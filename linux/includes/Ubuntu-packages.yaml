@@ -4,14 +4,23 @@
     update_cache: true
     pkg:
       - aptitude
+      - bat
       - direnv
+      - duf
+      - hexyl
       - htop
+      - iperf3
       - net-tools
-      - tmux
       - mc
+      - ncdu
       - podman
+      - podman-compose
       - openssh-server
+      - skopeo
+      - tmux
       - zsh
+
+
 
 - name: Packages not to be installed in wsl
   become: yes

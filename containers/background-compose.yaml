@@ -38,18 +38,18 @@ services:
 
     depends_on:
       - registry
-    image: myreg.local/utils/portainer:latest
+    image: myreg.local/utils/portainer-ce:latest
     container_name: portainer
-    privileged: true
+    # privileged: true
     restart: unless-stopped
     volumes:
       # - /run/user/501/podman/podman.sock:/var/run/docker.sock:Z
       
-      # Works on WSL 
-      # - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:Z
+      # Works on WSL and ubuntu 
+      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:Z
 
       # Works on MacOS with --rootful on the init
-      - /run/podman/podman.sock:/var/run/docker.sock:Z
+      # - /run/podman/podman.sock:/var/run/docker.sock:Z
 
       - portainer_data:/data
     ports:
