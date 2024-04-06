@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Generate a shorted prompt for either bash or fish
+Generate a shortened prompt for either bash or fish
 """
 
 __author__ = """

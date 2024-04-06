@@ -16,12 +16,12 @@ services:
 
     depends_on:
       - registry
-    image: myreg.local/utils/registry-ui:main
+    image: myreg.local/utils/registry-ui:latest
     container_name: registry-ui
     restart: unless-stopped
     environment:
       - SINGLE_REGISTRY=true
-      - REGISTRY_TITLE=Docker Registry UI
+      - REGISTRY_TITLE=Local Registry
       - DELETE_IMAGES=true
       - SHOW_CONTENT_DIGEST=true
       - NGINX_PROXY_PASS_URL=http://registry:5000
@@ -40,20 +40,22 @@ services:
       - registry
     image: myreg.local/utils/portainer-ce:latest
     container_name: portainer
-    # privileged: true
+    privileged: true
     restart: unless-stopped
     volumes:
-      # - /run/user/501/podman/podman.sock:/var/run/docker.sock:Z
+      # Working on all systems at this point as long as the uid is correct
+      - /run/user/501/podman/podman.sock:/var/run/docker.sock:Z
       
       # Works on WSL and ubuntu 
-      - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:Z
+      # - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:Z
 
       # Works on MacOS with --rootful on the init
       # - /run/podman/podman.sock:/var/run/docker.sock:Z
 
       - portainer_data:/data
     ports:
-      - 9444:9443
+      - 9443:9443
+      - 8000:8000
 
 volumes:
   registry_data:
