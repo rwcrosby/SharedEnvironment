@@ -40,11 +40,10 @@ services:
       - registry
     image: myreg.local/utils/portainer-ce:latest
     container_name: portainer
-    privileged: true
     restart: unless-stopped
     volumes:
       # Working on all systems at this point as long as the uid is correct
-      - /run/user/501/podman/podman.sock:/var/run/docker.sock:Z
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock:Z
       
       # Works on WSL and ubuntu 
       # - ${XDG_RUNTIME_DIR}/podman/podman.sock:/var/run/docker.sock:Z
@@ -54,7 +53,7 @@ services:
 
       - portainer_data:/data
     ports:
-      - 9443:9443
+      - 9443:9444
       - 8000:8000
 
 volumes:

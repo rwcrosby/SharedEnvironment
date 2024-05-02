@@ -1,7 +1,7 @@
 # My aliases
 
-if [ !$(command -v bat) ]; then
-    if [ $(command -v batcat) ]; then
+if [ !"$(command -v bat)" ]; then
+    if [ "$(command -v batcat)" ]; then
         alias bat=batcat
     fi
 fi
