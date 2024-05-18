@@ -40,7 +40,6 @@ services:
       - registry
     image: myreg.local/utils/portainer-ce:latest
     container_name: portainer
-    privileged: true
     restart: unless-stopped
     volumes:
       # Working on all systems at this point as long as the uid is correct
@@ -54,7 +53,7 @@ services:
 
       - portainer_data:/data
     ports:
-      - 9443:9443
+      - 9443:9444
       - 8000:8000
 
 volumes:
