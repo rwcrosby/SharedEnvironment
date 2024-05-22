@@ -53,7 +53,7 @@ services:
 
       - portainer_data:/data
     ports:
-      - 9443:9444
+      - 9443:9443
       - 8000:8000
 
 volumes:
