@@ -20,11 +20,9 @@
       - tmux
       - zsh
 
-
-
 - name: Packages not to be installed in wsl
   become: yes
-  when: ansible_virtualization_type != "wsl"
+  when: ansible_virtualization_type != "wsl" and gui_apps
   block:
 
   - name: Add brave gpg key
@@ -37,7 +35,6 @@
     become: yes
     apt_repository:
       repo: "deb https://brave-browser-apt-release.s3.brave.com/ stable main"
-
 
   - name: Additional packages
     become: yes
