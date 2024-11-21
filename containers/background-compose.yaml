@@ -34,6 +34,8 @@ services:
     ports:
       - 8088:80
 
+
+  # Does not work with containerd
   portainer:
 
     depends_on:

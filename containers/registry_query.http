@@ -1,1 +1,10 @@
-http://localhost:5000/v2/_catalog 
+http://localhost:5000/v2/_catalog
+
+###
+
+http://myreg.local:5000/v2/_catalog
+
+
+###
+
+https://myreg.local/v2/utils/portainer-ce/manifests/latest
