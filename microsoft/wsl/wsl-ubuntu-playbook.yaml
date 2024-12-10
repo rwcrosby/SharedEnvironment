@@ -1,10 +1,15 @@
-- name: Intall stuff into wsl
+- name: Install stuff into wsl
   hosts: localhost
   vars:
     the_user: "{{ ansible_user_id }}"
-    pycurrent: "3.11.4"
+    ansible_sudo_pass: "%Chainer%927"
+    pycurrent: "3.13.0"
+    vagrant: false
+    python: true
 
   tasks:
+
+    - import_tasks: ../../linux/includes/sudo.yaml
 
     - name: Install utilities
       become: yes
@@ -12,83 +17,51 @@
         update_cache: true
         pkg:
           - aptitude
+          - bat
           - direnv
-          - net-tools
-          - gcc
-          - build-essential
-          - pkg-config
-          - libbz2-dev 
-          - libffi-dev 
-          - libgdbm-dev 
-          - libgdbm-compat-dev 
-          - liblzma-dev
-          - libncurses5-dev 
-          - libreadline6-dev 
-          - libsqlite3-dev 
+          - duf
+          - hexyl
           - libssl-dev
-          - lzma 
-          - lzma-dev 
-          - tk-dev 
-          - uuid-dev 
-          - zlib1g-dev
+          - mc
+          - ncdu
           - python3-virtualenv
+          - silversearcher-ag
+          - skopeo
+          - zlib1g-dev
+          - zsh
 
-    - name: Add vagrant gpg key
-      become: yes
-      apt_key:
-        url: https://apt.releases.hashicorp.com/gpg
-        state: present
+    - name: Vagrant
+      when: vagrant
+      block:
 
-    - name: Add vagrant repo
-      become: yes
-      apt_repository:
-        repo: "deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+      - name: Add vagrant gpg key
+        become: yes
+        apt_key:
+          url: https://apt.releases.hashicorp.com/gpg
+          state: present
 
-    - name: Install vagrant
-      become: yes
-      apt:
-        update_cache: true
-        pkg:
-          - vagrant
+      - name: Add vagrant repo
+        become: yes
+        apt_repository:
+          repo: "deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
 
-    - name: Connect WSL Vagrant to Windows Vagrant
-      lineinfile:
-        path: ~/.zshrc
-        create: no
-        line: "{{ item }}"
-      loop:
-        - export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
-        - export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/{{ the_user }}/"
-        - export PATH=$PATH:"/mnt/c/Program Files/Oracle/VirtualBox"
-        - export PATH=$PATH:"/mnt/c/Windows/System32/WindowsPowerShell/v1.0"
+      - name: Install vagrant
+        become: yes
+        apt:
+          update_cache: true
+          pkg:
+            - vagrant
 
-    - name: Get Pyenv
-      git:
-        repo: https://github.com/pyenv/pyenv.git
-        dest: ~/Projects/pyenv
-
-    - name: Path pyenv
-      lineinfile:
-        path: ~/.zshrc
-        create: no
-        line: "export PATH=$PATH:~/Projects/pyenv/bin"
-
-    - name: Install python
-      command:
-        cmd: ~/Projects/pyenv/bin/pyenv install {{ pycurrent }}
-        creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
-
-    - name: Create python virtual environment
-      pip:
-        name: pip
-        virtualenv: "~/.local/PVE/Py{{ pycurrent }}"
-        virtualenv_command: "virtualenv -p ~/.pyenv/versions/{{ pycurrent }}/bin/python"
-
-    - name: Symlink PyCurrent
-      file:
-        src: "~/.local/PVE/Py{{ pycurrent }}"
-        dest: "~/.local/PVE/PyCurrent"
-        state: link
+      - name: Connect WSL Vagrant to Windows Vagrant
+        lineinfile:
+          path: ~/.zshrc
+          create: no
+          line: "{{ item }}"
+        loop:
+          - export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+          - export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/{{ the_user }}/"
+          - export PATH=$PATH:"/mnt/c/Program Files/Oracle/VirtualBox"
+          - export PATH=$PATH:"/mnt/c/Windows/System32/WindowsPowerShell/v1.0"
 
     - name: Change user shell to zsh 
       become: yes
@@ -119,6 +92,75 @@
         - plugins=(virtualenv)
         - source $ZSH_CUSTOM/zshrc
 
+    - name: Python and PyEnv
+      when: python
+      block:
+
+      - name: Check for repo existing
+        stat: 
+          path: ~/.pyenv/.git
+        register: pyenv
+
+      - when: not pyenv.stat.exists
+        block:
+
+        - name: Fetch pyenv
+          ansible.builtin.uri:
+            url: https://pyenv.run
+            return_content: yes
+          register: pyenv_installer
+
+        - name: Run pyenv installer
+          ansible.builtin.shell:
+            cmd: sh -s -- -y
+            stdin: "{{ pyenv_installer.content }}"
+
+      - name: Path pyenv
+        lineinfile:
+          path: ~/.zshrc
+          create: no
+          line: "export PATH=$PATH:~/.pyenv/bin"
+
+      - name: Install python
+        command:
+          cmd: ~/.pyenv/bin/pyenv install {{ pycurrent }}
+          creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
+
+      - name: Create python virtual environment
+        pip:
+          name: pip
+          virtualenv: "~/.local/PVE/Py{{ pycurrent }}"
+          virtualenv_command: "virtualenv -p ~/.pyenv/versions/{{ pycurrent }}/bin/python"
+
+      - name: Symlink PyCurrent
+        file:
+          src: "~/.local/PVE/Py{{ pycurrent }}"
+          dest: "~/.local/PVE/PyCurrent"
+          state: link
+
+    - name: Create configuration directories
+      file:
+        path: ~/.config/direnv
+        state: directory
+        
+    - name: Create symlinks into the shared environment
+      file:
+        dest: "{{item.key}}"
+        src: "~/Projects/SharedEnvironment/{{item.value}}"
+        state: link
+      loop:
+        "{{ links | dict2items }}"
+      vars:
+        links:
+          ~/.tmux.conf: 
+            tmux/tmux.conf
+          ~/.config/flake8: 
+            python/flake8
+          ~/.config/direnv/direnvrc: 
+            direnvrc
+          ~/.latexmkrc: 
+            latex/latexmkrc
+        
 
 # Path Powershell
 # c:\Users\rcrosby\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell
