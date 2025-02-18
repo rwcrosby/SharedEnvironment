@@ -13,8 +13,8 @@
       - net-tools
       - mc
       - ncdu
-      - podman
-      - podman-compose
+      # - podman
+      # - podman-compose
       - silversearcher-ag
       - skopeo
       - tmux

@@ -2,7 +2,7 @@
   hosts: localhost
   vars:
     the_user: "{{ ansible_user_id }}"
-    ansible_sudo_pass: furbrain
+    ansible_sudo_pass: Halbert^^279
     pycurrent: 3.12.6
     gui_apps: false
 

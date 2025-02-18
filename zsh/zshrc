@@ -47,8 +47,8 @@ esac
 
 # My directories
 
-path=(~/.local/bin $path)
-manpath=(~/.local/share/man $manpath)
+[ -d ~/.local/bin ] && path=(~/.local/bin $path)
+[ -d ~/.local/share/man ] && manpath=(~/.local/share/man $manpath)
 
 # Colors
 

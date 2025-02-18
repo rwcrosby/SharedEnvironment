@@ -2,13 +2,6 @@
 
 - include_tasks: "{{ ansible_facts['distribution'] }}-packages.yaml"
 
-- name: Make sure avahi is started and enabled
-  become: yes
-  systemd:
-    name: avahi-daemon
-    enabled: true
-    state: started
-
 - name: Change user shell to zsh 
   become: yes
   user:
