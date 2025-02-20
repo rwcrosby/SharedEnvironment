@@ -10,41 +10,44 @@ local PR_USER PR_USER_OP PR_PROMPT PR_HOST
 if [[ $UID -ne 0 ]]; then # normal user
   PR_USER='%F{green}%n%f'
   PR_USER_OP='%F{green}%#%f'
-  PR_PROMPT='%f➤ %f'
+  PR_PROMPT='%K{yellow}%F{black} ➤ %f%k'
 else # root
   PR_USER='%F{red}%n%f'
   PR_USER_OP='%F{red}%#%f'
-  PR_PROMPT='%F{red}➤ %f'
+  PR_PROMPT='%F{red}➤%f'
 fi
 
 # Format the time
-PR_TIME='%F{green}%*%f'
+PR_TIME='%K{yellow}%F{black}%*%f%k'
 
 # Check if we are on SSH or not
 if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-  PR_HOST='%F{red}%M%f' # SSH
+  PR_HOST='%K{blue}%F{red}%M|%f%k' # SSH
 else
-  PR_HOST='%F{green}%m%f' # no SSH
+  PR_HOST='%K{blue}%F{white}%m|%f%k' # no SSH
 fi
 
+# Display an emoji...because why not
+
+PR_EMOJI=$'\U1f43f'
 
 local return_code="%(?..%F{red}%? ↵%f)"
 
 # local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
 local user_host="${PR_HOST}"
-local current_dir="%B%F{blue}$(prompt_dir)%f%b"
+local current_dir="%K{cyan}%F{white}$(prompt_dir)%f%k"
 local git_branch='$(git_prompt_info)'
 local venv_prompt='$(virtualenv_prompt_info)' 
 
-PROMPT="╭─${venv_prompt}${user_host} ${current_dir} ${git_branch}
-╰─$PR_TIME $PR_PROMPT "
+PROMPT="╭─${venv_prompt}${user_host}${current_dir}${git_branch}$PR_EMOJI
+╰─$PR_TIME$PR_PROMPT "
 RPROMPT="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="› %f"
+ZSH_THEME_GIT_PROMPT_PREFIX="%K{magenta}%F{white}|"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f%k"
 ZSH_THEME_RUBY_PROMPT_PREFIX="%F{red}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%f"
-ZSH_THEME_VIRTUALENV_PREFIX="%F{red}("
-ZSH_THEME_VIRTUALENV_SUFFIX=")%f "
+ZSH_THEME_VIRTUALENV_PREFIX="%K{green}%F{white}"
+ZSH_THEME_VIRTUALENV_SUFFIX="|%f%k"
 
 }
