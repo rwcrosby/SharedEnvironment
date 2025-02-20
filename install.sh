@@ -1,6 +1,7 @@
 #!/bin/bash
 
-touch ~/this
+# This script will configure a vscode devcontainer setting up zsh in particular
+# Need to set vscode dotfile support to pull the repo
 
 ln -s ${PWD}/tmux/tmux.conf ~/.tmux.conf 
 mkdir -p ~/.config/direnv
