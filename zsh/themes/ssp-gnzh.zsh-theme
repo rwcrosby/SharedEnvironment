@@ -20,16 +20,17 @@ fi
 # Format the time
 PR_TIME='%K{yellow}%F{black}%*%f%k'
 
-# Check if we are on SSH or not
-if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
-  PR_HOST='%K{blue}%F{red}%M|%f%k' # SSH
+# In a devcontainer?
+if [ -f /.dockerenv ]; then
+  PR_HOST="%K{white}%F{blue}%M|%f%k"
 else
-  PR_HOST='%K{blue}%F{white}%m|%f%k' # no SSH
+  PR_HOST="%K{blue}%F{white}%M|%f%k"
 fi
 
 # Display an emoji...because why not
 
 PR_EMOJI=$'\U1f43f'
+# PR_EMOJI=$'?'
 
 local return_code="%(?..%F{red}%? ↵%f)"
 

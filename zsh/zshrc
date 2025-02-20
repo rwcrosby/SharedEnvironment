@@ -54,7 +54,7 @@ esac
 
 if [[ "$TERM" != "dumb" ]]; then
 
-    eval $(dircolors ${HERE}/zsh/dircolors)
+    eval $(dircolors -b ${HERE}/zsh/dircolors)
 
     [ $(command -v lesspipe.sh) ] && export LESSOPEN="|$(which lesspipe.sh) %s"
     [ $(command -v lesspipe) ] && export LESSOPEN="|$(which lesspipe) %s"
@@ -71,22 +71,26 @@ fi
 [ $(command -v direnv) ] && eval "$(direnv hook zsh)"
 
 # Python
+
 PVE=~/.local/PVE
+[ -d $PVE ] && {
 
-pushd $PVE &> /dev/null
+    pushd $PVE &> /dev/null
 
-for d in *(N) 
-    alias ${d%/}="source $PVE/${d%/}/bin/activate"
+    for d in *(N) 
+        alias ${d%/}="source $PVE/${d%/}/bin/activate"
 
-popd &> /dev/null
+    popd &> /dev/null
 
-[ -d $HERE/python ] && export PYTHONPATH=$HERE/python
+    [ -d $HERE/python ] && export PYTHONPATH=$HERE/python
 
-# Since all we're using pyenv for is getting python distributions 
-# we don't actually install the hooks
+    # Since all we're using pyenv for is getting python distributions 
+    # we don't actually install the hooks
 
-[ -d ~/.pyenv ] && export PYENV_ROOT=~/.pyenv
-[ -d ~/.pyenv/bin ] && export path=(~/.pyenv/bin $path)
+    [ -d ~/.pyenv ] && export PYENV_ROOT=~/.pyenv
+    [ -d ~/.pyenv/bin ] && export path=(~/.pyenv/bin $path)
+
+}
 
 # Default editor
 [ $(command -v nano) ] && {
