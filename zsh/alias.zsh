@@ -17,3 +17,8 @@ alias l=less
 alias la='ls -lAh --color=auto'
 alias ll='ls -lh --color=auto'
 alias ls='ls --color=auto'
+
+# Git
+
+# Usage: gld branch-name
+alias gld="git log --decorate --oneline --graph develop" 

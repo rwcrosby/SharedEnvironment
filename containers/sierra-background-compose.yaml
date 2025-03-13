@@ -1,0 +1,38 @@
+services:
+
+  registry-ui:
+
+    image: containers.github.sierraspace.com/ralph-crosby/utils/registry-ui:latest
+    container_name: registry-ui
+    restart: unless-stopped
+    environment:
+      - SINGLE_REGISTRY=true
+      - REGISTRY_TITLE="SierraSpace Personal"
+      - DELETE_IMAGES=true
+      - SHOW_CONTENT_DIGEST=true
+      - NGINX_PROXY_PASS_URL=https://containers.github.sierraspace.com/ralph-crosby
+      - SHOW_CATALOG_NB_TAGS=true
+      - CATALOG_MIN_BRANCHES=1
+      - CATALOG_MAX_BRANCHES=1
+      - TAGLIST_PAGE_SIZE=100
+      - CATALOG_ELEMENTS_LIMIT=1000
+    ports:
+      - 8088:80
+
+  portainer:
+
+    image: containers.github.sierraspace.com/ralph-crosby/utils/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:Z
+      - portainer_data:/data
+    ports:
+      - 9443:9443
+      - 8000:8000
+
+volumes:
+  registry_data:
+    name: podman_registry_data
+  portainer_data:
+    name: podman_portainer_data
