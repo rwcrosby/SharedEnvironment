@@ -1,0 +1,11 @@
+---
+
+- name: Create ssh directory
+  file:
+    path: ~/.ssh
+    state: directory
+
+- name: Generate ssh key
+  openssh_keypair:
+    path: ~/.ssh/id_ecdsa
+    type: ecdsa

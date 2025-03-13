@@ -1,0 +1,8 @@
+---
+
+- name: Change user shell to zsh 
+  become: yes
+  user:
+    name: "{{ the_user }}"
+    shell: /bin/zsh
+

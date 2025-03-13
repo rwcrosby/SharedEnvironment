@@ -1,0 +1,24 @@
+---
+
+- name: Download oh-my-zsh
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/oh-my-zsh.sh
+    mode: '0777'
+
+- name: Install oh-my-zsh
+  command:
+    cmd: /tmp/oh-my-zsh.sh
+    creates: ~/.oh-my-zsh
+
+- name: Add connection to my updates
+  lineinfile:
+    path: ~/.zshrc
+    create: no
+    line: "{{ item }}"
+    insertbefore: "^source.*oh-my-zsh.sh$"
+  loop:
+    - ZSH_THEME="ssp-gnzh"
+    - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
+    - plugins=(virtualenv)
+    - source $ZSH_CUSTOM/zshrc
