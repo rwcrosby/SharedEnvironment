@@ -1,0 +1,23 @@
+- name: Install utilities (restricted)
+  shell: 
+    stdin: "{{ ansible_sudo_pass }}"
+    cmd: |
+      sudo -S apt install -y \
+      {% for p in pkgs %}
+        {{p}} \
+      {% endfor %}
+  vars:
+    pkgs:
+    - bat
+    - direnv
+    - duf
+    - hexyl
+    - htop
+    - iperf3
+    - net-tools
+    - mc
+    - ncdu
+    - silversearcher-ag
+    - skopeo
+    - tmux
+    - zsh

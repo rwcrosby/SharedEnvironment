@@ -1,0 +1,27 @@
+---
+
+- name: Create configuration directories
+  file:
+    path: ~/.config/direnv
+    state: directory
+
+- name: Create symlinks into the shared environment
+  file:
+    dest: "{{item.key}}"
+    src: "~/Projects/SharedEnvironment/{{item.value}}"
+    state: link
+  loop:
+    "{{ links | dict2items }}"
+  vars:
+    links:
+      ~/.tmux.conf: 
+        tmux/tmux.conf
+      ~/.config/flake8: 
+        python/flake8
+      ~/.config/direnv/direnvrc: 
+        direnvrc
+      ~/.latexmkrc: 
+        latex/latexmkrc
+      ~/.ansible.cfg: 
+        linux/ansible.cfg
+

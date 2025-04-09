@@ -1,7 +1,5 @@
 ---
 
-- include_tasks: "{{ ansible_facts['distribution'] }}-packages.yaml"
-
 - name: Change user shell to zsh 
   become: yes
   user:
