@@ -1,0 +1,18 @@
+services:
+
+  portainer:
+
+    image: https://artifacts.lab.sstide.com/artifactory/kamino/import/portainer/portainer-ce:lts
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+    # Working on wsl2 docker
+    - /var/run/docker.sock:/var/run/docker.sock:Z
+    - portainer_data:/data
+    ports:
+    - 9443:9443
+    - 8000:8000
+
+volumes:
+  portainer_data:
+    name: portainer_data
