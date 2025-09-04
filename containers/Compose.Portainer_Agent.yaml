@@ -1,7 +1,7 @@
 services:
 
   agent:
-      image: ${PORTAINER_REGISTRY}/portainer/agent:latest
+      image: ${PORTAINER_REGISTRY}/portainer/agent:lts
       container_name: portainer
       restart: unless-stopped
       ports:
