@@ -13,8 +13,8 @@ typeset -U PATH path manpath
 case $OSTYPE in
     darwin*)
 
-	    LDLIB=DYLD_LIBRARY_PATH
-	    export TIME="/usr/bin/time -l"
+        LDLIB=DYLD_LIBRARY_PATH
+        export TIME="/usr/bin/time -l"
         
         # Homebrew - Need to use real path since $HOMEBREW_PREFIX isn't set yet
         [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
@@ -35,8 +35,8 @@ case $OSTYPE in
 
     linux*)
         
-	    LDLIB=LD_LIBRARY_PATH
-	    export TIME="/usr/bin/time --verbose"
+        LDLIB=LD_LIBRARY_PATH
+        export TIME="/usr/bin/time --verbose"
 
         # Set the display for wsl
         [[ $(uname -a) == *WSL* ]] && export DISPLAY=$(route -n | grep UG | head -n1 | awk '{print $2}'):0
@@ -71,7 +71,6 @@ fi
 [ $(command -v direnv) ] && eval "$(direnv hook zsh)"
 
 # Python
-
 PVE=~/.local/PVE
 [ -d $PVE ] && {
 
@@ -97,10 +96,6 @@ PVE=~/.local/PVE
     export EDITOR=$(which nano)
     export VISUAL=$(which nano)
 }
-
-# Bat pager theme
-
-export BAT_THEME="GitHub"
 
 # Set emacs editing mode
 bindkey -e

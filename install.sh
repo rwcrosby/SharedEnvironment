@@ -3,9 +3,11 @@
 # This script will configure a vscode devcontainer setting up zsh in particular
 # Need to set vscode dotfile support to pull the repo
 
-ln -s ${PWD}/tmux/tmux.conf ~/.tmux.conf 
+ln -s ${PWD}/tmux/.tmux.conf ~/.tmux.conf 
 mkdir -p ~/.config/direnv
-ln -s ${PWD}/direnvrc ~/.config/direnv/direnvrc
+ln -s ${PWD}/direnv/.direnvrc ~/.config/direnv/.direnvrc
+
+cp ${PWD}/direnv/.envrc ~/.envrc
 
 cat << EOF > ~/.zshrc
 export ZSH="$HOME/.oh-my-zsh" 

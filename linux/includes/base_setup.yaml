@@ -58,7 +58,12 @@
       ~/.config/flake8: 
         python/flake8
       ~/.config/direnv/direnvrc: 
-        direnvrc
+        direnv/.direnvrc
       ~/.latexmkrc: 
         latex/latexmkrc
 
+- name: Copy a base .envrc file
+  file:
+    src: "~/Projects/SharedEnvironment/direnv/.envrc"
+    dest: "~/.envrc"
+    state: present
