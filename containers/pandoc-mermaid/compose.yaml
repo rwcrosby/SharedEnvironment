@@ -1,0 +1,9 @@
+services:
+
+  pandoc:
+
+    build:
+      context: .
+      dockerfile: dockerfile.pandoc
+      tags:
+        - "pandoc-mermaid:latest"
