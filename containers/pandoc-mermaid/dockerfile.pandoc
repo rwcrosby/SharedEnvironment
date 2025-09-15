@@ -3,44 +3,48 @@ FROM node:18.20-alpine3.19 AS build
 ENV CHROME_BIN="/usr/bin/chromium-browser" \
     PUPPETEER_SKIP_DOWNLOAD="true"
 
-RUN apk add chromium
+RUN apk add chromium git
+
+RUN git clone https://github.com/mermaid-js/mermaid-cli.git
+RUN git clone https://github.com/raghur/mermaid-filter.git
 
 WORKDIR /mermaid-cli
-COPY mermaid-cli/ /mermaid-cli/
+# COPY mermaid-cli/ /mermaid-cli/
 RUN npm install \
     && npm pack
 
 WORKDIR /mermaid-filter
-COPY mermaid-filter/ /mermaid-filter/
+# COPY mermaid-filter/ /mermaid-filter/
 RUN npm install \
     && npm pack
 
-RUN ls -l
-
 FROM node:18.20-alpine3.19 AS mermaid-cli
 
-WORKDIR /app
+# WORKDIR /app
 
 COPY --from=build /mermaid-cli/*-mermaid-cli-*.tgz /install/
 COPY --from=build /mermaid-filter/mermaid-filter-*.tgz /install/
 
-ADD mermaid-cli/install-dependencies.sh install-dependencies.sh
-RUN chmod 755 install-dependencies.sh && /bin/sh install-dependencies.sh
+COPY --from=build /mermaid-cli/puppeteer-config.json /
+COPY --from=build /mermaid-cli/install-dependencies.sh /
 
-RUN apk add pandoc
+# ADD mermaid-cli/install-dependencies.sh install-dependencies.sh
+RUN chmod 755 install-dependencies.sh && \
+    /bin/sh install-dependencies.sh
+
+RUN apk add pandoc texlive
 
 RUN npm install -g $(ls -d /install/*.tgz)
 
+# RUN adduser -D mermaidcli
+# USER mermaidcli
+# WORKDIR /home/mermaidcli
 
-RUN adduser -D mermaidcli
-USER mermaidcli
-WORKDIR /home/mermaidcli
-
-ADD .puppeteerrc.json  /.puppeteerrc.json
+# ADD .puppeteerrc.json  /.puppeteerrc.json
 
 WORKDIR /data
 
-ENV MERMAID_FILTER_PUPPETEER_CONFIG="/.puppeteerrc.json"
+ENV MERMAID_FILTER_PUPPETEER_CONFIG="/puppeteer-config.json"
 ENV MERMAID_FILTER_CMD_MMDC="/usr/local/bin/mmdc"
 
 # ENTRYPOINT ["/home/mermaidcli/node_modules/.bin/mmdc", "-p", "/.puppeteerrc.json"]

@@ -6,4 +6,11 @@ services:
       context: .
       dockerfile: dockerfile.pandoc
       tags:
-        - "pandoc-mermaid:latest"
+        - pandoc-mermaid:latest
+
+    image: pandoc-mermaid:latest
+    container_name: pandoc
+    user: ${UID_GID}
+    tty: true
+    volumes:
+      - ${PWD}:/data
