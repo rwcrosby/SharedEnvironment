@@ -97,5 +97,10 @@ PVE=~/.local/PVE
     export VISUAL=$(which nano)
 }
 
+# nnn file manager configuration
+
+export NNN_OPENER="batcat --paging always"
+export NNN_OPTS="dc"
+
 # Set emacs editing mode
 bindkey -e
