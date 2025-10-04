@@ -2,13 +2,13 @@
   hosts: localhost
   vars:
     the_user: "{{ ansible_user_id }}"
-    ansible_sudo_pass: Halbert^^279
-    pycurrent: 3.13.1
+    ansible_sudo_pass: "@Dilation_4750@"
+    pycurrent: 3.13.5
 
   tasks:
 
   - import_tasks: includes/nopass_sudo.yaml
-  - import_tasks: "{{ ansible_facts['distribution'] }}_packages.yaml"
+  - include_tasks: includes/{{ ansible_facts['distribution'] }}_packages.yaml
   - import_tasks: includes/change_shell.yaml
   - import_tasks: includes/oh-my-zsh.yaml
   - import_tasks: includes/ssh_keys.yaml
