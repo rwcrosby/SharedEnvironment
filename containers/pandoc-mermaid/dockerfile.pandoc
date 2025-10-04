@@ -7,6 +7,7 @@ RUN apk add chromium git
 
 RUN git clone https://github.com/mermaid-js/mermaid-cli.git
 RUN git clone https://github.com/raghur/mermaid-filter.git
+RUN git clone https://github.com/pandoc-ext/pagebreak.git
 
 WORKDIR /mermaid-cli
 RUN npm install \
@@ -23,6 +24,11 @@ COPY --from=build /mermaid-filter/mermaid-filter-*.tgz /install/
 
 COPY --from=build /mermaid-cli/puppeteer-config.json /
 COPY --from=build /mermaid-cli/install-dependencies.sh /
+
+COPY --from=build /pagebreak/pagebreak.lua /pandoc/
+COPY *.docx /pandoc/
+
+RUN ls -l /pandoc
 
 RUN chmod 755 install-dependencies.sh && \
     /bin/sh install-dependencies.sh
