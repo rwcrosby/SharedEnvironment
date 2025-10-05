@@ -1,0 +1,9 @@
+containers_incus:
+  hosts:
+    bowser:
+      ansible_connection: community.general.incus
+
+containers_ssh:
+  hosts:
+    bowser.iot.home:
+      ansible_user: rcrosby

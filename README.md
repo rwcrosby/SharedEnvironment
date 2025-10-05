@@ -3,8 +3,8 @@
 This is a simple project holding the various files that are shared amongst the Mac and Linux systems. See the individual directories for details.
 
 - Containers
-- Fish Shell
 - LaTeX
+- Linux
 - Microsoft templates
 - Python
 - TMUX
@@ -12,6 +12,7 @@ This is a simple project holding the various files that are shared amongst the M
 
 - Obsolete Sections
   - Bash Shell (Obsolete)
+  - Fish Shell
   - EMACS (Obsolete)
   - Terminator (Obsolete)
 

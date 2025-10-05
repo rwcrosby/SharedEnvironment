@@ -1,0 +1,95 @@
+- name: Setup incus instance
+
+  hosts: containers_incus
+
+  vars:
+    the_user: rcrosby
+
+  tasks:
+
+  - name: Install basic tools
+    apt:
+      update_cache: true
+      pkg:
+        - aptitude
+        - bat
+        - direnv
+        - duf
+        - git
+        - htop
+        - mc
+        - nano
+        - ncdu
+        - nnn
+        - openssh-server
+        - silversearcher-ag
+        - tmux
+        - zsh
+
+  - name: Create me
+    user:
+      name: "{{ the_user }}"
+      append: true
+      groups: ['sudo']
+      password: "{{ 'furbrain'|password_hash('sha512') }}"
+      shell: /usr/bin/zsh
+
+  - name: Allow me to use sudo without needing a password
+    become: yes
+    lineinfile:
+      dest: /etc/sudoers
+      line: "{{ the_user }} ALL=(ALL) NOPASSWD: ALL"
+      validate: 'visudo -cf %s'
+
+  - name: Copy ssh keys
+    authorized_key:
+      user: rcrosby
+      state: present
+      key: "{{ lookup('file', '/home/rcrosby/.ssh/id_ecdsa.pub') }}"
+
+- name: ssh based setup
+  hosts: containers_ssh
+  tasks:
+
+  - name: Download oh-my-zsh
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /tmp/oh-my-zsh.sh
+      mode: '0777'
+
+  - name: Install oh-my-zsh
+    command:
+      cmd: /tmp/oh-my-zsh.sh --unattended
+      creates: ~/.oh-my-zsh
+
+  - name: Create projects directory
+    file:
+      path: ~/Projects
+      state: directory
+
+  - name: symlink stuff
+    file:
+      src: "{{item.value}}"
+      dest: "{{item.key}}"
+      state: link
+    loop:
+      "{{ links | dict2items }}"
+    vars:
+      links:
+        ~/Projects/SharedEnvironment: 
+          /mnt/SharedEnvironment
+        ~/.tmux.conf: 
+          ~/Projects/SharedEnvironment/tmux/.tmux.conf
+
+  - name: Add connection to my updates
+    lineinfile:
+      path: ~/.zshrc
+      create: no
+      line: "{{ item }}"
+      insertbefore: "^source.*oh-my-zsh.sh$"
+    loop:
+      - ZSH_THEME="bowser"
+      - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
+      - plugins=(virtualenv)
+      - source $ZSH_CUSTOM/.zshrc
+

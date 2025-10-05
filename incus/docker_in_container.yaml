@@ -1,0 +1,28 @@
+- name: Setup docker on incus container
+  hosts: localhost
+  tasks:
+
+  - name: Add docker in container profile
+    command: 
+      cmd: incus profile add bowser DockerInContainer
+    ignore_errors: true
+
+- name: Add docker packages
+  hosts: containers_ssh
+  become: yes
+  vars:
+    the_user: rcrosby
+  tasks:
+
+  - name: Install docker packages
+    apt:
+      pkg:
+        - docker.io
+        - docker-compose
+
+  - name: Add to docker group
+    user:
+      name: "{{ the_user }}"
+      append: true
+      groups:
+      - docker
