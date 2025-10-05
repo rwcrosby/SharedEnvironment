@@ -1,5 +1,7 @@
 mqtt:
-  enabled: false
+  host: muffin.iot.home
+  user: frigate
+  password: fdJA0OQ8yA3C750V
 
 cameras:
   back_yard:
@@ -28,6 +30,4 @@ cameras:
       height: 720
 detect:
   enabled: true
-auth:
-  reset_admin_password: true
 version: 0.16-0

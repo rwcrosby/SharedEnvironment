@@ -18,3 +18,4 @@ services:
     ports:
       - "8971:8971"
       - "8554:8554" # RTSP feeds
+      - "5000:5000" # API
