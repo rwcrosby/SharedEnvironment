@@ -1,0 +1,20 @@
+services:
+
+  frigate:
+
+    container_name: frigate
+    restart: unless-stopped
+    stop_grace_period: 30s
+    image: ghcr.io/blakeblackshear/frigate:stable
+    volumes:
+      - ./config.yaml:/config/config.yaml
+      - /usr/local/share/frigate/config:/config
+      - /var/db/frigate/storage:/media/frigate
+      - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+
+    ports:
+      - "8971:8971"
+      - "8554:8554" # RTSP feeds

@@ -1,0 +1,33 @@
+mqtt:
+  enabled: false
+
+cameras:
+  back_yard:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:Biodyne^518^@backyardcamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  front_entry:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:Biodyne^518^@frontentrycamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+detect:
+  enabled: true
+auth:
+  reset_admin_password: true
+version: 0.16-0

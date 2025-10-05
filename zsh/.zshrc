@@ -47,8 +47,8 @@ esac
 
 # My directories
 
-[ -d ~/.local/bin ] && path=(~/.local/bin $path)
-[ -d ~/.local/share/man ] && manpath=(~/.local/share/man $manpath)
+[[ -d ~/.local/bin ]] && path=(~/.local/bin $path)
+[[ -d ~/.local/share/man ]] && manpath=(~/.local/share/man $manpath)
 
 # Colors
 
@@ -56,9 +56,9 @@ if [[ "$TERM" != "dumb" ]]; then
 
     eval $(dircolors -b ${HERE}/zsh/dircolors)
 
-    [ $(command -v lesspipe.sh) ] && export LESSOPEN="|$(which lesspipe.sh) %s"
-    [ $(command -v lesspipe) ] && export LESSOPEN="|$(which lesspipe) %s"
-    [ $(command -v highlight) ] && 	export LESSOPEN="| $(which highlight) %s --out-format xterm256 -l --force -s solarized-light --no-trailing-nl"
+    [[ $(command -v lesspipe.sh) ]] && export LESSOPEN="|$(which lesspipe.sh) %s"
+    [[ $(command -v lesspipe) ]] && export LESSOPEN="|$(which lesspipe) %s"
+    [[ $(command -v highlight) ]] && 	export LESSOPEN="| $(which highlight) %s --out-format xterm256 -l --force -s solarized-light --no-trailing-nl"
 
     export LESS=' -R '
 
@@ -72,7 +72,7 @@ fi
 
 # Python
 PVE=~/.local/PVE
-[ -d $PVE ] && {
+[[ -d $PVE ]] && {
 
     pushd $PVE &> /dev/null
 
@@ -92,10 +92,24 @@ PVE=~/.local/PVE
 }
 
 # Default editor
-[ $(command -v nano) ] && {
+[[ $(command -v nano) ]] && {
     export EDITOR=$(which nano)
     export VISUAL=$(which nano)
 }
+
+# Light or dark window settings
+
+DARK_TERMINAL=${DARK_TERMINAL:-1}
+
+if [[ -n $DARK_TERMINAL ]]; then
+
+    # DRACULA COLOR SCHEME # Background 3B # Current Line 3C # Foreground E7 # Comment 67 # Cyan 9F # Green 78 # Orange DE # Pink D4 # Purple B7 # Red D2 # Yellow E5 BLK="D4" CHR="DE" DIR="B7" EXE="78" REG="E7" HARDLINK="9F" SYMLINK="9F" MISSING="67" ORPHAN="D2" FIFO="E5" SOCK="E5" OTHER="D2" 
+    export NNN_FCOLORS="D4DEB778E79F9F67D2E5E5D2"
+
+    export BAT_THEME="Visual Studio Dark+"
+
+
+fi
 
 # nnn file manager configuration
 
@@ -104,3 +118,7 @@ export NNN_OPTS="dc"
 
 # Set emacs editing mode
 bindkey -e
+
+# Container locations
+
+export PORTAINER_REGISTRY=${PORTAINER_REGISTRY:-"docker.io"}
