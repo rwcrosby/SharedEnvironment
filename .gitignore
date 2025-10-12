@@ -5,3 +5,4 @@ fish_variables
 *.synctex.gz
 linux/wsl_ansible_vars.json
 *latest.tar
+.ipynb_checkpoints
