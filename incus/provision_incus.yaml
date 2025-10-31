@@ -1,0 +1,48 @@
+- name: Setup incus instance
+  hosts: provision_incus
+  vars:
+    the_user: rcrosby
+
+  tasks:
+
+  - name: Install basic tools
+    apt:
+      update_cache: true
+      pkg:
+        - aptitude
+        - bat
+        - btop
+        - direnv
+        - duf
+        - fastfetch
+        - git
+        - htop
+        - mc
+        - nano
+        - ncdu
+        - nnn
+        - openssh-server
+        - silversearcher-ag
+        - tmux
+        - zsh
+
+  - name: Create me
+    user:
+      name: "{{ the_user }}"
+      append: true
+      groups: ['sudo']
+      password: "{{ 'furbrain'|password_hash('sha512') }}"
+      shell: /usr/bin/zsh
+
+  - name: Allow me to use sudo without needing a password
+    become: yes
+    lineinfile:
+      dest: /etc/sudoers
+      line: "{{ the_user }} ALL=(ALL) NOPASSWD: ALL"
+      validate: 'visudo -cf %s'
+
+  - name: Copy ssh keys
+    authorized_key:
+      user: rcrosby
+      state: present
+      key: "{{ lookup('file', '/home/rcrosby/.ssh/id_ecdsa.pub') }}"
