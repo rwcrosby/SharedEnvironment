@@ -12,6 +12,7 @@
         - aptitude
         - bat
         - btop
+        - curl
         - direnv
         - duf
         - fastfetch
@@ -24,6 +25,7 @@
         - openssh-server
         - silversearcher-ag
         - tmux
+        - wget
         - zsh
 
   - name: Create me

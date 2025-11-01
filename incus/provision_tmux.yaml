@@ -7,24 +7,26 @@
       repo: https://github.com/tmux-plugins/tpm 
       dest: ~/.tmux/plugins/tpm
 
-  - name: Install oh-my-zsh
-    command:
-      cmd: /tmp/oh-my-zsh.sh --unattended
-      creates: ~/.oh-my-zsh
-
-  - name: Create projects directory
+  - name: Create directories
     file:
-      path: ~/Projects
+      path: "{{item}}"
       state: directory
+    loop:
+      "{{ links }}"
+    vars:
+      links:
+        - ~/.config
 
   - name: Remove old links
     file:
-      path: ~/tmux.conf
+      path: "{{item}}"
       state: absent
-  - name: Remove old links
-    file:
-      path: ~/.config/tmux-powerline
-      state: absent
+    loop:
+      "{{ links }}"
+    vars:
+      links:
+        - ~/.tmux.conf
+        - ~/.config/tmux-powerline
 
   - name: Symlink Stuff
     file:

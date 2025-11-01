@@ -1,0 +1,66 @@
+---
+
+- name: Python and pyenv installation
+  hosts: provision_ssh
+  vars:
+    pycurrent: 3.14.0
+  tasks:
+
+  - name: Install Python dependencies
+    become: yes
+    apt:
+      pkg:
+        - build-essential
+        - gcc
+        - libbz2-dev 
+        - libffi-dev 
+        - libgdbm-dev 
+        - libgdbm-compat-dev 
+        - liblzma-dev
+        - libncurses5-dev 
+        - libreadline6-dev 
+        - libsqlite3-dev 
+        - libssl-dev
+        - lzma 
+        - liblzma-dev 
+        - pkg-config
+        - python3-virtualenv
+        - python3-pip
+        - tk-dev 
+        - uuid-dev 
+        - zlib1g-dev
+
+  - name: check for repo existing
+    stat: 
+      path: ~/.pyenv/.git
+    register: pyenv
+
+  - name: Get Pyenv if needed
+    git:
+      repo: https://github.com/pyenv/pyenv.git
+      dest: ~/.pyenv
+    when: not pyenv.stat.exists
+
+  - name: Install python
+    command:
+      cmd: ~/.pyenv/bin/pyenv install {{ pycurrent }}
+      creates: ~/.pyenv/versions/{{ pycurrent }}/bin/python
+
+  - name: Create python virtual environment
+    pip:
+      name: pip
+      virtualenv: "~/.local/PVE/Py{{ pycurrent }}"
+      virtualenv_command: "virtualenv -p ~/.pyenv/versions/{{ pycurrent }}/bin/python"
+
+  - name: Symlink PyCurrent
+    file:
+      src: "~/.local/PVE/Py{{ pycurrent }}"
+      dest: "~/.local/PVE/PyCurrent"
+      state: link
+
+  - name: Install standard Python packages
+    pip:
+      virtualenv: "~/.local/PVE/PyCurrent"
+      name: 
+        - jupyterlab
+      
