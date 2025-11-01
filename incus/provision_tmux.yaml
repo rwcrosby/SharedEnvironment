@@ -1,5 +1,5 @@
 - name: tmux powerline setup
-  hosts: localhost
+  hosts: provision_ssh
   tasks:
 
   - name: Clone tpm

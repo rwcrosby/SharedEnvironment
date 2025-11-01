@@ -15,7 +15,7 @@ case $OSTYPE in
 
         LDLIB=DYLD_LIBRARY_PATH
         export TIME="/usr/bin/time -l"
-        
+
         # Homebrew - Need to use real path since $HOMEBREW_PREFIX isn't set yet
         [[ -f /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
         # Disable automatic cleanup
@@ -34,13 +34,13 @@ case $OSTYPE in
         ;;
 
     linux*)
-        
+
         LDLIB=LD_LIBRARY_PATH
         export TIME="/usr/bin/time --verbose"
 
         # Set the display for wsl
         [[ $(uname -a) == *WSL* ]] && export DISPLAY=$(route -n | grep UG | head -n1 | awk '{print $2}'):0
-        
+
         ;;
 
 esac

@@ -39,6 +39,8 @@
       line: "{{ item }}"
       insertbefore: "^source.*oh-my-zsh.sh$"
     loop:
+      - #DARK_TERMINAL=1
+      - ZSH_THEME="ssp-gnzh"
       - ZSH_THEME="bowser"
       - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
       - plugins=(virtualenv)
