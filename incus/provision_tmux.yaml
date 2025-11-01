@@ -1,0 +1,41 @@
+- name: tmux powerline setup
+  hosts: localhost
+  tasks:
+
+  - name: Clone tpm
+    git:
+      repo: https://github.com/tmux-plugins/tpm 
+      dest: ~/.tmux/plugins/tpm
+
+  - name: Install oh-my-zsh
+    command:
+      cmd: /tmp/oh-my-zsh.sh --unattended
+      creates: ~/.oh-my-zsh
+
+  - name: Create projects directory
+    file:
+      path: ~/Projects
+      state: directory
+
+  - name: Remove old links
+    file:
+      path: ~/tmux.conf
+      state: absent
+  - name: Remove old links
+    file:
+      path: ~/.config/tmux-powerline
+      state: absent
+
+  - name: Symlink Stuff
+    file:
+      src: "{{item.value}}"
+      dest: "{{item.key}}"
+      state: link
+    loop:
+      "{{ links | dict2items }}"
+    vars:
+      links:
+        ~/.tmux.conf: 
+          ~/Projects/SharedEnvironment/tmux/.tmux.tpm.conf
+        ~/.config/tmux-powerline: 
+          ~/Projects/SharedEnvironment/tmux/tmux-powerline

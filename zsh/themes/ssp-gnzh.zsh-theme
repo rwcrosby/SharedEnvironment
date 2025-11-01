@@ -10,7 +10,7 @@ local PR_USER PR_USER_OP PR_PROMPT PR_HOST
 if [[ $UID -ne 0 ]]; then # normal user
   PR_USER='%F{green}%n%f'
   PR_USER_OP='%F{green}%#%f'
-  PR_PROMPT='%K{yellow}%F{black} ➤ %f%k'
+  PR_PROMPT='%K{yellow}%F{black} %f%k'
 else # root
   PR_USER='%F{red}%n%f'
   PR_USER_OP='%F{red}%#%f'
@@ -29,15 +29,16 @@ fi
 
 # Display an emoji...because why not
 
-PR_EMOJI=$'\U1f43f'
+PR_EMOJI=$' \U1f43f'
 # PR_EMOJI=$'?'
 
 local return_code="%(?..%F{red}%? ↵%f)"
 
 # local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
-local user_host="${PR_HOST}"
-local current_dir="%K{cyan}%F{white}$(prompt_dir)%f%k"
-local git_branch='$(git_prompt_info)'
+# local user_host="${PR_HOST}"
+local current_dir="%K{cyan}%F{white}$(prompt_dir)%F{black}%f%k"
+# local git_branch='$(git_prompt_info)'
+local git_branch=''
 local venv_prompt='$(virtualenv_prompt_info)' 
 
 PROMPT="╭─${venv_prompt}${user_host}${current_dir}${git_branch}$PR_EMOJI
