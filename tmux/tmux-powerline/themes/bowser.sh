@@ -1,4 +1,3 @@
-# shellcheck shell=bash
 # Default Theme
 # If changes made here does not take effect, then try to re-create the tmux session to force reload.
 
@@ -28,7 +27,6 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 # See `man tmux` for additional formatting options for the status line.
 # The `format regular` and `format inverse` functions are provided as conveniences
 
-# shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
 		"#[$(tp_format inverse)]"
@@ -41,14 +39,12 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	)
 fi
 
-# shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_STYLE" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_STYLE=(
 		"$(tp_format regular)"
 	)
 fi
 
-# shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
 		"#[$(tp_format regular)]"
@@ -101,11 +97,10 @@ fi
 # of options to support the spacing_disable and separator_disable features can be used
 # The default_* and no_* can be used to keep the default behaviour.
 
-# shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"tmux_session_info 148 234"
-		"hostname 33 0"
+		"nnn 89 211"
 		#"mode_indicator 165 0"
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
@@ -113,14 +108,13 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		# "wan_ip 24 255"
 		"vcs_branch 29 88"
-		#"vcs_compare 60 255"
-		#"vcs_staged 64 255"
-		#"vcs_modified 9 255"
-		#"vcs_others 245 0"
+		"vcs_compare 60 255"
+		"vcs_staged 64 255"
+		"vcs_modified 9 255"
+		"vcs_others 245 0"
 	)
 fi
 
-# shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		#"earthquake 3 0"
@@ -155,6 +149,7 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"tmux_continuum_save"
 		#"tmux_continuum_status 14 7"
 		#"date_day 235 136"
+		"hostname 33 0"
 		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
