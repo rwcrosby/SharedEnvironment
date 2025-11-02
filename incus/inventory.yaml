@@ -1,11 +1,11 @@
 provision_incus:
   hosts:
-    trixie-vm:
+    sam:
       ansible_connection: community.general.incus
 
 provision_ssh:
   hosts:
-    trixie-vm.iot.home:
+    sam.human.home:
       ansible_user: rcrosby
 
 containers_incus:

@@ -48,7 +48,10 @@
     authorized_key:
       user: rcrosby
       state: present
-      key: "{{ lookup('file', '/home/rcrosby/.ssh/id_ecdsa.pub') }}"
+      key: '{{ item }}'
+    with_file:
+    - ~/.ssh/id_ecdsa.pub
+    - ~/.ssh/id_ecdsa.lily.pub
 
   - name: Create ssh keys
     openssh_keypair:
