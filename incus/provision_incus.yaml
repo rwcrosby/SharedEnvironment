@@ -7,8 +7,9 @@
 
   - name: Install basic tools
     apt:
-      update_cache: true
+      update_cache: true``
       pkg:
+        - acl
         - aptitude
         - bat
         - btop
@@ -48,3 +49,7 @@
       user: rcrosby
       state: present
       key: "{{ lookup('file', '/home/rcrosby/.ssh/id_ecdsa.pub') }}"
+
+  - name: Create ssh keys
+    openssh_keypair:
+      type: ecdsa
