@@ -1,0 +1,57 @@
+services:
+
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /srv/homeassistant/config:/config
+      - /srv/homeassistant/templates:/config/custom_templates
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro  
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8123"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    network_mode: host
+
+  matter-server:  
+    container_name: matter-server  
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable  
+    restart: unless-stopped  
+    security_opt:  
+      - apparmor=unconfined  
+    volumes:  
+      - /srv/matter:/data  
+      - /run/dbus:/run/dbus:ro
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: host
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - /srv/mosquitto/data:/mosquitto/data
+      - /srv/mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001    
+
+  portainer:
+    image: portainer/portainer-ce:lts
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+    - 9443:9443
+    - 8000:8000
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:Z
+    - portainer_data:/data
+
+volumes:
+  portainer_data:
+    name: portainer_data
