@@ -1,0 +1,53 @@
+mqtt:
+  host: muffin.iot.home
+  user: frigate
+  password: fdJA0OQ8yA3C750V
+
+ffmpeg:
+  hwaccel_args: preset-nvidia
+
+detectors:
+  onnx:
+    type: onnx
+
+model:
+  model_type: yolonas
+  width: 320 # <--- should match whatever was set in notebook
+  height: 320 # <--- should match whatever was set in notebook
+  input_pixel_format: bgr
+  input_tensor: nchw
+  path: /config/yolo_nas_s.onnx
+  labelmap_path: /labelmap/coco-80.txt
+
+cameras:
+  back_yard:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:Biodyne^518^@backyardcamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
+          roles:
+            - detect
+    detect:
+      # enabled: false # <---- disable detection until you have a working camera feed
+      enabled: true
+      width: 1280
+      height: 720
+  front_entry:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://admin:Biodyne^518^@frontentrycamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
+          roles:
+            - detect
+    detect:
+      # enabled: false # <---- disable detection until you have a working camera feed
+      enabled: true
+      width: 1280
+      height: 720
+
+detect:
+  enabled: true
+
+version: 0.16-0
