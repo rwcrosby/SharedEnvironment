@@ -39,7 +39,7 @@ case $OSTYPE in
         export TIME="/usr/bin/time --verbose"
 
         # Set the display for wsl
-        [[ $(uname -a) == *WSL* ]] && export DISPLAY=$(route -n | grep UG | head -n1 | awk '{print $2}'):0
+        # [[ $(uname -a) == *WSL* ]] && export DISPLAY=$(route -n | grep UG | head -n1 | awk '{print $2}'):0
 
         ;;
 

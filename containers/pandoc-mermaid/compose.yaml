@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: dockerfile.pandoc
       tags:
-        - pandoc-mermaid:latest
+        - ${CONTAINER_REGISTRY}/sandbox/rcrosby/pandoc-mermaid:latest
 
-    image: pandoc-mermaid:latest
+    image: ${CONTAINER_REGISTRY}/sandbox/rcrosby/pandoc-mermaid:latest
     container_name: pandoc
     user: ${UID_GID}
     tty: true
