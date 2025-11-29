@@ -1,0 +1,25 @@
+# Fio job file to do a random read
+
+[global]
+direct=1
+stonewall
+ioengine=libaio
+iodepth=256
+time_based
+group_reporting
+numjobs=4
+size=128m
+runtime=60s
+
+[random-read]
+rw=randread
+
+[random-write]
+rw=randwrite
+
+[sequential-read]
+rw=read
+
+[sequential-write]
+rw=write
+
