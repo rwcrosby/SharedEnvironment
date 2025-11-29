@@ -1,7 +1,7 @@
 #!/bin/bash
 
-POOLNAME=${1:-naspool0}
-DSNAME=${2:-nas_sdd}
+POOLNAME=${1:-naspool1}
+DSNAME=${2:-nas_hdd}
 
 zfs create \
     -o mountpoint=/$DSNAME \
