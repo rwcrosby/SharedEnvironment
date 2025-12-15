@@ -24,6 +24,8 @@ detect:
   width: 1280
   height: 720
 
+record:
+  enabled: true
 
 cameras:
 
@@ -35,8 +37,6 @@ cameras:
             rtsp://admin:Biodyne^518^@backyardcamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
           roles:
             - detect
-    record:
-      enabled: true
 
   front_entry:
     enabled: true
@@ -46,8 +46,6 @@ cameras:
             rtsp://admin:Biodyne^518^@frontentrycamera.iot.home:554/cam/realmonitor?channel=1&subtype=1
           roles:
             - detect
-    record:
-      enabled: true
     motion:
       mask: 0.908,0.209,0.927,0.021,0.996,0.016,0.986,0.243
 
