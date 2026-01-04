@@ -1,0 +1,11 @@
+zfs_datasets:
+  - tank/mydata
+  - tank/docs
+
+incus_instances:
+  - web-server
+  - db-server
+
+target_volume: backup_pool/bk
+tag: automated_backup
+type: full
