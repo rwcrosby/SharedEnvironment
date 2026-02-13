@@ -1,0 +1,13 @@
+[Unit]
+Description=Reset GPU
+DefaultDependencies=no
+#After=zfs-import.target
+Before=incus-service.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/nvidia-smi -r
+
+[Install]
+WantedBy=multi-user.target

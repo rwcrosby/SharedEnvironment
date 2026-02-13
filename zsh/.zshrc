@@ -64,6 +64,9 @@ if [[ "$TERM" != "dumb" ]]; then
 
 fi
 
+# usr/local/bin
+[ -d /usr/local/bin ] && export path=(/usr/local/bin $path)
+
 # Rust
 [ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
 
