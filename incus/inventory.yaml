@@ -1,11 +1,11 @@
 provision_incus:
   hosts:
-    sam:
+    winston:
       ansible_connection: community.general.incus
 
 provision_ssh:
   hosts:
-    sam.human.home:
+    winston.human.home:
       ansible_user: rcrosby
 
 containers_incus:

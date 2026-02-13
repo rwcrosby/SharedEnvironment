@@ -337,7 +337,7 @@
 
 # pwd.sh {
 	# Maximum length of output.
-	export TMUX_POWERLINE_SEG_PWD_MAX_LEN="40"
+	export TMUX_POWERLINE_SEG_PWD_MAX_LEN="120"
 # }
 
 # time.sh {
@@ -379,7 +379,7 @@
 
 # vcs_branch.sh {
 	# Max length of the branch name.
-	export TMUX_POWERLINE_SEG_VCS_BRANCH_MAX_LEN=""
+	export TMUX_POWERLINE_SEG_VCS_BRANCH_MAX_LEN="60"
 	# Symbol when branch length exceeds max length
 	# export TMUX_POWERLINE_SEG_VCS_BRANCH_TRUNCATE_SYMBOL="…"
 	# Default branch symbol

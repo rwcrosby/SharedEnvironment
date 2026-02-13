@@ -64,6 +64,9 @@ if [[ "$TERM" != "dumb" ]]; then
 
 fi
 
+# usr/local/bin
+[ -d /usr/local/bin ] && export path=(/usr/local/bin $path)
+
 # Rust
 [ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
 
@@ -114,8 +117,15 @@ fi
 
 # nnn file manager configuration
 
-export NNN_OPENER="batcat --paging always"
-export NNN_OPTS="dc"
+[[ $(command -v nnn) ]] && {
+    export NNN_OPENER="batcat --paging always"
+    export NNN_OPTS="dc"
+}
+
+# fzf configuration
+[[ $(command -v fzf) ]] && {
+    source <(fzf --zsh)
+}
 
 # Set emacs editing mode
 bindkey -e
