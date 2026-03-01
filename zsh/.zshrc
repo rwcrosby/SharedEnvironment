@@ -133,3 +133,8 @@ bindkey -e
 # Container locations
 
 export PORTAINER_REGISTRY=${PORTAINER_REGISTRY:-"docker.io"}
+
+# Set the user and group id for docker containers to match the host user
+
+export MYUID=$(id -u)
+export MYGID=$(id -g)

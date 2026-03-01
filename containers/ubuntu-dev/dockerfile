@@ -1,0 +1,52 @@
+FROM ubuntu:25.10
+
+LABEL name="ubuntu-dev:25.10"
+LABEL org.opencontainers.image.source=https://github.com/rwcrosby/SharedEnvironment
+LABEL org.opencontainers.image.description="Ubuntu development environment with various tools installed"
+
+WORKDIR /workspace
+
+RUN apt-get update && apt-get install -y \
+      aptitude \
+      bat \
+      build-essential \
+      curl \
+      direnv \
+      duf \
+      fd-find \
+      git \
+      hexyl \
+      htop \
+      iperf3 \
+      language-pack-en \
+      net-tools \
+      mc \
+      nano \
+      nnn \
+      ncdu \
+      silversearcher-ag \
+      sudo \
+      tmux \
+      vim \
+      wget \
+      zsh
+
+ARG UID
+ARG GID
+
+RUN update-locale LANG=en_US.UTF-8
+
+RUN userdel -r ubuntu || trues
+
+RUN groupadd -g ${GID} user || true \
+    && useradd -u ${UID} -g ${GID} -m user \
+    && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER user
+
+RUN git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh \
+    && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc \
+    && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/' ~/.zshrc
+    
+
+CMD ["/bin/zsh"]   
