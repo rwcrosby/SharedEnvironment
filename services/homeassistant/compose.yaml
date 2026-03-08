@@ -41,17 +41,3 @@ services:
       - 1883:1883
       - 9001:9001    
 
-  portainer:
-    image: portainer/portainer-ce:lts
-    container_name: portainer
-    restart: unless-stopped
-    ports:
-    - 9443:9443
-    - 8000:8000
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock:Z
-    - portainer_data:/data
-
-volumes:
-  portainer_data:
-    name: portainer_data
