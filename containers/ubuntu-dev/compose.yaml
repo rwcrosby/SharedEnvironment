@@ -1,0 +1,20 @@
+services:
+
+  ubuntu-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${MYUID}
+        GID: ${MYGID}
+    image: ghcr.io/rwcrosby/sharedenvironment/ubuntu-dev:25.10
+    user: "${MYUID}:${MYGID}"
+    container_name: ubuntu-dev
+    volumes:
+      - ./:/workspace
+      - /home/${USER}/Projects:/Projects
+      - /home/${USER}/Projects/SharedEnvironment:/Projects/SharedEnvironment
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/zsh

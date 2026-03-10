@@ -65,13 +65,13 @@ if [[ "$TERM" != "dumb" ]]; then
 fi
 
 # usr/local/bin
-[ -d /usr/local/bin ] && export path=(/usr/local/bin $path)
+[[ -d /usr/local/bin ]] && export path=(/usr/local/bin $path)
 
 # Rust
-[ -d ~/.cargo/bin ] && path=(~/.cargo/bin $path)
+[[ -d ~/.cargo/bin ]] && path=(~/.cargo/bin $path)
 
 # Direnv
-[ $(command -v direnv) ] && eval "$(direnv hook zsh)"
+[[ $(command -v direnv) ]] && eval "$(direnv hook zsh)"
 
 # Python
 PVE=~/.local/PVE
@@ -122,14 +122,19 @@ fi
     export NNN_OPTS="dc"
 }
 
-# fzf configuration
-[[ $(command -v fzf) ]] && {
-    source <(fzf --zsh)
-}
+# fzf shell extensions
+
+[[ $(command -v fzf) ]] && source <(fzf --zsh)
 
 # Set emacs editing mode
+
 bindkey -e
 
 # Container locations
 
 export PORTAINER_REGISTRY=${PORTAINER_REGISTRY:-"docker.io"}
+
+# Set the user and group id for docker containers to match the host user
+
+export MYUID=$(id -u)
+export MYGID=$(id -g)
