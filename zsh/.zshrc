@@ -110,7 +110,7 @@ if [[ -n $DARK_TERMINAL ]]; then
 
 else
 
-    export NNN_FCOLORS='c1e21b58006033f7c6d6abc4'
+    export NNN_FCOLORS='c1e21b58006036f7c6d6abc4'
     export BAT_THEME="GitHub"
 
 fi
