@@ -118,7 +118,9 @@ fi
 # nnn file manager configuration
 
 [[ $(command -v nnn) ]] && {
-    export NNN_OPENER="batcat --paging always"
+    [[ $(command -v batcat) ]] && export NNN_OPENER="batcat --paging always"
+    [[ $(command -v bat) ]] && export NNN_OPENER="bat --paging always"
+#    export NNN_OPENER="batcat --paging always"
     export NNN_OPTS="dc"
 }
 
