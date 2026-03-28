@@ -95,9 +95,10 @@ PVE=~/.local/PVE
 }
 
 # Default editor
-[[ $(command -v nano) ]] && {
-    export EDITOR=$(which nano)
-    export VISUAL=$(which nano)
+editor=vim
+[[ $(command -v $editor) ]] && {
+    export EDITOR=$(which $editor)
+    export VISUAL=$(which $editor)
 }
 
 # Light or dark window settings
@@ -118,9 +119,8 @@ fi
 # nnn file manager configuration
 
 [[ $(command -v nnn) ]] && {
-    [[ $(command -v batcat) ]] && export NNN_OPENER="batcat --paging always"
-    [[ $(command -v bat) ]] && export NNN_OPENER="bat --paging always"
-#    export NNN_OPENER="batcat --paging always"
+    #[[ $(command -v batcat) ]] && export NNN_OPENER=$(batcat --paging always)
+    #[[ $(command -v bat) ]] && export NNN_OPENER=$(bat --paging always)
     export NNN_OPTS="dc"
 }
 
