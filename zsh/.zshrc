@@ -120,8 +120,8 @@ fi
 # nnn file manager configuration
 
 [[ $(command -v nnn) ]] && {
-    [[ $(command -v batcat) ]] && export NNN_OPENER=batcat
     [[ $(command -v bat) ]] && export NNN_OPENER=bat
+    [[ $(command -v batcat) ]] && export NNN_OPENER=batcat
     export NNN_OPTS="dc"
 }
 
