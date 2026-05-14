@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/rcrosby/Projects/SharedEnvironment/services/zfs/zfsSnapshot.py)",
+      "Bash(python3 /Users/rcrosby/Projects/SharedEnvironment/services/zfs/zfsSnapshot.py --dry-run tank weekly-backup)",
+      "Bash(chmod +x /Users/rcrosby/Projects/SharedEnvironment/services/zfs/zfsSendRecv.py)",
+      "Bash(python3 /Users/rcrosby/Projects/SharedEnvironment/services/zfs/zfsSendRecv.py --dry-run tank backup 26-04-25_weekly)",
+      "Bash(python3 /Users/rcrosby/Projects/SharedEnvironment/services/zfs/zfsSendRecv.py --dry-run -i 26-04-18_weekly tank backup 26-04-25_weekly)"
+    ]
+  }
+}
