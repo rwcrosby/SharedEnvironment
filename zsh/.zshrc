@@ -114,14 +114,13 @@ else
     export BAT_THEME="GitHub"
 fi
 
-export BAT_PAGING=always
-
 # nnn file manager configuration
 
 [[ $(command -v nnn) ]] && {
     [[ $(command -v bat) ]] && export NNN_OPENER=bat
     [[ $(command -v batcat) ]] && export NNN_OPENER=batcat
     export NNN_OPTS="dc"
+    export NNN_PLUG='l:!lazygit*;'
 }
 
 # fzf shell extensions
