@@ -6,13 +6,17 @@
       - aptitude
       - bat
       - direnv
+      - docker.io
       - duf
+      - fzf
       - hexyl
       - htop
       - iperf3
       - net-tools
       - mc
       - ncdu
+      - nnn
+      - ripgrep
       # - podman
       # - podman-compose
       - silversearcher-ag

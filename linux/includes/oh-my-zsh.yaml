@@ -21,4 +21,4 @@
     - ZSH_THEME="ssp-gnzh"
     - ZSH_CUSTOM=~/Projects/SharedEnvironment/zsh
     - plugins=(virtualenv)
-    - source $ZSH_CUSTOM/zshrc
+    - source $ZSH_CUSTOM/.zshrc
