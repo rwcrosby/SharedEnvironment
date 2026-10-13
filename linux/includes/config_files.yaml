@@ -15,11 +15,13 @@
   vars:
     links:
       ~/.tmux.conf: 
-        tmux/tmux.conf
+        tmux/.tmux.tpm.conf
       ~/.config/flake8: 
         python/flake8
-      ~/.config/direnv/direnvrc: 
-        direnvrc
+      ~/.config/direnv/.direnvrc: 
+        direnv/.direnvrc
+      ~/.config/tmux-powerline: 
+        tmux/tmux-powerline
       ~/.latexmkrc: 
         latex/latexmkrc
       ~/.ansible.cfg: 

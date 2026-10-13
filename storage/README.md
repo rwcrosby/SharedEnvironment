@@ -103,6 +103,31 @@ Creates `root` and `home` datasets on the zorro pool.
 
 ---
 
+### Structure Copy
+
+#### `zpoolCopyStructure.sh`
+Recreates a pool's dataset hierarchy on another pool — structure and locally-set properties only, no data.
+
+```bash
+./zpoolCopyStructure.sh [-n] [-p prop=value ...] <source_pool> <dest_pool>
+```
+
+| Argument | Description |
+|----------|-------------|
+| `source_pool` | Pool to read the dataset hierarchy from |
+| `dest_pool` | Pool to create/update matching datasets on |
+| `-n` | Dry run — print commands without executing |
+| `-p prop=value` | Override or add a property on all destination datasets (repeatable) |
+
+```bash
+./zpoolCopyStructure.sh naspool0 backup4t
+./zpoolCopyStructure.sh -n -p mountpoint=none -p canmount=off naspool0 backup4t
+```
+
+Creates missing datasets (`zfs create`, preserving volume size for zvols) and updates properties on ones that already exist. Only copies properties with `source=local`, skipping read-only/derived ones (`used`, `guid`, `compressratio`, etc.).
+
+---
+
 ### Snapshots
 
 #### `zfsSnapshot.py`
@@ -122,6 +147,18 @@ Recursively snapshots all datasets in a pool. Snapshot names are formatted as `y
 ./zfsSnapshot.py tank weekly
 # Creates tank@26-04-26_weekly, tank/data@26-04-26_weekly, etc.
 ```
+
+---
+
+#### `zfsSnapshot.sh`
+Simple recursive snapshot of every imported pool, no per-pool selection. Snapshot names are formatted as `yyyy-mm-dd-<title>`.
+
+```bash
+./zfsSnapshot.sh <title>
+# Snapshots every pool from `zpool list`, recursively: <pool>@<date>-<title>
+```
+
+Superseded by `zfsSnapshot.py` for targeted, per-pool snapshots with a dry-run option; kept for quick "snapshot everything" use.
 
 ---
 
@@ -167,6 +204,41 @@ One-off script that pulls a specific snapshot of all `incus1` datasets from the 
 
 ---
 
+#### `zfsUpdateBackupFromWinston.sh`
+Brings a locally-attached backup pool (default `Backup4T`) up to date with the
+newest snapshots on `winston`. Runs **on the Mac** and pulls: `ssh winston zfs
+send` piped into a local `zfs recv`. Does not create snapshots — winston runs
+sanoid every 15 minutes, so this only replicates what already exists.
+
+```bash
+./zfsUpdateBackupFromWinston.sh --list      # read-only: what would sync
+./zfsUpdateBackupFromWinston.sh --dry-run   # print the exact send/recv pipelines
+./zfsUpdateBackupFromWinston.sh             # sync Home + Users, then export
+# Default: winston:naspool1/nas_hdd/{Home,Users} -> Backup4T/nas_hdd/{Home,Users}
+```
+
+Behaviour:
+
+* **Raw sends only** (`zfs send -w`) — the chain was started raw and raw/non-raw
+  cannot be mixed. Side benefit: the backup never needs the encryption key.
+* **No `-R`/`-p`**, so the sender's `mountpoint`/`keylocation`/`canmount` are
+  never pushed onto the target (the trap that broke winston's automount in
+  2026-08). Receives with `-u` so nothing is mounted here.
+* Picks the incremental base from **what the target already has**, then verifies
+  it on the source **by GUID** before sending. A name-only match is refused —
+  `naspool1` was rebuilt in 2026-07 and restored from this same backup, so
+  matching names do not by themselves prove matching lineage.
+* Uses `send -I` by default, so intermediate sanoid snapshots are preserved on
+  the backup. `--latest-only` switches to `-i` (endpoint only).
+* Imports the pool if needed and exports it when done (even on failure), so the
+  drive is safe to unplug. `--no-export` keeps it imported.
+* Refuses an initial full send unless `--allow-full` is passed (~1.9T).
+* Skips `TimeMachine` — it has no dataset on `Backup4T`.
+
+Exits non-zero if any dataset had a problem.
+
+---
+
 ### Restore
 
 #### `rsyncRootFromSnapshot.sh`
@@ -179,6 +251,29 @@ Restores filesystem content from a ZFS snapshot using `rsync`. Finds all `.zfs/s
 ```
 
 Uses `rsync -axHAWXS --numeric-ids` to preserve all attributes and ACLs.
+
+---
+
+### Remote Unlock
+
+#### `zorroUnlock.sh`
+Interactive remote-unlock helper for zorro's encrypted root pool. Runs **on the Mac**; waits for the initramfs to answer over ssh, opens an interactive `zfsunlock` session for you to enter the passphrase, then confirms from a second host that the boot actually resumed.
+
+```bash
+./zorroUnlock.sh [--wait SECONDS]
+# --wait N   Poll up to N seconds for the initramfs ssh port before prompting
+```
+
+Passphrase: `op://shared/zpool zorro encryption key/credential`.
+
+Typical use after a power loss:
+
+```bash
+ssh idrac "racadm serveraction powerup"
+./zorroUnlock.sh --wait 300
+```
+
+Not automated by design — three non-interactive approaches (piping into `zfsunlock`, loading the key directly, driving it over a pty) all failed against `decrypt_fs()`'s retry/handshake logic; see the script's header comment for details. The actual fix for unattended boot is a key file under `/etc/zfs/initramfs-tools-load-key.d/`, not this script.
 
 ---
 
