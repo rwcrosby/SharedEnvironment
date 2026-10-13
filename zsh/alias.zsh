@@ -18,7 +18,8 @@ alias la='ls -lAh --color=auto'
 alias ll='ls -lh --color=auto'
 alias ls='ls --color=auto'
 
-# Git
+# Docker
 
-# Usage: gld branch-name
-alias gld="git log --decorate --oneline --graph develop"
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"'
+alias dcompose='UID=$(id -u) GID=$(id -g) docker compose $@'
+
