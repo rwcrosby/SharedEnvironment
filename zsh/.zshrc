@@ -119,6 +119,7 @@ fi
 [[ $(command -v nnn) ]] && {
     [[ $(command -v bat) ]] && export NNN_OPENER=bat
     [[ $(command -v batcat) ]] && export NNN_OPENER=batcat
+    [[ $(command -v less) ]] && export NNN_OPENER="less -S -N"
     export NNN_OPTS="dc"
     export NNN_PLUG='l:!lazygit*;'
 }
